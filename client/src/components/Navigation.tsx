@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Menu, X } from "lucide-react";
 import shrineLogoPath from "@assets/LogoV_Black_v2_1758948960878.jpg";
-import shrineIconPath from "@assets/Icon_Black_1758948905275.jpg";
+import shrineIconPath from "@assets/Icon_White_1758953368901.png";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -54,7 +54,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   return (
     <nav 
       className={cn(
-        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-white",
+        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-black",
         isScrolled 
           ? "shadow-lg" 
           : ""
@@ -81,7 +81,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               aria-hidden="true"
             />
             <div className="font-bold text-sm sm:text-lg">
-              <span className="text-foreground">PEPTIDE</span>
+              <span className="text-white">PEPTIDE</span>
               <span className="text-primary ml-0.5 sm:ml-1">DOJO</span>
             </div>
           </Link>
@@ -92,7 +92,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <Button
                 key={item.path}
                 variant="ghost"
-                className="font-medium min-h-[44px] px-4"
+                className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
                 onClick={() => handleNavClick(item.label)}
               >
@@ -117,16 +117,16 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <Button
                 variant="ghost"
                 size="icon"
-                className="min-h-[44px] min-w-[44px] relative"
+                className="min-h-[44px] min-w-[44px] relative text-white hover:text-white hover:bg-white/10"
                 aria-label="Open navigation menu"
                 data-testid="mobile-menu-button"
               >
                 <Menu className={cn(
-                  "h-6 w-6 transition-all duration-300",
+                  "h-6 w-6 transition-all duration-300 text-white",
                   isMobileMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
                 )} />
                 <X className={cn(
-                  "h-6 w-6 absolute transition-all duration-300",
+                  "h-6 w-6 absolute transition-all duration-300 text-white",
                   isMobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
                 )} />
               </Button>

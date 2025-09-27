@@ -1,102 +1,131 @@
 # Peptide Dojo Design Guidelines
 
 ## Design Approach
-**Reference-Based Approach**: Drawing inspiration from premium educational platforms like Masterclass and Duolingo's gamification, combined with Japanese aesthetic principles to create a sophisticated learning environment that extends Shrine Peptides' premium brand identity.
+**Reference-Based Approach**: Drawing inspiration from premium educational platforms like Masterclass and traditional Japanese aesthetics, creating an immersive Shinto shrine experience that transforms learning into a sacred journey through chambers of knowledge.
 
 ## Core Design Elements
 
 ### A. Color Palette
 **Primary Colors:**
-- Rich Black: #020304 (primary text, premium backgrounds)
-- Shrine Crimson: #DC2A2E (CTAs, highlights, belt accents)
-- Pure White: #FFFFFF (clean backgrounds, text on dark)
-- Graphite: #4F4F4F (secondary text, subtle borders)
+- Sumi Black: 0 0% 1% (rich backgrounds, primary text)
+- Shrine Crimson: 356 70% 51% (sacred highlights, CTAs, spiritual accents)
+- Washi White: 45 12% 97% (pure backgrounds, enlightenment moments)
+- Stone Gray: 210 4% 31% (secondary text, natural elements)
 
-**Pattern Colors:**
-- Phantom: #151515 (dark background patterns)
-- Ghost: #EAEAEA (light background patterns)
+**Sacred Landscape Gradients:**
+- Rising Sun: Crimson to warm amber (0 70% 51% to 30 85% 65%)
+- Mountain Mist: Cool gray to white (210 15% 85% to 45 12% 97%)
+- Forest Depth: Deep green to black (150 30% 15% to 0 0% 5%)
 
 ### B. Typography
 **Font Family:** Inter (Google Fonts)
-- **Inter Bold (700):** Headlines, main CTAs, "SHRINE PEPTIDES" branding
-- **Inter Medium (500):** Section headers, navigation labels, belt titles
-- **Inter Regular (400):** Body text, descriptions, module content
-- **Inter Light (300):** Captions, subtle UI elements, taglines
+- **Inter Bold (700):** Sacred headers, shrine chamber titles, primary CTAs
+- **Inter Medium (500):** Navigation, section headers, wisdom teachings
+- **Inter Regular (400):** Body text, detailed content, learning materials
+- **Inter Light (300):** Contemplative quotes, subtle guidance, captions
+
+**Hierarchy Principles:**
+- Generous ma (negative space) between elements
+- Asymmetrical text placement following natural flow
+- Clear visual hierarchy respecting sacred order
 
 ### C. Layout System
-**Spacing Primitives:** Tailwind units of 2, 4, 8, 12, and 16 for consistent rhythm
-- Base spacing: p-4, m-4
-- Large sections: p-8, py-12
-- Component spacing: gap-2, gap-4
-- Container max-width: max-w-7xl
+**Spacing Primitives:** Tailwind units of 4, 8, 12, 16, 24 for natural rhythm
+- Chamber spacing: py-16, px-8
+- Component breathing room: gap-8, gap-12
+- Sacred geometry: max-w-6xl containers with golden ratio proportions
+- Natural asymmetry in content placement
 
 ### D. Component Library
 
-**Navigation:**
-- Torii-inspired horizontal beam design
-- Crimson highlight underlines for active states
-- Clean Inter Medium typography
-- Subtle shadow depth
+**Torii Gate Navigation:**
+- Horizontal beam design with subtle parallax depth
+- Crimson sacred rope (shimenawa) highlight for active states
+- Floating effect with subtle shadows
+- Responsive collapse to traditional menu
 
-**Hero Section:**
-- Rising sun disc gradient backdrop (crimson to warm orange)
-- Torii gate silhouette overlay
-- Centered content with generous padding
-- Primary CTA: "Step Through the Gate" (Crimson background, white text)
+**Sacred Chamber Sections:**
+- Each section represents a shrine chamber with distinct atmospheric treatment
+- Subtle parallax scrolling between layers
+- Gradient overlays inspired by Japanese landscapes
+- Natural flow between chambers with seamless transitions
 
-**Belt Progression Cards:**
-- Ema plaque-inspired design with subtle rounded corners
-- Ghost pattern texture overlays at low opacity
-- Color-coded belt progression: white → red → black → gold
-- Clean typography hierarchy with Inter font stack
+**Ema Plaque Learning Cards:**
+- Wooden plaque-inspired design with subtle grain textures
+- Rounded corners evoking traditional ema shape
+- Washi paper texture overlays at low opacity
+- Shadow depth suggesting hanging from sacred rope
 
-**Module Cards:**
-- White backgrounds with subtle shadows
-- Graphite borders and category icons
-- Structured content layout with clear hierarchy
-- Progress indicators using brand colors
+**Shoji Screen Content Panels:**
+- Grid-based layouts inspired by traditional shoji construction
+- Translucent overlays with subtle paper textures
+- Clean geometric divisions following sacred proportions
+- Soft lighting effects creating depth and warmth
 
-**Sacred Scrolls Glossary:**
-- Expandable accordion design
-- Scroll-inspired styling with subtle gradients
-- Search functionality with clean input fields
-- Organized with brand category icons
+**Belt Progression Shrine Path:**
+- Journey visualization through torii gates
+- Sacred rope connecting progression points
+- Seasonal motifs reflecting advancement stages
+- Color evolution from stone gray to shrine crimson to enlightened gold
 
-**Footer:**
-- Shimenawa rope visual divider
-- Komainu guardian silhouettes as decorative elements
-- Rich black background with white logo placement
-- Crimson hover states for navigation links
+**Sacred Scrolls Knowledge Base:**
+- Bamboo scroll-inspired expandable sections
+- Washi paper texture backgrounds
+- Calligraphy-inspired accent lines
+- Traditional binding visual elements
 
-### E. Visual Patterns & Textures
-**Seigaiha Wave Pattern:**
-- Phantom waves on dark sections (low opacity)
-- Ghost waves on light sections (subtle texture)
-- Never overpowering content, always background treatment
-- Applied to hero sections and card backgrounds
+### E. Visual Patterns & Atmospheric Elements
 
-**Japanese Design Elements:**
-- Torii gate integration throughout navigation
-- Ema plaque styling for content cards
-- Clean, minimalist aesthetic with purposeful whitespace
-- Traditional color harmony with modern execution
+**Texture Library:**
+- Washi paper grain: Subtle, organic texture overlays
+- Wood grain: Warm, natural surface treatments for cards
+- Stone texture: Grounding elements for stable foundations
+- Water ripples: Gentle movement in background elements
 
-## Brand Voice Integration
-- Tagline placement: "PURITY. POWER. PROVEN." in hero and footer
-- CTA Language: "Step Through the Gate," "Begin Your Training," "Advance to the Next Belt"
-- Scientific yet accessible tone throughout content
-- Premium positioning with disciplined, structured presentation
+**Sacred Geometry:**
+- Golden ratio proportions in layout structure
+- Circular elements representing ensō (enlightenment circles)
+- Hexagonal patterns inspired by sacred architecture
+- Natural asymmetry following traditional Japanese balance
 
-## Responsive Considerations
-- Mobile-first approach with touch-friendly interactions
-- Collapsible navigation for smaller screens
-- Stacked belt progression on mobile
-- Maintained brand hierarchy across all breakpoints
+**Seasonal Nature Motifs:**
+- Cherry blossom petals: Spring learning, new beginnings
+- Bamboo leaves: Summer growth, steady progress
+- Maple leaves: Autumn wisdom, transformation
+- Pine needles: Winter endurance, mastery
+
+**Atmospheric Depth:**
+- Layered parallax with 3-5 depth levels
+- Mist effects using gradient overlays
+- Soft lighting creating chamber ambiance
+- Shadow play suggesting sacred architecture
+
+### F. Sacred Journey Experience
+
+**Chamber Progression:**
+1. **Entrance Gate**: Torii-framed hero with rising sun gradient
+2. **Purification Chamber**: Clean, minimalist introduction space
+3. **Learning Halls**: Rich content areas with ema plaque cards
+4. **Meditation Garden**: Peaceful reflection zones with nature motifs
+5. **Master's Sanctuary**: Advanced knowledge with golden accents
+
+**Interaction Philosophy:**
+- Gentle reveal animations following natural timing
+- Subtle hover states respecting sacred atmosphere
+- Scroll-triggered enlightenment moments
+- Progressive disclosure mirroring spiritual journey
 
 ## Images
-**Hero Background:** Large rising sun disc gradient with Torii gate silhouette overlay - serves as the primary visual anchor for the site
-**Belt Icons:** Custom illustrated belt graphics for progression system
-**Guardian Elements:** Komainu silhouettes for footer decoration
-**Pattern Overlays:** Seigaiha wave textures throughout sections
+**Hero Background:** Large rising sun disc gradient with layered torii gate silhouettes and mountain mist effects - primary visual anchor
+**Chamber Atmospheres:** Soft, atmospheric background treatments for each learning section
+**Sacred Elements:** Shimenawa rope dividers, komainu guardian silhouettes, ensō circles
+**Texture Overlays:** Washi paper, wood grain, and stone patterns for authentic material feel
+**Seasonal Accents:** Subtle nature motifs appropriate to content seasons
 
-The design maintains strict adherence to Shrine Peptides' brand compliance while creating an immersive educational dojo experience that reinforces the premium, scientific positioning of the brand.
+## Brand Integration
+- "PURITY. POWER. PROVEN." positioned as sacred teaching
+- CTA language: "Enter the Sacred Learning," "Advance Your Journey," "Unlock Ancient Wisdom"
+- Scientific precision balanced with spiritual metaphor
+- Premium positioning through authentic cultural respect
+
+The design creates an immersive shrine experience where each interaction deepens understanding, combining Shrine Peptides' scientific authority with the transformative journey of traditional Japanese learning.

@@ -14,122 +14,145 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Shrine Peptides Brand Colors */
+  /* Sacred Palette - Core Colors */
+  --sumi-black: 0 0% 1%; /* Rich Black for depth */
+  --shrine-crimson: 356 70% 51%; /* Sacred highlight */
+  --washi-white: 45 12% 97%; /* Pure enlightenment */
+  --stone-gray: 210 4% 31%; /* Natural grounding */
+  
+  /* Extended Sacred Colors */
+  --warm-amber: 30 85% 65%; /* Rising sun warmth */
+  --mist-gray: 210 15% 85%; /* Mountain mist */
+  --forest-green: 150 30% 15%; /* Deep forest */
+  --bamboo-green: 140 25% 45%; /* Growing wisdom */
+  --sakura-pink: 350 65% 85%; /* Cherry blossom */
+  --maple-red: 15 75% 45%; /* Autumn transformation */
+  --gold-enlightenment: 45 90% 55%; /* Master's achievement */
+  
+  /* Shrine Peptides Brand Colors (Preserved) */
   --shrine-black: 220 25% 1%; /* Rich Black #020304 */
-  --shrine-crimson: 357 84% 51%; /* Shrine Crimson #DC2A2E */
+  --shrine-crimson-brand: 357 84% 51%; /* Shrine Crimson #DC2A2E */
   --shrine-white: 0 0% 100%; /* Pure White #FFFFFF */
   --shrine-graphite: 0 0% 31%; /* Graphite #4F4F4F */
   --shrine-phantom: 0 0% 8%; /* Phantom #151515 */
   --shrine-ghost: 0 0% 92%; /* Ghost #EAEAEA */
 
-  --background: var(--shrine-white);
+  /* Sacred Landscape Gradients */
+  --gradient-rising-sun: linear-gradient(135deg, hsl(356 70% 51%), hsl(30 85% 65%), hsl(45 12% 97%));
+  --gradient-mountain-mist: linear-gradient(180deg, hsl(210 15% 85%), hsl(45 12% 97%), transparent);
+  --gradient-forest-depth: linear-gradient(180deg, hsl(150 30% 15%), hsl(0 0% 5%));
+  --gradient-sacred-dawn: radial-gradient(circle at top, hsl(30 85% 65% / 0.3), transparent 70%);
+  --gradient-torii-gate: linear-gradient(90deg, transparent 10%, hsl(356 70% 51% / 0.1) 50%, transparent 90%);
+  
+  /* Atmospheric Depth Layers */
+  --layer-mist: linear-gradient(180deg, transparent, hsl(210 15% 85% / 0.1) 30%, hsl(210 15% 85% / 0.2) 70%, transparent);
+  --layer-shadow: linear-gradient(180deg, transparent, hsl(0 0% 0% / 0.05) 50%, hsl(0 0% 0% / 0.1));
+  
+  /* Shadow Depths for Sacred Architecture */
+  --shadow-shallow: 0 1px 3px hsl(0 0% 0% / 0.1), 0 1px 2px hsl(0 0% 0% / 0.06);
+  --shadow-medium: 0 4px 6px hsl(0 0% 0% / 0.1), 0 2px 4px hsl(0 0% 0% / 0.06);
+  --shadow-deep: 0 10px 15px hsl(0 0% 0% / 0.1), 0 4px 6px hsl(0 0% 0% / 0.05);
+  --shadow-floating: 0 20px 25px hsl(0 0% 0% / 0.1), 0 10px 10px hsl(0 0% 0% / 0.04);
+  --shadow-torii: 0 25px 50px hsl(356 70% 51% / 0.15), 0 10px 20px hsl(0 0% 0% / 0.08);
 
-  --foreground: var(--shrine-black);
-
-  --border: var(--shrine-ghost);
+  /* Main theme colors using sacred palette */
+  --background: var(--washi-white);
+  --foreground: var(--sumi-black);
+  --border: hsl(var(--stone-gray) / 0.2);
 
   --card: var(--shrine-white);
+  --card-foreground: var(--sumi-black);
+  --card-border: hsl(var(--stone-gray) / 0.15);
 
-  --card-foreground: var(--shrine-black);
-
-  --card-border: var(--shrine-ghost);
-
-  --sidebar: 0 0% 98%;
-
-  --sidebar-foreground: var(--shrine-black);
-
-  --sidebar-border: var(--shrine-ghost);
-
+  --sidebar: 45 12% 98%;
+  --sidebar-foreground: var(--sumi-black);
+  --sidebar-border: hsl(var(--stone-gray) / 0.1);
   --sidebar-primary: var(--shrine-crimson);
-
-  --sidebar-primary-foreground: var(--shrine-white);
-
+  --sidebar-primary-foreground: var(--washi-white);
   --sidebar-accent: var(--shrine-ghost);
-
-  --sidebar-accent-foreground: var(--shrine-graphite);
-
+  --sidebar-accent-foreground: var(--stone-gray);
   --sidebar-ring: var(--shrine-crimson);
 
   --popover: var(--shrine-white);
-
-  --popover-foreground: var(--shrine-black);
-
-  --popover-border: var(--shrine-ghost);
+  --popover-foreground: var(--sumi-black);
+  --popover-border: hsl(var(--stone-gray) / 0.12);
 
   --primary: var(--shrine-crimson);
-
-  --primary-foreground: var(--shrine-white);
+  --primary-foreground: var(--washi-white);
 
   --secondary: var(--shrine-ghost);
-
-  --secondary-foreground: var(--shrine-graphite);
+  --secondary-foreground: var(--stone-gray);
 
   --muted: var(--shrine-ghost);
+  --muted-foreground: var(--stone-gray);
 
-  --muted-foreground: var(--shrine-graphite);
-
-  --accent: var(--shrine-ghost);
-
-  --accent-foreground: var(--shrine-black);
+  --accent: 45 12% 94%;
+  --accent-foreground: var(--sumi-black);
 
   --destructive: 0 84% 60%;
+  --destructive-foreground: var(--washi-white);
 
-  --destructive-foreground: var(--shrine-white);
-
-  --input: var(--shrine-ghost);
-  --ring: 357 84% 51%;
-  --chart-1: 357 84% 35%;
-  --chart-2: 204 100% 25%;
-  --chart-3: 45 93% 35%;
-  --chart-4: 142 76% 35%;
-  --chart-5: 262 83% 45%;
+  --input: hsl(var(--stone-gray) / 0.1);
+  --ring: 356 70% 51%;
+  
+  /* Chart colors with sacred palette */
+  --chart-1: 356 70% 51%;
+  --chart-2: 140 25% 45%;
+  --chart-3: 30 85% 65%;
+  --chart-4: 210 15% 45%;
+  --chart-5: 45 90% 55%;
 
   --font-sans: Inter, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem; /* 8px */
-  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
-  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
-  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
-  --shadow: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 2px 4px -1px hsl(0 0% 0% / 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 4px 6px -1px hsl(0 0% 0% / 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 8px 10px -1px hsl(0 0% 0% / 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
+  
+  /* Sacred shadows */
+  --shadow-2xs: var(--shadow-shallow);
+  --shadow-xs: var(--shadow-shallow);
+  --shadow-sm: var(--shadow-medium);
+  --shadow: var(--shadow-medium);
+  --shadow-md: var(--shadow-deep);
+  --shadow-lg: var(--shadow-floating);
+  --shadow-xl: var(--shadow-torii);
+  --shadow-2xl: var(--shadow-torii);
+  
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
+  /* Animation timing */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-gentle: 300ms;
+  --duration-sacred: 500ms;
+  --duration-contemplative: 1000ms;
+  --ease-sacred: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enlightenment: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Fallback for older browsers */
+  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
   --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --sidebar-accent-border: hsl(var(--sidebar-accent));
   --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --primary-border: hsl(var(--primary));
   --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --secondary-border: hsl(var(--secondary));
   --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --muted-border: hsl(var(--muted));
   --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --accent-border: hsl(var(--accent));
   --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --destructive-border: hsl(var(--destructive));
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+/* DARK MODE */
 .dark {
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
@@ -140,77 +163,91 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: var(--shrine-phantom);
+  /* Dark mode sacred colors */
+  --sumi-black: 0 0% 98%; /* Inverted for dark */
+  --washi-white: 0 0% 8%; /* Deep shadow */
+  --stone-gray: 210 4% 65%; /* Lighter gray */
+  --warm-amber: 30 75% 45%; /* Dimmed amber */
+  --mist-gray: 210 10% 25%; /* Darker mist */
+  --forest-green: 150 25% 25%; /* Lighter forest */
+  --bamboo-green: 140 20% 35%; /* Dimmed bamboo */
+  --sakura-pink: 350 45% 65%; /* Muted sakura */
+  --maple-red: 15 65% 35%; /* Darker maple */
+  --gold-enlightenment: 45 70% 45%; /* Dimmed gold */
 
-  --foreground: var(--shrine-white);
+  /* Dark mode gradients */
+  --gradient-rising-sun: linear-gradient(135deg, hsl(356 60% 41%), hsl(30 65% 35%), hsl(0 0% 15%));
+  --gradient-mountain-mist: linear-gradient(180deg, hsl(210 10% 20%), hsl(0 0% 10%), transparent);
+  --gradient-forest-depth: linear-gradient(180deg, hsl(150 20% 10%), hsl(0 0% 2%));
+  --gradient-sacred-dawn: radial-gradient(circle at top, hsl(356 60% 41% / 0.2), transparent 70%);
+  --gradient-torii-gate: linear-gradient(90deg, transparent 10%, hsl(356 60% 41% / 0.15) 50%, transparent 90%);
+  
+  /* Dark atmospheric layers */
+  --layer-mist: linear-gradient(180deg, transparent, hsl(210 10% 20% / 0.15) 30%, hsl(210 10% 20% / 0.25) 70%, transparent);
+  --layer-shadow: linear-gradient(180deg, transparent, hsl(0 0% 100% / 0.02) 50%, hsl(0 0% 100% / 0.05));
+  
+  /* Dark shadow depths */
+  --shadow-shallow: 0 1px 3px hsl(0 0% 0% / 0.3), 0 1px 2px hsl(0 0% 0% / 0.24);
+  --shadow-medium: 0 4px 6px hsl(0 0% 0% / 0.3), 0 2px 4px hsl(0 0% 0% / 0.24);
+  --shadow-deep: 0 10px 15px hsl(0 0% 0% / 0.3), 0 4px 6px hsl(0 0% 0% / 0.20);
+  --shadow-floating: 0 20px 25px hsl(0 0% 0% / 0.3), 0 10px 10px hsl(0 0% 0% / 0.18);
+  --shadow-torii: 0 25px 50px hsl(356 60% 41% / 0.25), 0 10px 20px hsl(0 0% 0% / 0.3);
+
+  --background: var(--shrine-phantom);
+  --foreground: 0 0% 95%;
 
   --border: 0 0% 15%;
 
   --card: var(--shrine-black);
-
-  --card-foreground: var(--shrine-white);
-
+  --card-foreground: 0 0% 95%;
   --card-border: 0 0% 18%;
 
   --sidebar: var(--shrine-black);
-
-  --sidebar-foreground: var(--shrine-white);
-
+  --sidebar-foreground: 0 0% 95%;
   --sidebar-border: 0 0% 12%;
-
-  --sidebar-primary: var(--shrine-crimson);
-
-  --sidebar-primary-foreground: var(--shrine-white);
-
+  --sidebar-primary: 356 60% 45%;
+  --sidebar-primary-foreground: var(--washi-white);
   --sidebar-accent: 0 0% 12%;
-
   --sidebar-accent-foreground: 0 0% 85%;
-
-  --sidebar-ring: var(--shrine-crimson);
+  --sidebar-ring: 356 60% 45%;
 
   --popover: var(--shrine-black);
-
-  --popover-foreground: var(--shrine-white);
-
+  --popover-foreground: 0 0% 95%;
   --popover-border: 0 0% 20%;
 
-  --primary: var(--shrine-crimson);
-
-  --primary-foreground: var(--shrine-white);
+  --primary: 356 60% 45%;
+  --primary-foreground: 0 0% 98%;
 
   --secondary: 0 0% 18%;
-
   --secondary-foreground: 0 0% 85%;
 
   --muted: 0 0% 14%;
-
-  --muted-foreground: var(--shrine-graphite);
+  --muted-foreground: 0 0% 60%;
 
   --accent: 0 0% 16%;
+  --accent-foreground: 0 0% 90%;
 
-  --accent-foreground: 0 0% 80%;
+  --destructive: 0 74% 50%;
+  --destructive-foreground: 0 0% 98%;
 
-  --destructive: 0 84% 60%;
+  --input: 0 0% 20%;
+  --ring: 356 60% 45%;
+  
+  /* Dark chart colors */
+  --chart-1: 356 60% 55%;
+  --chart-2: 140 20% 55%;
+  --chart-3: 30 65% 45%;
+  --chart-4: 210 10% 55%;
+  --chart-5: 45 70% 50%;
 
-  --destructive-foreground: var(--shrine-white);
-
-  --input: 0 0% 25%;
-  --ring: 357 84% 51%;
-  --chart-1: 357 84% 70%;
-  --chart-2: 204 100% 75%;
-  --chart-3: 45 93% 70%;
-  --chart-4: 142 76% 70%;
-  --chart-5: 262 83% 75%;
-
-  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
-  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
-  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
-  --shadow: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 2px 4px -1px hsl(0 0% 0% / 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 4px 6px -1px hsl(0 0% 0% / 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 8px 10px -1px hsl(0 0% 0% / 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
-
+  --shadow-2xs: var(--shadow-shallow);
+  --shadow-xs: var(--shadow-shallow);
+  --shadow-sm: var(--shadow-medium);
+  --shadow: var(--shadow-medium);
+  --shadow-md: var(--shadow-deep);
+  --shadow-lg: var(--shadow-floating);
+  --shadow-xl: var(--shadow-torii);
+  --shadow-2xl: var(--shadow-torii);
 }
 
 @layer base {
@@ -224,24 +261,8 @@
 }
 
 /**
- * Using the elevate system.
- * Automatic contrast adjustment.
- *
- * <element className="hover-elevate" />
- * <element className="active-elevate-2" />
- *
- * // Using the tailwind utility when a data attribute is "on"
- * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
- * // Or manually controlling the toggle state
- * <element className="toggle-elevate toggle-elevated" />
- *
- * Elevation systems have to handle many states.
- * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
- * - toggled or not
- * - focused or not (this is not handled with these utilities)
- *
- * Even without handling focused or not, this is six possible combinations that
- * need to be distinguished from eachother visually.
+ * Sacred Design System Utilities
+ * Shinto-inspired components for Peptide Dojo
  */
 @layer utilities {
 
@@ -257,42 +278,28 @@
     pointer-events: none;
   }
 
-  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
-   * buttons/badges can remove the automatic brightness adjustment on interactions
-   * and program their own. */
+  /* Elevation system (preserved) */
   .no-default-hover-elevate {}
-
   .no-default-active-elevate {}
 
-
-  /**
-   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
-   * This way they can stack/compound. Both will overlap the parent's borders!
-   * So borders will be automatically adjusted both on toggle, and hover/active,
-   * and they will be compounded.
-   */
   .toggle-elevate::before,
   .toggle-elevate-2::before {
     content: "";
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: -1;
-    /* sits behind content but above backdrop */
   }
 
   .toggle-elevate.toggle-elevated::before {
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.toggle-elevate::before {
     inset: -1px;
   }
 
-  /* Does not work on elements with overflow:hidden! */
   .hover-elevate:not(.no-default-hover-elevate),
   .active-elevate:not(.no-default-active-elevate),
   .hover-elevate-2:not(.no-default-hover-elevate),
@@ -309,10 +316,8 @@
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: 999;
-    /* sits in front of content */
   }
 
   .hover-elevate:hover:not(.no-default-hover-elevate)::after,
@@ -325,7 +330,6 @@
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
   .border.active-elevate:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
@@ -334,8 +338,438 @@
     inset: -1px;
   }
 
-  /* Custom gradient utilities for Peptide Dojo */
+  /* Sacred Gradient Utilities */
   .bg-gradient-radial {
     background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  .bg-rising-sun {
+    background: var(--gradient-rising-sun);
+  }
+  
+  .bg-mountain-mist {
+    background: var(--gradient-mountain-mist);
+  }
+  
+  .bg-forest-depth {
+    background: var(--gradient-forest-depth);
+  }
+  
+  .bg-sacred-dawn {
+    background: var(--gradient-sacred-dawn);
+  }
+  
+  .bg-torii-gate {
+    background: var(--gradient-torii-gate);
+  }
+  
+  /* Texture Overlay Utilities */
+  .texture-washi {
+    position: relative;
+  }
+  .texture-washi::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: 
+      repeating-linear-gradient(90deg, transparent, transparent 2px, hsl(var(--stone-gray) / 0.05) 2px, hsl(var(--stone-gray) / 0.05) 4px),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--stone-gray) / 0.05) 2px, hsl(var(--stone-gray) / 0.05) 4px);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  .texture-wood {
+    position: relative;
+  }
+  .texture-wood::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: 
+      linear-gradient(90deg, transparent 0%, hsl(30 20% 50% / 0.1) 25%, transparent 50%, hsl(30 20% 40% / 0.1) 75%, transparent 100%);
+    background-size: 8px 100%;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  .texture-stone {
+    position: relative;
+  }
+  .texture-stone::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: 
+      radial-gradient(circle at 20% 80%, transparent 20%, hsl(var(--stone-gray) / 0.05) 21%, hsl(var(--stone-gray) / 0.05) 30%, transparent 31%),
+      radial-gradient(circle at 60% 20%, transparent 20%, hsl(var(--stone-gray) / 0.03) 21%, hsl(var(--stone-gray) / 0.03) 30%, transparent 31%);
+    background-size: 30px 30px;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  /* Sacred Geometry Utilities */
+  .sacred-circle {
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+  
+  .enso-circle {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    transform: rotate(-45deg);
+  }
+  
+  .golden-ratio {
+    aspect-ratio: 1.618;
+  }
+  
+  .torii-frame {
+    position: relative;
+    padding-top: 1rem;
+  }
+  .torii-frame::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: hsl(var(--shrine-crimson));
+    box-shadow: 0 -8px 0 hsl(var(--shrine-crimson) / 0.6);
+  }
+  
+  /* Chamber Spacing Utilities */
+  .chamber-padding {
+    @apply py-16 px-8;
+  }
+  
+  .chamber-padding-sm {
+    @apply py-8 px-4;
+  }
+  
+  .chamber-padding-lg {
+    @apply py-24 px-12;
+  }
+  
+  .natural-flow {
+    @apply space-y-8;
+  }
+  
+  .natural-flow-sm {
+    @apply space-y-4;
+  }
+  
+  .natural-flow-lg {
+    @apply space-y-12;
+  }
+  
+  /* Shadow Depth Classes */
+  .shadow-shallow {
+    box-shadow: var(--shadow-shallow);
+  }
+  
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .shadow-deep {
+    box-shadow: var(--shadow-deep);
+  }
+  
+  .shadow-floating {
+    box-shadow: var(--shadow-floating);
+  }
+  
+  .shadow-torii {
+    box-shadow: var(--shadow-torii);
+  }
+  
+  /* Seasonal Motif Classes */
+  .motif-sakura {
+    position: relative;
+  }
+  .motif-sakura::after {
+    content: "✿";
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    color: hsl(var(--sakura-pink));
+    opacity: 0.6;
+    font-size: 1.5rem;
+    pointer-events: none;
+  }
+  
+  .motif-bamboo {
+    position: relative;
+  }
+  .motif-bamboo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to top, hsl(var(--bamboo-green)), transparent);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  .motif-maple {
+    position: relative;
+  }
+  .motif-maple::before {
+    content: "🍁";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    color: hsl(var(--maple-red));
+    opacity: 0.5;
+    font-size: 1.2rem;
+    pointer-events: none;
+    transform: rotate(-15deg);
+  }
+  
+  .motif-pine {
+    position: relative;
+  }
+  .motif-pine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: repeating-linear-gradient(45deg, transparent, transparent 3px, hsl(var(--forest-green) / 0.2) 3px, hsl(var(--forest-green) / 0.2) 4px);
+    pointer-events: none;
+  }
+  
+  /* Animation Utilities */
+  @keyframes sacred-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes enlightenment-glow {
+    0%, 100% {
+      opacity: 0.5;
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 0.8;
+      filter: brightness(1.1);
+    }
+  }
+  
+  @keyframes gentle-float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes torii-entrance {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes ripple-meditation {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  .animate-sacred-reveal {
+    animation: sacred-reveal var(--duration-sacred) var(--ease-sacred) both;
+  }
+  
+  .animate-enlightenment {
+    animation: enlightenment-glow var(--duration-contemplative) var(--ease-enlightenment) infinite;
+  }
+  
+  .animate-gentle-float {
+    animation: gentle-float 3s ease-in-out infinite;
+  }
+  
+  .animate-torii-entrance {
+    animation: torii-entrance var(--duration-sacred) var(--ease-sacred) both;
+  }
+  
+  .animate-ripple {
+    position: relative;
+  }
+  .animate-ripple::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid currentColor;
+    border-radius: inherit;
+    animation: ripple-meditation 2s ease-out infinite;
+  }
+  
+  /* Transition Utilities */
+  .transition-sacred {
+    transition-duration: var(--duration-sacred);
+    transition-timing-function: var(--ease-sacred);
+  }
+  
+  .transition-gentle {
+    transition-duration: var(--duration-gentle);
+    transition-timing-function: var(--ease-sacred);
+  }
+  
+  .transition-contemplative {
+    transition-duration: var(--duration-contemplative);
+    transition-timing-function: var(--ease-enlightenment);
+  }
+  
+  /* Parallax Depth Layers */
+  .parallax-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  
+  .parallax-back {
+    z-index: 1;
+    transform: translateZ(-2px) scale(1.2);
+  }
+  
+  .parallax-mid {
+    z-index: 2;
+    transform: translateZ(-1px) scale(1.1);
+  }
+  
+  .parallax-front {
+    z-index: 3;
+    transform: translateZ(0);
+  }
+  
+  /* Sacred Path Visualization */
+  .sacred-path {
+    position: relative;
+  }
+  .sacred-path::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--stone-gray)), hsl(var(--shrine-crimson)), hsl(var(--gold-enlightenment)));
+    transform: translateY(-50%);
+    opacity: 0.3;
+  }
+  
+  /* Atmospheric Mist Effects */
+  .mist-overlay {
+    position: relative;
+  }
+  .mist-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--layer-mist);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  /* Sacred Scroll Styling */
+  .scroll-container {
+    position: relative;
+    background: linear-gradient(180deg, hsl(var(--washi-white)), hsl(var(--washi-white) / 0.95));
+    border-top: 3px solid hsl(var(--bamboo-green));
+    border-bottom: 3px solid hsl(var(--bamboo-green));
+    padding: 2rem 1rem;
+  }
+  
+  /* Enlightenment Glow */
+  .enlightenment-glow {
+    position: relative;
+  }
+  .enlightenment-glow::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, hsl(var(--gold-enlightenment) / 0.2), transparent 70%);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: -1;
+  }
+}
+
+/* Component-specific enhancements */
+@layer components {
+  /* Ema plaque card styling */
+  .ema-card {
+    @apply relative overflow-hidden rounded-lg shadow-medium transition-sacred hover:shadow-floating;
+    background: linear-gradient(135deg, hsl(var(--washi-white)), hsl(var(--washi-white) / 0.98));
+  }
+  
+  /* Shoji screen panel */
+  .shoji-panel {
+    @apply relative overflow-hidden;
+    background: linear-gradient(180deg, hsl(var(--washi-white) / 0.95), hsl(var(--washi-white) / 0.9));
+    backdrop-filter: blur(8px);
+  }
+  .shoji-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--stone-gray) / 0.1) 40px, hsl(var(--stone-gray) / 0.1) 42px),
+      repeating-linear-gradient(0deg, transparent, transparent 40px, hsl(var(--stone-gray) / 0.1) 40px, hsl(var(--stone-gray) / 0.1) 42px);
+    pointer-events: none;
+  }
+  
+  /* Sacred chamber section */
+  .sacred-chamber {
+    @apply chamber-padding natural-flow relative;
+    background: var(--gradient-mountain-mist);
+  }
+  
+  /* Torii gate navigation item */
+  .torii-nav-item {
+    @apply relative px-6 py-2 transition-sacred;
+  }
+  .torii-nav-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--shrine-crimson));
+    transform: translateX(-50%);
+    transition: width var(--duration-sacred) var(--ease-sacred);
+  }
+  .torii-nav-item:hover::before,
+  .torii-nav-item[data-active="true"]::before {
+    width: 100%;
   }
 }

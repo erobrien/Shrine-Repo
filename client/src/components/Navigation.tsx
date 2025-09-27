@@ -54,10 +54,10 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   return (
     <nav 
       className={cn(
-        "sticky top-0 z-[100] transition-all duration-300 ease-sacred",
+        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-white",
         isScrolled 
-          ? "bg-background/80 backdrop-blur-md shadow-medium border-b border-border/50" 
-          : "bg-background border-b border-border"
+          ? "shadow-lg" 
+          : ""
       )}
       role="navigation"
       aria-label="Main navigation"

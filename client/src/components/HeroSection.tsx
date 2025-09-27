@@ -12,12 +12,9 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden">
-      {/* Simple, subtle gradient background - mobile optimized */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/5" />
-      
-      {/* Subtle torii accent line at top - visible on all screens */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden bg-white">
+      {/* Clean white background */}
+      <div className="absolute inset-0 bg-white" />
 
       {/* Main content with responsive white space */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">

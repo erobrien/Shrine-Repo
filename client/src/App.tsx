@@ -27,7 +27,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-white">
           <Navigation onLoginClick={handleLoginClick} />
           <div className="fixed top-4 right-4 z-[150]">
             <ThemeToggle />

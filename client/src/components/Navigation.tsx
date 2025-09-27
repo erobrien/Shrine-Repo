@@ -1,15 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
 
-interface NavigationProps {
-  onLoginClick?: () => void;
-}
-
-export default function Navigation({ onLoginClick }: NavigationProps) {
+export default function Navigation() {
   const [location] = useLocation();
-  const [searchQuery, setSearchQuery] = useState("");
 
   const navItems = [
     { path: "/peptides", label: "Peptides" },
@@ -17,11 +10,6 @@ export default function Navigation({ onLoginClick }: NavigationProps) {
     { path: "/guides", label: "Guides" },
     { path: "/research", label: "Research" }
   ];
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Search:', searchQuery);
-  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-border">
@@ -43,22 +31,8 @@ export default function Navigation({ onLoginClick }: NavigationProps) {
             </div>
           </Link>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex flex-1 max-w-md mx-8">
-            <form onSubmit={handleSearch} className="w-full">
-              <Input
-                type="search"
-                placeholder="Search peptides, conditions, research..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full"
-                data-testid="input-search"
-              />
-            </form>
-          </div>
-
           {/* Navigation Items */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path}>
                 <Button
@@ -71,16 +45,6 @@ export default function Navigation({ onLoginClick }: NavigationProps) {
               </Link>
             ))}
           </div>
-
-          {/* Pro Access Button */}
-          <Button 
-            variant="default"
-            onClick={onLoginClick}
-            data-testid="button-login"
-            className="font-medium ml-4"
-          >
-            Try Pro
-          </Button>
         </div>
       </div>
     </nav>

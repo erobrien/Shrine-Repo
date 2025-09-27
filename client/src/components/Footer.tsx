@@ -66,27 +66,27 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Professional Access */}
+          {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4 text-foreground">Professional Access</h3>
+            <h3 className="font-bold mb-4 text-foreground">Connect</h3>
             <p className="text-muted-foreground mb-4 text-sm">
-              Access advanced research analysis and professional-grade insights.
+              Access comprehensive peptide research and evidence-based insights.
             </p>
             <div className="space-y-3">
-              <Link href="/pro">
-                <div 
-                  className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-sm font-medium"
-                  data-testid="link-try-pro"
-                >
-                  Try Pro →
-                </div>
-              </Link>
               <Link href="https://shrine-peptides.com">
                 <div 
-                  className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm"
+                  className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-sm font-medium"
                   data-testid="link-shrine-peptides"
                 >
-                  Visit Shrine Peptides
+                  Visit Shrine Peptides →
+                </div>
+              </Link>
+              <Link href="/contact">
+                <div 
+                  className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm"
+                  data-testid="link-contact"
+                >
+                  Contact Us
                 </div>
               </Link>
             </div>

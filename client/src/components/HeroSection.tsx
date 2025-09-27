@@ -30,10 +30,6 @@ export default function HeroSection() {
           
           {/* Clean, simple header - mobile optimized */}
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <p className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 sm:mb-6">
-              Welcome to Peptide Dojo
-            </p>
-            
             {/* Main title - responsive scaling */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-foreground leading-tight">
               Master Peptide Science

@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertPeptideSchema, insertCategorySchema, insertProtocolSchema, insertGuideSchema } from "@shared/schema";
 import { z } from "zod";
+import { sanitizeAndNormalizeContent } from "./content-sanitizer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Peptide endpoints
@@ -187,7 +188,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const offset = (page - 1) * limit;
       
       const guides = await storage.getAllGuides();
-      const paginatedGuides = guides.slice(offset, offset + limit);
+      
+      // Sanitize content for all guides
+      const sanitizedGuides = guides.map(guide => ({
+        ...guide,
+        content: sanitizeAndNormalizeContent(guide.content, true)
+      }));
+      
+      const paginatedGuides = sanitizedGuides.slice(offset, offset + limit);
       
       res.json({
         data: paginatedGuides,
@@ -206,7 +214,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/guides/featured", async (req, res) => {
     try {
       const guides = await storage.getFeaturedGuides();
-      res.json(guides);
+      
+      // Sanitize content for featured guides
+      const sanitizedGuides = guides.map(guide => ({
+        ...guide,
+        content: sanitizeAndNormalizeContent(guide.content, true)
+      }));
+      
+      res.json(sanitizedGuides);
     } catch (error) {
       console.error("Error fetching featured guides:", error);
       res.status(500).json({ error: "Failed to fetch featured guides" });
@@ -222,7 +237,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const guides = await storage.searchGuides(query);
-      res.json(guides);
+      
+      // Sanitize content for search results
+      const sanitizedGuides = guides.map(guide => ({
+        ...guide,
+        content: sanitizeAndNormalizeContent(guide.content, true)
+      }));
+      
+      res.json(sanitizedGuides);
     } catch (error) {
       console.error("Error searching guides:", error);
       res.status(500).json({ error: "Failed to search guides" });
@@ -234,7 +256,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { category } = req.params;
       const guides = await storage.getGuidesByCategory(category);
-      res.json(guides);
+      
+      // Sanitize content for guides by category
+      const sanitizedGuides = guides.map(guide => ({
+        ...guide,
+        content: sanitizeAndNormalizeContent(guide.content, true)
+      }));
+      
+      res.json(sanitizedGuides);
     } catch (error) {
       console.error("Error fetching guides by category:", error);
       res.status(500).json({ error: "Failed to fetch guides by category" });
@@ -251,7 +280,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Guide not found" });
       }
       
-      res.json(guide);
+      // Sanitize the content before returning
+      const sanitizedGuide = {
+        ...guide,
+        content: sanitizeAndNormalizeContent(guide.content, true)
+      };
+      
+      res.json(sanitizedGuide);
     } catch (error) {
       console.error("Error fetching guide:", error);
       res.status(500).json({ error: "Failed to fetch guide" });

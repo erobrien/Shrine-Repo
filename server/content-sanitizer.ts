@@ -67,7 +67,7 @@ export function sanitizeAndNormalizeContent(
   }
 
   // Convert markdown to HTML if needed
-  let htmlContent = isMarkdown ? marked(content) : content;
+  let htmlContent = isMarkdown ? (marked.parse(content) as string) : content;
 
   // Create a DOM from the HTML for manipulation
   const dom = new JSDOM(htmlContent);
@@ -303,14 +303,15 @@ function formatCitations(document: Document): void {
 
   if (referencesSection) {
     // Find the content following the references heading
-    let nextElement = referencesSection.nextElementSibling;
+    let nextElement: Element | null = (referencesSection as HTMLElement).nextElementSibling;
     
     while (nextElement) {
       // Check if it's a list that needs formatting
       if (nextElement.tagName === 'UL') {
         // Convert UL to OL for references
         const ol = document.createElement('ol');
-        Array.from(nextElement.children).forEach(child => {
+        const children = Array.from(nextElement.children) as Element[];
+        children.forEach((child) => {
           ol.appendChild(child.cloneNode(true));
         });
         nextElement.parentNode?.replaceChild(ol, nextElement);
@@ -320,21 +321,21 @@ function formatCitations(document: Document): void {
       // Process reference text for DOIs and PMIDs
       if (nextElement.tagName === 'OL' || nextElement.tagName === 'UL') {
         const listItems = nextElement.querySelectorAll('li');
-        listItems.forEach(li => {
+        listItems.forEach((li: Element) => {
           let html = li.innerHTML;
           
           // Convert DOIs to links
-          html = html.replace(DOI_PATTERN, (match) => {
+          html = html.replace(DOI_PATTERN, (match: string) => {
             return `<a href="https://doi.org/${match}" target="_blank" rel="noopener">${match}</a>`;
           });
           
           // Convert PMIDs to links
-          html = html.replace(PMID_PATTERN, (match, pmid) => {
+          html = html.replace(PMID_PATTERN, (match: string, pmid: string) => {
             return `<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">PMID: ${pmid}</a>`;
           });
           
           // Convert PMCIDs to links
-          html = html.replace(PMCID_PATTERN, (match) => {
+          html = html.replace(PMCID_PATTERN, (match: string) => {
             const pmcid = match.replace('PMC', '');
             return `<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC${pmcid}/" target="_blank" rel="noopener">${match}</a>`;
           });
@@ -358,7 +359,7 @@ function formatCitations(document: Document): void {
     let html = element.innerHTML;
     
     // Convert DOIs to links
-    html = html.replace(DOI_PATTERN, (match) => {
+    html = html.replace(DOI_PATTERN, (match: string) => {
       // Check if already in a link
       if (!element.querySelector(`a[href*="${match}"]`)) {
         return `<a href="https://doi.org/${match}" target="_blank" rel="noopener">${match}</a>`;
@@ -367,7 +368,7 @@ function formatCitations(document: Document): void {
     });
     
     // Convert PMIDs to links
-    html = html.replace(PMID_PATTERN, (match, pmid) => {
+    html = html.replace(PMID_PATTERN, (match: string, pmid: string) => {
       // Check if already in a link
       if (!element.querySelector(`a[href*="${pmid}"]`)) {
         return `<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">PMID: ${pmid}</a>`;

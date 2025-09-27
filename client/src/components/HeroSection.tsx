@@ -2,14 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { useLocation } from "wouter";
 import patternBg from "@assets/LRG_Pattern_On White_Ghost_1758953070309.jpg";
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [, navigate] = useLocation();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Search:', searchQuery);
+    if (searchQuery.trim()) {
+      navigate(`/peptides?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      navigate('/peptides');
+    }
   };
 
   return (

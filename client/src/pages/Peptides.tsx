@@ -1,6 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "wouter";
+import { Link, useLocation, useSearch } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,8 +10,50 @@ import { Search } from "lucide-react";
 import type { Peptide, Category } from "@shared/schema";
 
 export default function Peptides() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [, navigate] = useLocation();
+  const searchParams = useSearch();
+  const urlSearchQuery = new URLSearchParams(searchParams).get('search') || '';
+  const urlCategory = new URLSearchParams(searchParams).get('category') || null;
+  
+  const [searchQuery, setSearchQuery] = useState(urlSearchQuery);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(urlCategory);
+
+  // Update local state when URL changes
+  useEffect(() => {
+    setSearchQuery(urlSearchQuery);
+  }, [urlSearchQuery]);
+
+  useEffect(() => {
+    setSelectedCategory(urlCategory);
+  }, [urlCategory]);
+
+  // Update URL when search changes
+  const updateSearch = (query: string) => {
+    setSearchQuery(query);
+    const params = new URLSearchParams();
+    if (query) {
+      params.set('search', query);
+    }
+    if (selectedCategory) {
+      params.set('category', selectedCategory);
+    }
+    const queryString = params.toString();
+    navigate(`/peptides${queryString ? `?${queryString}` : ''}`);
+  };
+
+  // Update category and URL
+  const updateCategory = (categoryId: string | null) => {
+    setSelectedCategory(categoryId);
+    const params = new URLSearchParams();
+    if (searchQuery) {
+      params.set('search', searchQuery);
+    }
+    if (categoryId) {
+      params.set('category', categoryId);
+    }
+    const queryString = params.toString();
+    navigate(`/peptides${queryString ? `?${queryString}` : ''}`);
+  };
 
   // Fetch all peptides
   const { data: peptides = [], isLoading: peptideLoading } = useQuery<Peptide[]>({
@@ -80,7 +122,7 @@ export default function Peptides() {
               type="text"
               placeholder="Search peptides by name or description..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => updateSearch(e.target.value)}
               className="pl-10 h-12"
               data-testid="input-search-peptides"
             />
@@ -93,7 +135,7 @@ export default function Peptides() {
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
               size="sm"
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => updateCategory(null)}
               className="min-h-[36px]"
               data-testid="button-filter-all"
             >
@@ -104,7 +146,7 @@ export default function Peptides() {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => updateCategory(category.id)}
                 className="min-h-[36px]"
                 data-testid={`button-filter-${category.slug}`}
               >

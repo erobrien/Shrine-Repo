@@ -261,7 +261,7 @@ export default function GuideDetail() {
                 {/* Article Content */}
                 <div 
                   ref={contentRef}
-                  className="prose prose-lg dark:prose-invert max-w-none"
+                  className="prose prose-lg max-w-none"
                   data-testid="article-content"
                   dangerouslySetInnerHTML={{ __html: guide.content }}
                 />

@@ -63,11 +63,11 @@ export default function ResearchGlossary() {
   const getEvidenceClass = (level: string) => {
     switch(level) {
       case "High":
-        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+        return "bg-primary/10 text-primary border-primary/20";
       case "Moderate":
-        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+        return "bg-accent text-accent-foreground border-accent/20";
       case "Limited":
-        return "bg-muted text-muted-foreground border-muted dark:bg-muted/80 dark:text-muted-foreground dark:border-muted";
+        return "bg-muted text-muted-foreground border-muted";
       default:
         return "bg-muted text-muted-foreground border-muted";
     }

@@ -156,107 +156,6 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE */
-.dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
-
-  --opaque-button-border-intensity: 9;  /* In terms of percentages */
-
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
-
-  /* Dark mode sacred colors */
-  --sumi-black: 0 0% 98%; /* Inverted for dark */
-  --washi-white: 0 0% 8%; /* Deep shadow */
-  --stone-gray: 210 4% 65%; /* Lighter gray */
-  --warm-amber: 30 75% 45%; /* Dimmed amber */
-  --mist-gray: 210 10% 25%; /* Darker mist */
-  --forest-green: 150 25% 25%; /* Lighter forest */
-  --bamboo-green: 140 20% 35%; /* Dimmed bamboo */
-  --sakura-pink: 350 45% 65%; /* Muted sakura */
-  --maple-red: 15 65% 35%; /* Darker maple */
-  --gold-enlightenment: 45 70% 45%; /* Dimmed gold */
-
-  /* Dark mode gradients */
-  --gradient-rising-sun: linear-gradient(135deg, hsl(356 60% 41%), hsl(30 65% 35%), hsl(0 0% 15%));
-  --gradient-mountain-mist: linear-gradient(180deg, hsl(210 10% 20%), hsl(0 0% 10%), transparent);
-  --gradient-forest-depth: linear-gradient(180deg, hsl(150 20% 10%), hsl(0 0% 2%));
-  --gradient-sacred-dawn: radial-gradient(circle at top, hsl(356 60% 41% / 0.2), transparent 70%);
-  --gradient-torii-gate: linear-gradient(90deg, transparent 10%, hsl(356 60% 41% / 0.15) 50%, transparent 90%);
-  
-  /* Dark atmospheric layers */
-  --layer-mist: linear-gradient(180deg, transparent, hsl(210 10% 20% / 0.15) 30%, hsl(210 10% 20% / 0.25) 70%, transparent);
-  --layer-shadow: linear-gradient(180deg, transparent, hsl(0 0% 100% / 0.02) 50%, hsl(0 0% 100% / 0.05));
-  
-  /* Dark shadow depths */
-  --shadow-shallow: 0 1px 3px hsl(0 0% 0% / 0.3), 0 1px 2px hsl(0 0% 0% / 0.24);
-  --shadow-medium: 0 4px 6px hsl(0 0% 0% / 0.3), 0 2px 4px hsl(0 0% 0% / 0.24);
-  --shadow-deep: 0 10px 15px hsl(0 0% 0% / 0.3), 0 4px 6px hsl(0 0% 0% / 0.20);
-  --shadow-floating: 0 20px 25px hsl(0 0% 0% / 0.3), 0 10px 10px hsl(0 0% 0% / 0.18);
-  --shadow-torii: 0 25px 50px hsl(356 60% 41% / 0.25), 0 10px 20px hsl(0 0% 0% / 0.3);
-
-  --background: var(--shrine-phantom);
-  --foreground: 0 0% 95%;
-
-  --border: 0 0% 15%;
-
-  --card: var(--shrine-black);
-  --card-foreground: 0 0% 95%;
-  --card-border: 0 0% 18%;
-
-  --sidebar: var(--shrine-black);
-  --sidebar-foreground: 0 0% 95%;
-  --sidebar-border: 0 0% 12%;
-  --sidebar-primary: 356 60% 45%;
-  --sidebar-primary-foreground: var(--washi-white);
-  --sidebar-accent: 0 0% 12%;
-  --sidebar-accent-foreground: 0 0% 85%;
-  --sidebar-ring: 356 60% 45%;
-
-  --popover: var(--shrine-black);
-  --popover-foreground: 0 0% 95%;
-  --popover-border: 0 0% 20%;
-
-  --primary: 356 60% 45%;
-  --primary-foreground: 0 0% 98%;
-
-  --secondary: 0 0% 18%;
-  --secondary-foreground: 0 0% 85%;
-
-  --muted: 0 0% 14%;
-  --muted-foreground: 0 0% 60%;
-
-  --accent: 0 0% 16%;
-  --accent-foreground: 0 0% 90%;
-
-  --destructive: 0 74% 50%;
-  --destructive-foreground: 0 0% 98%;
-
-  --input: 0 0% 20%;
-  --ring: 356 60% 45%;
-  
-  /* Dark chart colors */
-  --chart-1: 356 60% 55%;
-  --chart-2: 140 20% 55%;
-  --chart-3: 30 65% 45%;
-  --chart-4: 210 10% 55%;
-  --chart-5: 45 70% 50%;
-
-  --shadow-2xs: var(--shadow-shallow);
-  --shadow-xs: var(--shadow-shallow);
-  --shadow-sm: var(--shadow-medium);
-  --shadow: var(--shadow-medium);
-  --shadow-md: var(--shadow-deep);
-  --shadow-lg: var(--shadow-floating);
-  --shadow-xl: var(--shadow-torii);
-  --shadow-2xl: var(--shadow-torii);
-
-  /* Product link colors in dark mode */
-  --product-link-color: 356 65% 55%;
-  --product-link-hover: 356 65% 65%;
-}
 
 @layer base {
   * {
@@ -330,14 +229,6 @@
     text-decoration-thickness: 2px;
   }
 
-  /* Dark mode adjustments for product links in prose */
-  .dark .prose .product-link {
-    color: hsl(var(--product-link-color));
-  }
-
-  .dark .prose .product-link:hover {
-    color: hsl(var(--product-link-hover));
-  }
 
   /* Placeholder styling for contentEditable div */
   [contenteditable][data-placeholder]:empty::before {

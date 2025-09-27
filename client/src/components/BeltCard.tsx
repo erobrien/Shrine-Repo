@@ -24,7 +24,7 @@ export default function BeltCard({
   const beltColors = {
     white: "bg-card text-card-foreground border-2 border-border",
     red: "bg-primary text-primary-foreground",
-    black: "bg-foreground text-background dark:bg-white dark:text-black",
+    black: "bg-foreground text-background",
     gold: "bg-gradient-to-r from-[hsl(var(--gold-enlightenment))] to-[hsl(var(--warm-amber))] text-background"
   };
 

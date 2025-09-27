@@ -28,19 +28,19 @@ export default function TopicCard({
     switch(grade) {
       case "A": 
         // Strong evidence - use primary/success colors
-        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+        return "bg-primary/10 text-primary border-primary/20";
       case "B":
         // Good evidence - use secondary colors  
-        return "bg-secondary/80 text-secondary-foreground border-secondary/20 dark:bg-secondary/60 dark:text-secondary-foreground dark:border-secondary/30";
+        return "bg-secondary/80 text-secondary-foreground border-secondary/20";
       case "C":
         // Moderate evidence - use accent colors
-        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+        return "bg-accent text-accent-foreground border-accent/20";
       case "D":
         // Weak evidence - use muted colors
-        return "bg-muted text-muted-foreground border-muted dark:bg-muted/80 dark:text-muted-foreground dark:border-muted";
+        return "bg-muted text-muted-foreground border-muted";
       case "Insufficient":
         // No evidence - use very muted colors
-        return "bg-muted/50 text-muted-foreground border-muted/50 dark:bg-muted/30 dark:text-muted-foreground dark:border-muted/50";
+        return "bg-muted/50 text-muted-foreground border-muted/50";
       default:
         return "bg-muted text-muted-foreground border-muted";
     }

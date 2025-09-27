@@ -39,11 +39,11 @@ export default function ModuleCard({
   const getDifficultyClass = (difficulty: string) => {
     switch(difficulty) {
       case "Beginner":
-        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+        return "bg-primary/10 text-primary border-primary/20";
       case "Intermediate":
-        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+        return "bg-accent text-accent-foreground border-accent/20";
       case "Advanced":
-        return "bg-destructive/10 text-destructive border-destructive/20 dark:bg-destructive/20 dark:text-destructive-foreground dark:border-destructive/30";
+        return "bg-destructive/10 text-destructive border-destructive/20";
       default:
         return "bg-muted text-muted-foreground border-muted";
     }

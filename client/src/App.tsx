@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer"; 
-import ThemeToggle from "@/components/ThemeToggle";
 import Home from "@/pages/Home";
 import Peptides from "@/pages/Peptides";
 import PeptideDetail from "@/pages/PeptideDetail";
@@ -37,9 +36,6 @@ function App() {
       <TooltipProvider>
         <div className="min-h-screen flex flex-col bg-background">
           <Navigation onLoginClick={handleLoginClick} />
-          <div className="fixed top-4 right-4 z-[150]">
-            <ThemeToggle />
-          </div>
           <main className="flex-1">
             <Router />
           </main>

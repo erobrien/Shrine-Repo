@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import patternBg from "@assets/LRG_Pattern_On White_Ghost_1758953070309.jpg";
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,9 +13,16 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden bg-white">
-      {/* Clean white background */}
-      <div className="absolute inset-0 bg-white" />
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden">
+      {/* Pattern background */}
+      <div 
+        className="absolute inset-0 bg-repeat" 
+        style={{ 
+          backgroundImage: `url(${patternBg})`,
+          backgroundSize: '400px 400px',
+          opacity: 1
+        }}
+      />
 
       {/* Main content with responsive white space */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">

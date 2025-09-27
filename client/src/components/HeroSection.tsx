@@ -39,36 +39,30 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* Clean search box - mobile optimized */}
+          {/* Traditional search box */}
           <div className="max-w-2xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0">
-            <form onSubmit={handleSearch} className="space-y-3 sm:space-y-0">
-              {/* Mobile-first search layout */}
-              <div className="flex flex-col sm:flex-row sm:relative gap-3 sm:gap-0">
-                {/* Search input wrapper - full width on mobile */}
-                <div className="relative flex-1">
-                  <Input
-                    type="search"
-                    placeholder="Search peptides, research..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full h-12 sm:h-14 text-base px-10 sm:px-12 sm:pr-32 rounded-lg border 
-                               bg-background/95 backdrop-blur-sm
-                               focus:ring-2 focus:ring-primary/20 focus:border-primary/50
-                               placeholder:text-muted-foreground/60 transition-all
-                               focus:pb-safe"
-                    data-testid="input-hero-search"
-                  />
-                  
-                  {/* Search icon */}
-                  <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground/50" />
-                </div>
+            <form onSubmit={handleSearch}>
+              {/* Traditional inline search layout */}
+              <div className="relative">
+                <Input
+                  type="search"
+                  placeholder="Search peptides, research, conditions..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full h-12 sm:h-14 text-base pl-10 sm:pl-12 pr-24 sm:pr-32 rounded-full border-2
+                             bg-background/95 backdrop-blur-sm
+                             focus:ring-2 focus:ring-primary/20 focus:border-primary/50
+                             placeholder:text-muted-foreground/60 transition-all"
+                  data-testid="input-hero-search"
+                />
                 
-                {/* Search button - below input on mobile, inside on desktop */}
+                {/* Search icon */}
+                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground/50" />
+                
+                {/* Traditional inline search button */}
                 <Button 
                   type="submit"
-                  className="h-12 sm:h-10 px-6 w-full sm:w-auto 
-                           sm:absolute sm:right-2 sm:top-2
-                           touch-manipulation"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 h-10 sm:h-12 px-4 sm:px-6 rounded-full"
                   data-testid="button-search"
                 >
                   Search

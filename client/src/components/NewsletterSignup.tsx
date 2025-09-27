@@ -47,7 +47,7 @@ export default function NewsletterSignup() {
                 />
                 <Button 
                   type="submit" 
-                  className="w-full font-medium min-h-[44px]"
+                  className="w-full font-medium"
                   data-testid="button-subscribe"
                 >
                   Subscribe to Updates

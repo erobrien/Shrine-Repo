@@ -136,7 +136,6 @@ export default function Peptides() {
               variant={selectedCategory === null ? "default" : "outline"}
               size="sm"
               onClick={() => updateCategory(null)}
-              className="min-h-[36px]"
               data-testid="button-filter-all"
             >
               All Peptides ({peptides.length})
@@ -147,7 +146,6 @@ export default function Peptides() {
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="sm"
                 onClick={() => updateCategory(category.id)}
-                className="min-h-[36px]"
                 data-testid={`button-filter-${category.slug}`}
               >
                 {category.name} ({categoryCounts.get(category.id) || 0})

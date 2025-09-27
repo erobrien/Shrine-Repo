@@ -181,7 +181,7 @@ export default function PeptideDetail() {
                 rel="noopener noreferrer"
                 className="inline-block"
               >
-                <Button className="min-h-[44px]" data-testid="button-view-shrine">
+                <Button data-testid="button-view-shrine">
                   View on Shrine Peptides
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </Button>

@@ -96,7 +96,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 <Link key={item.path} href={item.path}>
                   <Button
                     variant="ghost"
-                    className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
+                    size="lg"
+                    className="font-medium text-base lg:text-lg text-white hover:text-white hover:bg-white/10"
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                   >
                     {item.label}
@@ -106,7 +107,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 <Button
                   key={item.path}
                   variant="ghost"
-                  className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
+                  size="lg"
+                  className="font-medium text-base lg:text-lg text-white hover:text-white hover:bg-white/10"
                   data-testid={`nav-link-${item.label.toLowerCase()}`}
                   onClick={() => handleNavClick(item.path, item.label)}
                 >
@@ -117,7 +119,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
             {onLoginClick && (
               <Button 
                 onClick={onLoginClick}
-                className="ml-6 min-h-[52px] px-8 text-base lg:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                size="lg"
+                className="ml-6 text-base lg:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
                 variant="default"
                 data-testid="nav-login-button"
               >
@@ -132,7 +135,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <Button
                 variant="ghost"
                 size="icon"
-                className="min-h-[48px] min-w-[48px] relative text-white hover:text-white hover:bg-white/10"
+                className="relative text-white hover:text-white hover:bg-white/10"
                 aria-label="Open navigation menu"
                 data-testid="mobile-menu-button"
               >
@@ -176,7 +179,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                       <Link key={item.path} href={item.path}>
                         <Button
                           variant="ghost"
-                          className="w-full justify-start font-medium text-base min-h-[48px] px-4"
+                          size="lg"
+                          className="w-full justify-start font-medium text-base"
                           onClick={() => setIsMobileMenuOpen(false)}
                           data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
                         >
@@ -187,7 +191,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                       <Button
                         key={item.path}
                         variant="ghost"
-                        className="w-full justify-start font-medium text-base min-h-[48px] px-4"
+                        size="lg"
+                        className="w-full justify-start font-medium text-base"
                         onClick={() => {
                           handleNavClick(item.path, item.label);
                           setIsMobileMenuOpen(false);
@@ -206,7 +211,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                         onLoginClick();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full min-h-[52px] text-base font-semibold shadow-lg hover:shadow-xl transition-all"
+                      size="lg"
+                      className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all"
                       variant="default"
                       data-testid="mobile-login-button"
                     >

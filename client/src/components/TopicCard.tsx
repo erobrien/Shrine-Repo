@@ -91,8 +91,8 @@ export default function TopicCard({
 
         <Button
           variant="outline"
-          size="sm"
-          className="w-full font-medium min-h-[44px]"
+          size="default"
+          className="w-full font-medium"
           onClick={onView}
           data-testid={`button-view-${title.toLowerCase().replace(/\s+/g, '-')}`}
         >

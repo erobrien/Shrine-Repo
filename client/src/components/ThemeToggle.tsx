@@ -24,7 +24,7 @@ export default function ThemeToggle() {
       size="icon"
       onClick={toggleTheme}
       data-testid="button-theme-toggle"
-      className="hover-elevate min-h-[44px] min-w-[44px] sm:min-h-9 sm:min-w-9"
+      className="hover-elevate"
     >
       {theme === "light" ? "🌙" : "☀️"}
     </Button>

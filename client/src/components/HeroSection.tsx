@@ -79,7 +79,7 @@ export default function HeroSection() {
                 {/* Traditional separate search button */}
                 <Button 
                   type="submit"
-                  className="h-12 sm:h-14 px-6 sm:px-8"
+                  size="lg"
                   data-testid="button-search"
                 >
                   Search

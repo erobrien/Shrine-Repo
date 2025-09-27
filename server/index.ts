@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { checkAndImportPeptides } from "./auto-import";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,22 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // AUTOMATIC PEPTIDE IMPORT: Check and import peptides if database is empty
+  console.log('🚀 Server starting...');
+  console.log('📊 Checking peptide database...');
+  
+  try {
+    const imported = await checkAndImportPeptides();
+    if (imported) {
+      console.log('🎯 Peptides imported successfully!');
+    } else {
+      console.log('✓ Peptides already exist or import skipped.');
+    }
+  } catch (error) {
+    console.error('⚠️  Warning: Failed to check/import peptides:', error);
+    console.error('The server will continue without peptides data.');
+  }
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

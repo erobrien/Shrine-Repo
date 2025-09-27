@@ -1,0 +1,120 @@
+# Step 1: Install libraries
+npm init -y
+npm install react react-dom next
+npm install tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm install @radix-ui/react-navigation-menu @radix-ui/react-dialog @radix-ui/react-dropdown-menu
+npm install framer-motion
+npm install clsx lucide-react
+
+# Step 2: Configure Tailwind (tailwind.config.js)
+# Add brand tokens and fonts
+module.exports = {
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        rich: "#020304",
+        crimson: "#DC2A2E",
+        graphite: "#4F4F4F",
+        phantom: "#151515",
+        ghost: "#EAEAEA",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        heading: ["Space Grotesk", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
+};
+
+# Step 3: Create global styles (styles/globals.css)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-rich;
+  font-family: Inter, sans-serif;
+}
+
+h1, h2, h3 {
+  @apply font-heading font-bold;
+}
+
+# Step 4: Create a layout (components/Layout.js)
+import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+import { motion } from "framer-motion";
+
+export default function Layout({ children }) {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <header className="border-b border-ghost bg-white">
+        <nav className="container mx-auto flex items-center justify-between py-4">
+          <div className="flex items-center space-x-2">
+            <span className="text-crimson font-heading text-xl">SHRINE</span>
+            <span className="font-heading text-xl text-rich">PEPTIDES</span>
+          </div>
+          <NavigationMenu.Root className="flex space-x-6">
+            <a href="#" className="hover:text-crimson">Peptides</a>
+            <a href="#" className="hover:text-crimson">Conditions</a>
+            <a href="#" className="hover:text-crimson">Guides</a>
+            <a href="#" className="hover:text-crimson">Research</a>
+          </NavigationMenu.Root>
+        </nav>
+      </header>
+      <main className="flex-1">{children}</main>
+      <footer className="border-t border-ghost py-6 text-center text-sm text-graphite">
+        © {new Date().getFullYear()} Shrine Peptides — All rights reserved.
+      </footer>
+    </div>
+  );
+}
+
+# Step 5: Create landing page (pages/index.js)
+import Layout from "../components/Layout";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  return (
+    <Layout>
+      <section className="container mx-auto py-20 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-heading text-rich"
+        >
+          Peptide information you can trust
+        </motion.h1>
+        <p className="mt-6 text-lg text-graphite max-w-2xl mx-auto">
+          Shrine Peptides analyzes and summarizes research to determine which peptides
+          and protocols work for optimal health and performance.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <input
+            type="text"
+            placeholder="Search peptides, conditions, research..."
+            className="w-96 border border-ghost rounded-l-md px-4 py-3 focus:outline-none"
+          />
+          <button className="bg-crimson text-white px-6 rounded-r-md hover:bg-red-700">
+            Search
+          </button>
+        </div>
+        <p className="mt-4 text-sm text-graphite">
+          Trusted by researchers, clinicians, and health professionals worldwide
+        </p>
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-graphite">
+          <span>Research Universities</span>
+          <span>Medical Practices</span>
+          <span>Professional Athletes</span>
+          <span>Health Practitioners</span>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+# Step 6: Run
+npm run dev

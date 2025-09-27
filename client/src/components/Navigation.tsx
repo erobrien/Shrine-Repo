@@ -1,5 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import shrineLogoPath from "@assets/LogoV_Black_v2_1758948960878.jpg";
+import shrineIconPath from "@assets/Icon_Black_1758948905275.jpg";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -17,14 +19,14 @@ export default function Navigation() {
         <div className="h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover-elevate p-2 rounded-md">
-            <div className="w-6 h-6 text-primary">
-              {/* Shrine Peptides simple icon */}
-              <svg viewBox="0 0 24 24" className="w-full h-full text-primary fill-current">
-                <circle cx="12" cy="12" r="10" className="stroke-current fill-none" strokeWidth="2"/>
-                <circle cx="12" cy="8" r="3" className="fill-current"/>
-                <path d="M8 16h8" className="stroke-current" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </div>
+            <img 
+              src={shrineIconPath} 
+              alt="Shrine Peptides Icon" 
+              className="h-8 w-8 object-contain"
+              width="32"
+              height="32"
+              data-testid="logo-shrine-icon"
+            />
             <div className="font-bold text-lg">
               <span className="text-foreground">SHRINE</span>
               <span className="text-primary ml-1">PEPTIDES</span>

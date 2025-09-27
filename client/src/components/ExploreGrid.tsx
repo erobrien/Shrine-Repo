@@ -98,17 +98,17 @@ export default function ExploreGrid() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {sections.map((section) => (
-            <Card key={section.title} className="h-full">
+            <Card key={section.title} className="h-full" data-testid={`card-section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
               <CardHeader className="pb-3 sm:pb-4">
-                <CardTitle className="text-base sm:text-lg font-bold text-primary">
+                <CardTitle className="text-base sm:text-lg font-bold text-primary" data-testid={`text-section-title-${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   {section.title}
                   {section.itemCount !== undefined && !section.isLoading && (
-                    <span className="text-sm font-normal text-muted-foreground ml-2">
+                    <span className="text-sm font-normal text-muted-foreground ml-2" data-testid={`text-section-count-${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                       ({section.itemCount})
                     </span>
                   )}
                 </CardTitle>
-                <p className="text-xs sm:text-sm font-light text-muted-foreground mt-1">
+                <p className="text-xs sm:text-sm font-light text-muted-foreground mt-1" data-testid={`text-section-description-${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   {section.description}
                 </p>
               </CardHeader>
@@ -126,7 +126,7 @@ export default function ExploreGrid() {
                     <p className="text-sm text-muted-foreground">No items available yet</p>
                   ) : (
                     section.items.map((item) => (
-                      <div key={item.name}>
+                      <div key={item.name} data-testid={`item-${section.title.toLowerCase().replace(/\s+/g, '-')}-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
                         <Link 
                           href={item.path}
                           className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-3 sm:py-1 -mx-2 px-2 sm:mx-0 sm:px-0 min-h-[44px] sm:min-h-0 flex items-center"
@@ -135,7 +135,7 @@ export default function ExploreGrid() {
                           {item.name}
                         </Link>
                         {item.description && (
-                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2" data-testid={`text-item-description-${item.name.toLowerCase().replace(/\s+/g, '-')}`}>
                             {item.description}
                           </p>
                         )}

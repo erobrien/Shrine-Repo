@@ -20,10 +20,10 @@ export default function Footer() {
                 <span className="text-primary ml-1">DOJO</span>
               </div>
             </div>
-            <p className="text-primary font-bold text-sm tracking-wider mb-4">
+            <p className="text-primary font-bold text-sm tracking-wider mb-4" data-testid="text-tagline">
               MASTER. LEARN. EXCEL.
             </p>
-            <p className="font-light text-muted-foreground text-sm">
+            <p className="font-light text-muted-foreground text-sm" data-testid="text-footer-description">
               Master the art and science of peptide research.
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function Footer() {
                 { href: "/research", label: "Latest Research" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start" data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
                     {link.label}
                   </div>
                 </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
                 { href: "/disclaimer", label: "Medical Disclaimer" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start" data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
                     {link.label}
                   </div>
                 </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 text-center">
-          <p className="font-light text-muted-foreground text-xs sm:text-sm px-2 sm:px-0">
+          <p className="font-light text-muted-foreground text-xs sm:text-sm px-2 sm:px-0" data-testid="text-footer-copyright">
             © 2024 Peptide Dojo. All rights reserved. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.
           </p>
         </div>

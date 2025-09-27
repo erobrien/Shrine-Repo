@@ -36,7 +36,7 @@ export default function BeltCard({
   };
 
   return (
-    <Card className="relative overflow-hidden hover-elevate transition-all duration-300">
+    <Card className="relative overflow-hidden hover-elevate transition-all duration-300" data-testid={`card-belt-${beltLevel}`}>
       {/* Ema plaque background pattern */}
       <div 
         className="absolute inset-0 opacity-5"
@@ -62,20 +62,21 @@ export default function BeltCard({
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground mb-6 min-h-[48px]">{description}</p>
+        <p className="text-muted-foreground mb-6 min-h-[48px]" data-testid={`text-belt-description-${beltLevel}`}>{description}</p>
 
         {/* Progress */}
         <div className="mb-6">
           <div className="flex justify-between text-sm mb-2">
-            <span>Progress</span>
+            <span data-testid={`label-progress-${beltLevel}`}>Progress</span>
             <span data-testid={`text-progress-${beltLevel}`}>
               {progress}/{totalModules} modules
             </span>
           </div>
-          <div className="w-full bg-muted rounded-full h-2">
+          <div className="w-full bg-muted rounded-full h-2" data-testid={`progress-bar-${beltLevel}`}>
             <div
               className="bg-primary h-2 rounded-full transition-all duration-300"
               style={{ width: `${(progress / totalModules) * 100}%` }}
+              data-testid={`progress-fill-${beltLevel}`}
             ></div>
           </div>
         </div>

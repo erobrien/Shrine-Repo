@@ -184,38 +184,38 @@ export default function Peptides() {
             {filteredPeptides.map((peptide) => {
               const category = categories.find((c) => c.id === peptide.categoryId);
               return (
-                <Card key={peptide.id} className="h-full hover-elevate transition-all duration-200">
+                <Card key={peptide.id} className="h-full hover-elevate transition-all duration-200" data-testid={`card-peptide-${peptide.id}`}>
                   <CardHeader className="pb-3 sm:pb-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       {category && (
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs" data-testid={`badge-category-${peptide.id}`}>
                           {category.name}
                         </Badge>
                       )}
                       {peptide.isBlend && (
-                        <Badge className="text-xs bg-primary/10 text-primary">
+                        <Badge className="text-xs bg-primary/10 text-primary" data-testid={`badge-blend-${peptide.id}`}>
                           Blend
                         </Badge>
                       )}
                     </div>
-                    <CardTitle className="text-base sm:text-lg font-bold leading-tight">
+                    <CardTitle className="text-base sm:text-lg font-bold leading-tight" data-testid={`text-peptide-name-${peptide.id}`}>
                       {peptide.name}
                     </CardTitle>
                     {peptide.alternateNames && peptide.alternateNames.length > 0 && (
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-1" data-testid={`text-alternate-names-${peptide.id}`}>
                         Also known as: {peptide.alternateNames.join(", ")}
                       </p>
                     )}
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3" data-testid={`text-description-${peptide.id}`}>
                       {peptide.shortDescription || peptide.description || "Research peptide"}
                     </p>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-lg font-semibold text-primary">
+                      <span className="text-lg font-semibold text-primary" data-testid={`text-price-${peptide.id}`}>
                         ${peptide.price}
                       </span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground" data-testid={`text-sku-${peptide.id}`}>
                         SKU: {peptide.sku}
                       </span>
                     </div>

@@ -88,11 +88,11 @@ export default function PeptideDetail() {
           <CardHeader>
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="flex-1">
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2" data-testid="text-peptide-name">
                   {peptide.name}
                 </CardTitle>
                 {peptide.alternateNames && peptide.alternateNames.length > 0 && (
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-sm text-muted-foreground mb-3" data-testid="text-alternate-names">
                     Also known as: {peptide.alternateNames.join(", ")}
                   </p>
                 )}
@@ -124,8 +124,8 @@ export default function PeptideDetail() {
             {/* Short Description */}
             {peptide.shortDescription && (
               <div>
-                <h3 className="text-lg font-semibold mb-2">Overview</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2" data-testid="heading-overview">Overview</h3>
+                <p className="text-muted-foreground leading-relaxed" data-testid="text-overview">
                   {peptide.shortDescription}
                 </p>
               </div>
@@ -134,8 +134,8 @@ export default function PeptideDetail() {
             {/* Full Description */}
             {peptide.description && (
               <div>
-                <h3 className="text-lg font-semibold mb-2">Detailed Description</h3>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                <h3 className="text-lg font-semibold mb-2" data-testid="heading-description">Detailed Description</h3>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap" data-testid="text-description">
                   {peptide.description}
                 </p>
               </div>
@@ -144,8 +144,8 @@ export default function PeptideDetail() {
             {/* Dosage Information */}
             {peptide.dosage && (
               <div>
-                <h3 className="text-lg font-semibold mb-2">Dosage Information</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2" data-testid="heading-dosage">Dosage Information</h3>
+                <p className="text-muted-foreground leading-relaxed" data-testid="text-dosage">
                   {peptide.dosage}
                 </p>
               </div>
@@ -154,10 +154,10 @@ export default function PeptideDetail() {
             {/* Ingredients (for blends) */}
             {peptide.isBlend && peptide.ingredients && peptide.ingredients.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold mb-2">Blend Ingredients</h3>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                <h3 className="text-lg font-semibold mb-2" data-testid="heading-ingredients">Blend Ingredients</h3>
+                <ul className="list-disc list-inside text-muted-foreground space-y-1" data-testid="list-ingredients">
                   {peptide.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
+                    <li key={index} data-testid={`text-ingredient-${index}`}>{ingredient}</li>
                   ))}
                 </ul>
               </div>
@@ -166,8 +166,8 @@ export default function PeptideDetail() {
             {/* Research Applications */}
             {peptide.researchApplications && (
               <div>
-                <h3 className="text-lg font-semibold mb-2">Research Applications</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2" data-testid="heading-research">Research Applications</h3>
+                <p className="text-muted-foreground leading-relaxed" data-testid="text-research">
                   {peptide.researchApplications}
                 </p>
               </div>

@@ -50,7 +50,7 @@ export default function ModuleCard({
   };
 
   return (
-    <Card className="relative overflow-hidden hover-elevate transition-all duration-300 h-full">
+    <Card className="relative overflow-hidden hover-elevate transition-all duration-300 h-full" data-testid={`card-module-${title.toLowerCase().replace(/\s+/g, '-')}`}>
       {/* Ghost pattern background texture */}
       <div 
         className="absolute inset-0 opacity-3"
@@ -90,7 +90,7 @@ export default function ModuleCard({
       </CardHeader>
 
       <CardContent className="relative">
-        <p className="text-muted-foreground mb-4 text-sm leading-relaxed min-h-[60px]">
+        <p className="text-muted-foreground mb-4 text-sm leading-relaxed min-h-[60px]" data-testid={`text-description-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           {description}
         </p>
 
@@ -98,7 +98,7 @@ export default function ModuleCard({
           <span data-testid={`text-duration-${duration.replace(/\s+/g, '-')}`}>
             📚 {duration}
           </span>
-          <span className="capitalize">
+          <span className="capitalize" data-testid={`text-category-${category}`}>
             🏷️ {category.replace('-', ' ')}
           </span>
         </div>

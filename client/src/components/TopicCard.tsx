@@ -54,10 +54,10 @@ export default function TopicCard({
   };
 
   return (
-    <Card className="h-full hover-elevate transition-all duration-200">
+    <Card className="h-full hover-elevate transition-all duration-200" data-testid={`card-topic-${title.toLowerCase().replace(/\s+/g, '-')}`}>
       <CardHeader className="pb-3 sm:pb-4">
         <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-          <Badge variant="outline" className="text-xs sm:text-xs">
+          <Badge variant="outline" className="text-xs sm:text-xs" data-testid={`badge-category-${category}`}>
             {categoryLabels[category]}
           </Badge>
           <Badge 
@@ -74,7 +74,7 @@ export default function TopicCard({
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed min-h-[3rem] sm:min-h-[60px] line-clamp-3">
+        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed min-h-[3rem] sm:min-h-[60px] line-clamp-3" data-testid={`text-summary-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           {summary}
         </p>
 

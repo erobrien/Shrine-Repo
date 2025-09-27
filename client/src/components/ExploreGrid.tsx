@@ -71,7 +71,7 @@ export default function ExploreGrid() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Explore Shrine Peptides</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg font-medium text-muted-foreground max-w-3xl mx-auto">
             See what the evidence shows. Information is organized into comprehensive categories 
             covering peptides, conditions, and evidence-based protocols.
           </p>
@@ -84,7 +84,7 @@ export default function ExploreGrid() {
                 <CardTitle className="text-lg font-bold text-primary">
                   {section.title}
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm font-light text-muted-foreground">
                   {section.description}
                 </p>
               </CardHeader>

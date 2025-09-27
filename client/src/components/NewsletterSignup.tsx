@@ -21,7 +21,7 @@ export default function NewsletterSignup() {
         <Card className="text-center">
           <CardHeader>
             <CardTitle className="text-2xl font-bold">Stay Updated</CardTitle>
-            <p className="text-muted-foreground">
+            <p className="font-medium text-muted-foreground">
               Get the latest research summaries and evidence-based peptide insights.
             </p>
           </CardHeader>
@@ -30,7 +30,7 @@ export default function NewsletterSignup() {
               <div className="py-8">
                 <div className="text-4xl mb-2">✓</div>
                 <p className="text-primary font-medium">Thank you for subscribing!</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="font-light text-muted-foreground text-sm">
                   You'll receive the latest research updates.
                 </p>
               </div>

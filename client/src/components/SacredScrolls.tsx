@@ -70,7 +70,7 @@ export default function ResearchGlossary() {
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Research Glossary</h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="font-medium text-muted-foreground text-lg">
             Comprehensive definitions of peptides, compounds, and research terminology.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function ResearchGlossary() {
                       </div>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-4 text-muted-foreground">
+                  <AccordionContent className="pb-4 font-light text-muted-foreground">
                     {entry.definition}
                   </AccordionContent>
                 </AccordionItem>

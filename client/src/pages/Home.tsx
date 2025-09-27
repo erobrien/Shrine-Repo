@@ -46,7 +46,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Featured Research</h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="font-medium text-muted-foreground text-lg">
               Recently updated topics with the latest evidence and analysis.
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Latest Updates</h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="font-medium text-muted-foreground text-lg">
               New research summaries and updated evidence grades published daily.
             </p>
           </div>

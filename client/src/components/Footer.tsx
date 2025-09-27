@@ -23,7 +23,7 @@ export default function Footer() {
             <p className="text-primary font-bold text-sm tracking-wider mb-4">
               PURITY. POWER. PROVEN.
             </p>
-            <p className="text-muted-foreground text-sm">
+            <p className="font-light text-muted-foreground text-sm">
               Evidence-based peptide research and information.
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-bold mb-4 text-foreground">Connect</h3>
-            <p className="text-muted-foreground mb-4 text-sm">
+            <p className="font-light text-muted-foreground mb-4 text-sm">
               Access comprehensive peptide research and evidence-based insights.
             </p>
             <div className="space-y-3">
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center">
-          <p className="text-muted-foreground text-sm">
+          <p className="font-light text-muted-foreground text-sm">
             © 2024 Shrine Peptides. All rights reserved. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.
           </p>
         </div>

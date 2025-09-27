@@ -39,7 +39,7 @@ export default function Footer() {
                 { href: "/research", label: "Latest Research" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1.5 sm:py-1 text-sm min-h-[32px] sm:min-h-0 flex items-center justify-center sm:justify-start">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start">
                     {link.label}
                   </div>
                 </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
                 { href: "/disclaimer", label: "Medical Disclaimer" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1.5 sm:py-1 text-sm min-h-[32px] sm:min-h-0 flex items-center justify-center sm:justify-start">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start">
                     {link.label}
                   </div>
                 </Link>
@@ -75,7 +75,7 @@ export default function Footer() {
             <div className="space-y-3">
               <Link href="https://shrine-peptides.com">
                 <div 
-                  className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-sm font-medium"
+                  className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-sm font-medium py-3 sm:py-0 min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start"
                   data-testid="link-shrine-peptides"
                 >
                   Visit Shrine Peptides →
@@ -83,7 +83,7 @@ export default function Footer() {
               </Link>
               <Link href="/contact">
                 <div 
-                  className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm"
+                  className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm py-3 sm:py-0 min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start"
                   data-testid="link-contact"
                 >
                   Contact Us

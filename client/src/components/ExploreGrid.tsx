@@ -94,7 +94,7 @@ export default function ExploreGrid() {
                     <div key={item.name}>
                       <a 
                         href={item.path}
-                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-1"
+                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-3 sm:py-1 -mx-2 px-2 sm:mx-0 sm:px-0 min-h-[44px] sm:min-h-0 flex items-center"
                         data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                         onClick={(e) => {
                           e.preventDefault();

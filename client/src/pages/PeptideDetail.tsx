@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import PageMeta from "@/components/PageMeta";
 import type { Peptide, Category } from "@shared/schema";
 
 export default function PeptideDetail() {
@@ -73,8 +74,19 @@ export default function PeptideDetail() {
     );
   }
 
+  // Generate dynamic SEO meta tags
+  const pageTitle = `${peptide.name} - Research Peptide | Peptide Dojo`;
+  const pageDescription = peptide.shortDescription 
+    ? peptide.shortDescription.substring(0, 155) + '...' 
+    : `${peptide.name} research peptide. ${peptide.description ? peptide.description.substring(0, 120) + '...' : 'Detailed information, dosing, and research applications.'}`;
+
   return (
-    <div className="min-h-screen py-8 sm:py-12 md:py-16">
+    <>
+      <PageMeta 
+        title={pageTitle}
+        description={pageDescription}
+      />
+      <div className="min-h-screen py-8 sm:py-12 md:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Navigation */}
         <Link href="/peptides">
@@ -190,6 +202,7 @@ export default function PeptideDetail() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search } from "lucide-react";
+import PageMeta from "@/components/PageMeta";
 import type { Peptide, Category } from "@shared/schema";
 
 export default function Peptides() {
@@ -103,8 +104,19 @@ export default function Peptides() {
 
   const isLoading = peptideLoading || categoryLoading;
 
+  // Generate dynamic title and description based on actual data
+  const totalPeptides = peptides.length;
+  const totalCategories = categories.length;
+  const title = `Browse Peptides - ${totalPeptides} Research Peptides | Peptide Dojo`;
+  const description = `Explore our catalog of ${totalPeptides} research peptides across ${totalCategories} categories. Find detailed information on dosing, applications, and clinical research.`;
+
   return (
-    <div className="min-h-screen py-8 sm:py-12 md:py-16">
+    <>
+      <PageMeta 
+        title={title}
+        description={description}
+      />
+      <div className="min-h-screen py-8 sm:py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -236,6 +248,7 @@ export default function Peptides() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

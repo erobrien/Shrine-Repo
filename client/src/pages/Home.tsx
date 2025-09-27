@@ -5,6 +5,7 @@ import ExploreGrid from "@/components/ExploreGrid";
 import TopicCard from "@/components/TopicCard";
 import ResearchGlossary from "@/components/SacredScrolls";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import PageMeta from "@/components/PageMeta";
 import type { Peptide } from "@shared/schema";
 
 export default function Home() {
@@ -28,7 +29,12 @@ export default function Home() {
   }));
 
   return (
-    <div className="min-h-screen">
+    <>
+      <PageMeta 
+        title="Peptide Dojo - Evidence-Based Peptide Research & Education | Shrine Peptides"
+        description="Master peptide science through structured learning. Evidence-based research, clinical protocols, and comprehensive guides from Shrine Peptides."
+      />
+      <div className="min-h-screen">
       <HeroSection />
       <ExploreGrid />
 
@@ -98,6 +104,7 @@ export default function Home() {
 
       <ResearchGlossary />
       <NewsletterSignup />
-    </div>
+      </div>
+    </>
   );
 }

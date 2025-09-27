@@ -1,0 +1,64 @@
+You are tasked with creating a complete companion site for **Peptide Dojo by Shrine Peptides**. 
+This site must extend Shrine’s official brand system into an educational dojo format, reinforcing Shrine’s premium identity while guiding users through structured peptide learning.
+
+## Brand Integration
+- Use Shrine’s official logo system:
+  - Torii gate symbol with crimson sun disc accent.
+  - Apply vertical logo versions for portrait layouts, horizontal for wide layouts.
+  - Minimum clear space equal to the height of “S” in SHRINE.
+- Typography: Inter font family throughout.
+  - Inter Bold → headlines & CTAs.
+  - Inter Medium → subheadings, nav labels.
+  - Inter Regular → body text.
+  - Inter Light → captions, subtle UI text.
+- Colors (must match exact brand HEX values):
+  - Rich Black: #020304 (primary text, backgrounds, premium sections)
+  - Shrine Crimson: #DC2A2E (accents, CTAs, highlights)
+  - Pure White: #FFFFFF (backgrounds, text on dark)
+  - Graphite: #4F4F4F (secondary text, subtle borders)
+  - Phantom: #151515 (dark pattern backgrounds)
+  - Ghost: #EAEAEA (light pattern backgrounds)
+
+## Visual & Layout System
+- Apply **Seigaiha wave pattern** as subtle background texture:
+  - Phantom wave pattern for dark sections.
+  - Ghost wave pattern for light sections.
+  - Always at low opacity, never overpowering content.
+- Navigation styled as a **torii-inspired beam** across the top with Crimson highlights.
+- Hero section:
+  - Rising sun disc gradient backdrop.
+  - Torii silhouette foreground.
+  - Headline: “Welcome to the Peptide Dojo.”
+  - Subtext: “Discipline. Purity. Knowledge. Your Gateway to Mastery.”
+  - CTA: “Step Through the Gate” (Crimson background, white text).
+- Curriculum:
+  - Presented as **belt progression** (white → red → black → gold).
+  - Each belt represented on ema plaque–style cards with Ghost pattern textures.
+- Knowledge Library:
+  - Scroll-inspired layout with Graphite headers.
+  - Use brand category icons (line style, 2px weight) to organize topics.
+- Footer:
+  - Shimenawa rope divider.
+  - Komainu (guardian) silhouettes.
+  - Black background with white logo and crimson hover links.
+
+## Functionality
+- Gamified dojo progression system: earn belts as modules are completed.
+- Dynamic glossary titled “Sacred Scrolls” with expandable entries.
+- Blog section titled “Teachings from the Dojo.”
+- Newsletter signup: “Begin Your Training” (Crimson button).
+
+## Brand Voice
+- Shrine tagline “PURITY. POWER. PROVEN.” should be integrated.
+- Tone: Premium, disciplined, scientific yet accessible.
+- Calls to Action:
+  - “Step Through the Gate”
+  - “Begin Your Training”
+  - “Claim Your Scroll”
+  - “Advance to the Next Belt”
+
+## Deliverables
+- Generate homepage wireframe in Shrine brand system.
+- Provide sample module card (ema-inspired).
+- Export UI kit with Inter typography, brand color tokens, and seigaiha patterns applied.
+- Ensure strict adherence to Shrine Peptides’ brand compliance checklist.

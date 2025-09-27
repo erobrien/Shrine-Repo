@@ -7,12 +7,14 @@ import { Menu, X } from "lucide-react";
 import shrineLogoPath from "@assets/LogoV_Black_v2_1758948960878.jpg";
 import shrineIconPath from "@assets/Icon_Black_1758948905275.jpg";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Navigation({ onLoginClick }: { onLoginClick?: () => void }) {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { toast } = useToast();
 
   const navItems = [
     { path: "/peptides", label: "Peptides" },
@@ -20,6 +22,14 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
     { path: "/guides", label: "Guides" },
     { path: "/research", label: "Research" }
   ];
+
+  const handleNavClick = (label: string) => {
+    console.log(`Navigation to ${label}: Coming soon`);
+    toast({
+      title: "Coming Soon",
+      description: `The ${label} section is currently under development.`,
+    });
+  };
 
   // Detect scroll position
   useEffect(() => {
@@ -79,16 +89,15 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <Button
-                  variant={location === item.path ? "secondary" : "ghost"}
-                  className="font-medium min-h-[44px] px-4"
-                  data-testid={`nav-link-${item.label.toLowerCase()}`}
-                  aria-current={location === item.path ? "page" : undefined}
-                >
-                  {item.label}
-                </Button>
-              </Link>
+              <Button
+                key={item.path}
+                variant="ghost"
+                className="font-medium min-h-[44px] px-4"
+                data-testid={`nav-link-${item.label.toLowerCase()}`}
+                onClick={() => handleNavClick(item.label)}
+              >
+                {item.label}
+              </Button>
             ))}
             {onLoginClick && (
               <Button 
@@ -148,17 +157,18 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <nav className="flex flex-col p-6 pt-4" aria-label="Mobile navigation">
                 <div className="flex flex-col space-y-2">
                   {navItems.map((item) => (
-                    <Link key={item.path} href={item.path}>
-                      <Button
-                        variant={location === item.path ? "secondary" : "ghost"}
-                        className="w-full justify-start font-medium text-base min-h-[48px] px-4"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                        aria-current={location === item.path ? "page" : undefined}
-                      >
-                        {item.label}
-                      </Button>
-                    </Link>
+                    <Button
+                      key={item.path}
+                      variant="ghost"
+                      className="w-full justify-start font-medium text-base min-h-[48px] px-4"
+                      onClick={() => {
+                        handleNavClick(item.label);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </Button>
                   ))}
                 </div>
                 {onLoginClick && (

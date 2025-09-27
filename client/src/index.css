@@ -120,6 +120,10 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
+  /* Product link colors */
+  --product-link-color: 356 70% 51%;
+  --product-link-hover: 356 70% 45%;
+
   /* Animation timing */
   --duration-instant: 0ms;
   --duration-fast: 150ms;
@@ -248,6 +252,10 @@
   --shadow-lg: var(--shadow-floating);
   --shadow-xl: var(--shadow-torii);
   --shadow-2xl: var(--shadow-torii);
+
+  /* Product link colors in dark mode */
+  --product-link-color: 356 65% 55%;
+  --product-link-hover: 356 65% 65%;
 }
 
 @layer base {
@@ -269,6 +277,66 @@
   /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
+  }
+
+  /* Product link styling */
+  .product-link {
+    color: hsl(var(--product-link-color));
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--product-link-color) / 0.3);
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition: all var(--duration-fast) var(--ease-sacred);
+    position: relative;
+  }
+
+  .product-link:hover {
+    color: hsl(var(--product-link-hover));
+    text-decoration-color: hsl(var(--product-link-hover) / 0.6);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Product link with icon indicator */
+  .product-link::after {
+    content: "↗";
+    display: inline-block;
+    margin-left: 0.15em;
+    font-size: 0.85em;
+    vertical-align: super;
+    opacity: 0.7;
+    transition: all var(--duration-fast) var(--ease-sacred);
+  }
+
+  .product-link:hover::after {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  /* Product link in prose content */
+  .prose .product-link {
+    @apply no-underline;
+    color: hsl(var(--product-link-color));
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--product-link-color) / 0.3);
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+
+  .prose .product-link:hover {
+    color: hsl(var(--product-link-hover));
+    text-decoration-color: hsl(var(--product-link-hover) / 0.6);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Dark mode adjustments for product links in prose */
+  .dark .prose .product-link {
+    color: hsl(var(--product-link-color));
+  }
+
+  .dark .prose .product-link:hover {
+    color: hsl(var(--product-link-hover));
   }
 
   /* Placeholder styling for contentEditable div */

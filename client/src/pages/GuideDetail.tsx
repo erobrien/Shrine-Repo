@@ -85,31 +85,27 @@ export default function GuideDetail() {
   useEffect(() => {
     if (!guide?.content || !contentRef.current) return;
 
-    // Create a temporary element to parse HTML safely
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = guide.content;
+    // Set the sanitized content directly
+    contentRef.current.innerHTML = guide.content;
     
-    // Extract headings for TOC
-    const headings = tempDiv.querySelectorAll('h1, h2, h3, h4');
+    // Extract headings for TOC from the rendered content
+    const headings = contentRef.current.querySelectorAll('h1, h2, h3, h4');
     const items: TOCItem[] = [];
     
     headings.forEach((heading, index) => {
-      const id = `heading-${index}`;
-      heading.id = id;
+      // Check if heading already has an ID (from server), otherwise create one
+      if (!heading.id) {
+        heading.id = `heading-${index}`;
+      }
       
       items.push({
-        id,
+        id: heading.id,
         text: heading.textContent || '',
         level: parseInt(heading.tagName[1])
       });
     });
     
     setTocItems(items);
-    
-    // Update the actual content with IDs
-    if (contentRef.current) {
-      contentRef.current.innerHTML = tempDiv.innerHTML;
-    }
   }, [guide?.content]);
 
   // Handle TOC navigation

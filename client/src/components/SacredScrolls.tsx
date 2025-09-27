@@ -59,10 +59,18 @@ export default function ResearchGlossary() {
     entry.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const evidenceColors = {
-    "High": "bg-green-100 text-green-800",
-    "Moderate": "bg-yellow-100 text-yellow-800",
-    "Limited": "bg-red-100 text-red-800"
+  // Use semantic classes that adapt to dark mode
+  const getEvidenceClass = (level: string) => {
+    switch(level) {
+      case "High":
+        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+      case "Moderate":
+        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+      case "Limited":
+        return "bg-muted text-muted-foreground border-muted dark:bg-muted/80 dark:text-muted-foreground dark:border-muted";
+      default:
+        return "bg-muted text-muted-foreground border-muted";
+    }
   };
 
   return (
@@ -103,7 +111,8 @@ export default function ResearchGlossary() {
                       <span className="font-semibold text-left text-sm sm:text-base">{entry.term}</span>
                       <div className="flex flex-wrap gap-1 sm:gap-2">
                         <Badge 
-                          className={`${evidenceColors[entry.evidenceLevel]} text-xs border`}
+                          variant="outline"
+                          className={`${getEvidenceClass(entry.evidenceLevel)} text-xs`}
                         >
                           <span className="hidden sm:inline">{entry.evidenceLevel} </span>Evidence
                         </Badge>

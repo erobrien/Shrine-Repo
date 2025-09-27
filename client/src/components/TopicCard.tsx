@@ -23,12 +23,27 @@ export default function TopicCard({
   href,
   onView
 }: TopicCardProps) {
-  const evidenceColors = {
-    "A": "bg-green-100 text-green-800 border-green-300",
-    "B": "bg-blue-100 text-blue-800 border-blue-300", 
-    "C": "bg-yellow-100 text-yellow-800 border-yellow-300",
-    "D": "bg-orange-100 text-orange-800 border-orange-300",
-    "Insufficient": "bg-gray-100 text-gray-800 border-gray-300"
+  // Use semantic classes that adapt to dark mode
+  const getEvidenceClass = (grade: string) => {
+    switch(grade) {
+      case "A": 
+        // Strong evidence - use primary/success colors
+        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+      case "B":
+        // Good evidence - use secondary colors  
+        return "bg-secondary/80 text-secondary-foreground border-secondary/20 dark:bg-secondary/60 dark:text-secondary-foreground dark:border-secondary/30";
+      case "C":
+        // Moderate evidence - use accent colors
+        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+      case "D":
+        // Weak evidence - use muted colors
+        return "bg-muted text-muted-foreground border-muted dark:bg-muted/80 dark:text-muted-foreground dark:border-muted";
+      case "Insufficient":
+        // No evidence - use very muted colors
+        return "bg-muted/50 text-muted-foreground border-muted/50 dark:bg-muted/30 dark:text-muted-foreground dark:border-muted/50";
+      default:
+        return "bg-muted text-muted-foreground border-muted";
+    }
   };
 
   const categoryLabels = {
@@ -46,7 +61,8 @@ export default function TopicCard({
             {categoryLabels[category]}
           </Badge>
           <Badge 
-            className={`text-xs font-medium border ${evidenceColors[evidenceGrade]}`}
+            variant="outline"
+            className={`text-xs font-medium ${getEvidenceClass(evidenceGrade)}`}
             data-testid={`badge-evidence-${evidenceGrade.toLowerCase()}`}
           >
             Grade {evidenceGrade}

@@ -22,10 +22,10 @@ export default function BeltCard({
   onAdvance
 }: BeltCardProps) {
   const beltColors = {
-    white: "bg-white text-black border-2 border-gray-300",
+    white: "bg-card text-card-foreground border-2 border-border",
     red: "bg-primary text-primary-foreground",
-    black: "bg-black text-white",
-    gold: "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black"
+    black: "bg-foreground text-background dark:bg-white dark:text-black",
+    gold: "bg-gradient-to-r from-[hsl(var(--gold-enlightenment))] to-[hsl(var(--warm-amber))] text-background"
   };
 
   const beltEmoji = {

@@ -35,10 +35,18 @@ export default function ModuleCard({
     "drive": "❤️"
   };
 
-  const difficultyColors = {
-    "Beginner": "bg-green-100 text-green-800",
-    "Intermediate": "bg-yellow-100 text-yellow-800", 
-    "Advanced": "bg-red-100 text-red-800"
+  // Use semantic classes that adapt to dark mode
+  const getDifficultyClass = (difficulty: string) => {
+    switch(difficulty) {
+      case "Beginner":
+        return "bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30";
+      case "Intermediate":
+        return "bg-accent text-accent-foreground border-accent/20 dark:bg-accent/80 dark:text-accent-foreground dark:border-accent/30";
+      case "Advanced":
+        return "bg-destructive/10 text-destructive border-destructive/20 dark:bg-destructive/20 dark:text-destructive-foreground dark:border-destructive/30";
+      default:
+        return "bg-muted text-muted-foreground border-muted";
+    }
   };
 
   return (
@@ -66,8 +74,8 @@ export default function ModuleCard({
       <CardHeader className="relative pb-4">
         <div className="flex items-center justify-between mb-2">
           <Badge 
-            variant="secondary" 
-            className={`${difficultyColors[difficulty]} font-medium`}
+            variant="outline" 
+            className={`${getDifficultyClass(difficulty)} font-medium`}
             data-testid={`badge-difficulty-${difficulty.toLowerCase()}`}
           >
             {difficulty}

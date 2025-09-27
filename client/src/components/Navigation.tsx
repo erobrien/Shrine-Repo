@@ -57,7 +57,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   return (
     <nav 
       className={cn(
-        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-background dark:bg-black border-b border-border dark:border-white/10",
+        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-black border-b border-white/10",
         isScrolled 
           ? "shadow-xl shadow-black/30" 
           : "shadow-lg shadow-black/20"
@@ -84,7 +84,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               aria-hidden="true"
             />
             <div className="font-bold text-xl sm:text-2xl md:text-3xl tracking-tight">
-              <span className="text-foreground dark:text-white">PEPTIDE</span>
+              <span className="text-white">PEPTIDE</span>
               <span className="text-primary ml-1">DOJO</span>
             </div>
           </Link>
@@ -96,7 +96,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 <Link key={item.path} href={item.path}>
                   <Button
                     variant="ghost"
-                    className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-foreground dark:text-white hover:text-foreground dark:hover:text-white hover:bg-accent/10 dark:hover:bg-white/10"
+                    className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                   >
                     {item.label}
@@ -106,7 +106,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 <Button
                   key={item.path}
                   variant="ghost"
-                  className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-foreground dark:text-white hover:text-foreground dark:hover:text-white hover:bg-accent/10 dark:hover:bg-white/10"
+                  className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
                   data-testid={`nav-link-${item.label.toLowerCase()}`}
                   onClick={() => handleNavClick(item.path, item.label)}
                 >
@@ -132,16 +132,16 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <Button
                 variant="ghost"
                 size="icon"
-                className="min-h-[48px] min-w-[48px] relative text-foreground dark:text-white hover:text-foreground dark:hover:text-white hover:bg-accent/10 dark:hover:bg-white/10"
+                className="min-h-[48px] min-w-[48px] relative text-white hover:text-white hover:bg-white/10"
                 aria-label="Open navigation menu"
                 data-testid="mobile-menu-button"
               >
                 <Menu className={cn(
-                  "h-6 w-6 transition-all duration-300 text-foreground dark:text-white",
+                  "h-6 w-6 transition-all duration-300 text-white",
                   isMobileMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
                 )} />
                 <X className={cn(
-                  "h-6 w-6 absolute transition-all duration-300 text-foreground dark:text-white",
+                  "h-6 w-6 absolute transition-all duration-300 text-white",
                   isMobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
                 )} />
               </Button>

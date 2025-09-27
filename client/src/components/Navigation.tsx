@@ -21,15 +21,15 @@ export default function Navigation() {
           <Link href="/" className="flex items-center space-x-3 hover-elevate p-2 rounded-md">
             <img 
               src={shrineIconPath} 
-              alt="Shrine Peptides Icon" 
+              alt="Peptide Dojo Icon" 
               className="h-8 w-8 object-contain"
               width="32"
               height="32"
               data-testid="logo-shrine-icon"
             />
             <div className="font-bold text-lg">
-              <span className="text-foreground">SHRINE</span>
-              <span className="text-primary ml-1">PEPTIDES</span>
+              <span className="text-foreground">PEPTIDE</span>
+              <span className="text-primary ml-1">DOJO</span>
             </div>
           </Link>
 

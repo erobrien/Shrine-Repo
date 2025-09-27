@@ -16,15 +16,15 @@ export default function Footer() {
                 </svg>
               </div>
               <div className="font-bold text-lg">
-                <span className="text-foreground">SHRINE</span>
-                <span className="text-primary ml-1">PEPTIDES</span>
+                <span className="text-foreground">PEPTIDE</span>
+                <span className="text-primary ml-1">DOJO</span>
               </div>
             </div>
             <p className="text-primary font-bold text-sm tracking-wider mb-4">
-              PURITY. POWER. PROVEN.
+              MASTER. LEARN. EXCEL.
             </p>
             <p className="font-light text-muted-foreground text-sm">
-              Evidence-based peptide research and information.
+              Master the art and science of peptide research.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="font-light text-muted-foreground text-sm">
-            © 2024 Shrine Peptides. All rights reserved. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.
+            © 2024 Peptide Dojo. All rights reserved. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.
           </p>
         </div>
       </div>

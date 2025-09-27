@@ -70,7 +70,7 @@ export default function ExploreGrid() {
     <section className="py-16 bg-muted/20">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Explore Shrine Peptides</h2>
+          <h2 className="text-3xl font-bold mb-4">Explore Peptide Dojo</h2>
           <p className="text-lg font-medium text-muted-foreground max-w-3xl mx-auto">
             See what the evidence shows. Information is organized into comprehensive categories 
             covering peptides, conditions, and evidence-based protocols.

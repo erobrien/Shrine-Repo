@@ -26,16 +26,16 @@ export default function HeroSection() {
           {/* Clean, simple header */}
           <div className="text-center mb-12">
             <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
-              Peptide Knowledge Hub
+              Welcome to Peptide Dojo
             </p>
             
             {/* Main title - clean and prominent */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-              Peptide Wisdom
+              Master Peptide Science
             </h1>
             
             <p className="text-xl md:text-2xl font-light text-muted-foreground max-w-3xl mx-auto">
-              Expert guidance for optimal health and performance through peptide science
+              Train your knowledge, elevate your understanding, achieve optimal health
             </p>
           </div>
 

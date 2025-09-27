@@ -42,15 +42,15 @@ export default function Home() {
       <ExploreGrid />
 
       {/* Featured Topics Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Featured Research</h2>
-            <p className="font-medium text-muted-foreground text-lg">
+      <section className="py-8 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Featured Research</h2>
+            <p className="font-medium text-muted-foreground text-base sm:text-lg px-2 sm:px-0">
               Recently updated topics with the latest evidence and analysis.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {featuredTopics.map((topic) => (
               <TopicCard
                 key={topic.title}
@@ -63,16 +63,16 @@ export default function Home() {
       </section>
 
       {/* Latest Updates Section */}
-      <section className="py-16 bg-muted/20">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Latest Updates</h2>
-            <p className="font-medium text-muted-foreground text-lg">
+      <section className="py-8 sm:py-12 md:py-16 bg-muted/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Latest Updates</h2>
+            <p className="font-medium text-muted-foreground text-base sm:text-lg px-2 sm:px-0">
               New research summaries and updated evidence grades published daily.
             </p>
           </div>
           
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {/* todo: remove mock functionality - replace with real updates data */}
             {[
               {
@@ -91,12 +91,12 @@ export default function Home() {
                 type: "Evidence Update"
               }
             ].map((update, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-background rounded-lg border border-border hover-elevate">
-                <div>
-                  <h3 className="font-medium text-foreground">{update.title}</h3>
-                  <p className="text-sm text-muted-foreground">{update.date}</p>
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-background rounded-lg border border-border hover-elevate">
+                <div className="flex-1">
+                  <h3 className="font-medium text-foreground text-sm sm:text-base line-clamp-2">{update.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">{update.date}</p>
                 </div>
-                <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded self-start sm:self-center whitespace-nowrap">
                   {update.type}
                 </div>
               </div>

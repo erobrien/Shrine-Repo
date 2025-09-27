@@ -67,34 +67,34 @@ export default function ExploreGrid() {
   ];
 
   return (
-    <section className="py-16 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Explore Peptide Dojo</h2>
-          <p className="text-lg font-medium text-muted-foreground max-w-3xl mx-auto">
+    <section className="py-8 sm:py-12 md:py-16 bg-muted/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Explore Peptide Dojo</h2>
+          <p className="text-base sm:text-lg font-medium text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
             See what the evidence shows. Information is organized into comprehensive categories 
             covering peptides, conditions, and evidence-based protocols.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {sections.map((section) => (
             <Card key={section.title} className="h-full">
-              <CardHeader>
-                <CardTitle className="text-lg font-bold text-primary">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-base sm:text-lg font-bold text-primary">
                   {section.title}
                 </CardTitle>
-                <p className="text-sm font-light text-muted-foreground">
+                <p className="text-xs sm:text-sm font-light text-muted-foreground mt-1">
                   {section.description}
                 </p>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3 mb-6">
+              <CardContent className="pt-0">
+                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {section.items.map((item) => (
                     <div key={item.name}>
                       <a 
                         href={item.path}
-                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
+                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-1"
                         data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -104,7 +104,7 @@ export default function ExploreGrid() {
                         {item.name}
                       </a>
                       {item.description && (
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
                           {item.description}
                         </p>
                       )}
@@ -114,7 +114,7 @@ export default function ExploreGrid() {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   data-testid={`button-view-all-${section.title.toLowerCase()}`}
                   onClick={() => console.log(`View all ${section.title}`)}
                 >

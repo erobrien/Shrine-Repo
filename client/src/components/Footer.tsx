@@ -3,11 +3,11 @@ import { Link } from "wouter";
 export default function Footer() {
   return (
     <footer className="bg-muted border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Logo and Tagline */}
-          <div className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
+          <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-center sm:justify-start space-x-3 mb-3 sm:mb-4">
               <div className="w-6 h-6 text-primary">
                 <svg viewBox="0 0 24 24" className="w-full h-full text-primary fill-current">
                   <circle cx="12" cy="12" r="10" className="stroke-current fill-none" strokeWidth="2"/>
@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Research Categories */}
           <div>
-            <h3 className="font-bold mb-4 text-foreground">Research</h3>
+            <h3 className="font-bold mb-3 sm:mb-4 text-foreground text-base">Research</h3>
             <div className="space-y-2">
               {[
                 { href: "/peptides", label: "Peptides" },
@@ -39,7 +39,7 @@ export default function Footer() {
                 { href: "/research", label: "Latest Research" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1 text-sm">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1.5 sm:py-1 text-sm min-h-[32px] sm:min-h-0 flex items-center justify-center sm:justify-start">
                     {link.label}
                   </div>
                 </Link>
@@ -49,7 +49,7 @@ export default function Footer() {
 
           {/* About */}
           <div>
-            <h3 className="font-bold mb-4 text-foreground">About</h3>
+            <h3 className="font-bold mb-3 sm:mb-4 text-foreground text-base">About</h3>
             <div className="space-y-2">
               {[
                 { href: "/methodology", label: "Our Methodology" },
@@ -58,7 +58,7 @@ export default function Footer() {
                 { href: "/disclaimer", label: "Medical Disclaimer" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1 text-sm">
+                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-1.5 sm:py-1 text-sm min-h-[32px] sm:min-h-0 flex items-center justify-center sm:justify-start">
                     {link.label}
                   </div>
                 </Link>
@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4 text-foreground">Connect</h3>
+            <h3 className="font-bold mb-3 sm:mb-4 text-foreground text-base">Connect</h3>
             <p className="font-light text-muted-foreground mb-4 text-sm">
               Access comprehensive peptide research and evidence-based insights.
             </p>
@@ -93,8 +93,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center">
-          <p className="font-light text-muted-foreground text-sm">
+        <div className="border-t border-border mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 text-center">
+          <p className="font-light text-muted-foreground text-xs sm:text-sm px-2 sm:px-0">
             © 2024 Peptide Dojo. All rights reserved. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.
           </p>
         </div>

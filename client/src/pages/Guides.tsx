@@ -267,6 +267,13 @@ export default function Guides() {
             </div>
           ) : (
             <>
+              {/* Pagination Summary */}
+              <div className="text-center mb-4">
+                <p className="text-sm text-muted-foreground" data-testid="pagination-summary">
+                  Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, filteredGuides.length)} of {filteredGuides.length} guides
+                </p>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8">
                 {paginatedGuides.map((guide) => (
                   <GuideCard key={guide.id} guide={guide} />

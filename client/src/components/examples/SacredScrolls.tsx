@@ -1,5 +1,5 @@
-import SacredScrolls from '../SacredScrolls';
+import ResearchGlossary from '../SacredScrolls';
 
-export default function SacredScrollsExample() {
-  return <SacredScrolls />;
+export default function ResearchGlossaryExample() {
+  return <ResearchGlossary />;
 }

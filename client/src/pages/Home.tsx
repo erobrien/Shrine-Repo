@@ -1,125 +1,111 @@
 import HeroSection from "@/components/HeroSection";
-import BeltCard from "@/components/BeltCard";
-import ModuleCard from "@/components/ModuleCard";
-import SacredScrolls from "@/components/SacredScrolls";
+import ExploreGrid from "@/components/ExploreGrid";
+import TopicCard from "@/components/TopicCard";
+import ResearchGlossary from "@/components/SacredScrolls";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function Home() {
-  // todo: remove mock functionality - replace with real progression data
-  const beltData = [
+  // todo: remove mock functionality - replace with real featured topics data
+  const featuredTopics = [
     {
-      beltLevel: "white" as const,
-      title: "White Belt",
-      description: "Master the fundamentals of peptide science and basic terminology.",
-      progress: 8,
-      totalModules: 10,
-      isUnlocked: true
+      title: "BPC-157",
+      summary: "Body Protection Compound-157 shows promising results for tissue repair and gastrointestinal health in animal studies. Human clinical data remains limited.",
+      category: "peptide" as const,
+      evidenceGrade: "B" as const,
+      lastUpdated: "2 days ago",
+      studyCount: 47,
+      href: "/peptides/bpc-157"
     },
     {
-      beltLevel: "red" as const,
-      title: "Red Belt", 
-      description: "Dive deeper into peptide mechanisms and advanced applications.",
-      progress: 3,
-      totalModules: 12,
-      isUnlocked: true
+      title: "GLP-1 Receptor Agonists",
+      summary: "Well-established clinical evidence supports GLP-1 agonists for type 2 diabetes management and weight loss. FDA-approved options available.",
+      category: "peptide" as const,
+      evidenceGrade: "A" as const,
+      lastUpdated: "1 week ago", 
+      studyCount: 89,
+      href: "/peptides/glp-1"
     },
     {
-      beltLevel: "black" as const,
-      title: "Black Belt",
-      description: "Master complex peptide protocols and clinical applications.",
-      progress: 0,
-      totalModules: 15,
-      isUnlocked: false
-    },
-    {
-      beltLevel: "gold" as const,
-      title: "Gold Belt",
-      description: "Achieve mastery in cutting-edge peptide research and innovation.",
-      progress: 0,
-      totalModules: 20,
-      isUnlocked: false
-    }
-  ];
-
-  // todo: remove mock functionality - replace with real module data
-  const featuredModules = [
-    {
-      title: "Introduction to Peptides",
-      description: "Learn the foundational concepts of peptide science, structure, and biological functions.",
-      category: "best-sellers" as const,
-      duration: "30 min",
-      difficulty: "Beginner" as const,
-      isCompleted: true,
-      isLocked: false
-    },
-    {
-      title: "BPC-157 Deep Dive",
-      description: "Comprehensive study of Body Protection Compound-157, its mechanisms and applications.",
-      category: "recovery" as const,
-      duration: "45 min", 
-      difficulty: "Intermediate" as const,
-      isCompleted: false,
-      isLocked: false
-    },
-    {
-      title: "Performance Peptide Protocols",
-      description: "Advanced protocols for athletic enhancement and muscle development optimization.",
-      category: "performance" as const,
-      duration: "60 min",
-      difficulty: "Advanced" as const,
-      isCompleted: false,
-      isLocked: false
+      title: "Muscle Recovery Protocols", 
+      summary: "Various peptides show potential for accelerating muscle recovery after exercise, though human studies are limited and protocols vary.",
+      category: "condition" as const,
+      evidenceGrade: "C" as const,
+      lastUpdated: "3 days ago",
+      studyCount: 23,
+      href: "/conditions/muscle-recovery"
     }
   ];
 
   return (
     <div className="min-h-screen">
       <HeroSection />
+      <ExploreGrid />
 
-      {/* Belt Progression Section */}
-      <section className="py-16 bg-muted/20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Your Path to Mastery</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Progress through the ancient belt system. Each belt unlocks deeper knowledge 
-              and more advanced peptide wisdom.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {beltData.map((belt) => (
-              <BeltCard
-                key={belt.beltLevel}
-                {...belt}
-                onAdvance={() => console.log(`${belt.title} advance clicked`)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Modules Section */}
+      {/* Featured Topics Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Teachings</h2>
+            <h2 className="text-3xl font-bold mb-4">Featured Research</h2>
             <p className="text-muted-foreground text-lg">
-              Begin your journey with these essential modules handpicked by our sensei.
+              Recently updated topics with the latest evidence and analysis.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredModules.map((module) => (
-              <ModuleCard
-                key={module.title}
-                {...module}
-                onStart={() => console.log(`${module.title} started`)}
+            {featuredTopics.map((topic) => (
+              <TopicCard
+                key={topic.title}
+                {...topic}
+                onView={() => console.log(`${topic.title} viewed`)}
               />
             ))}
           </div>
         </div>
       </section>
 
-      <SacredScrolls />
+      {/* Latest Updates Section */}
+      <section className="py-16 bg-muted/20">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Latest Updates</h2>
+            <p className="text-muted-foreground text-lg">
+              New research summaries and updated evidence grades published daily.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            {/* todo: remove mock functionality - replace with real updates data */}
+            {[
+              {
+                date: "2 days ago",
+                title: "BPC-157 - Updated safety information and dosing guidelines",
+                type: "Safety Update"
+              },
+              {
+                date: "3 days ago", 
+                title: "New study summaries: Peptides for cognitive enhancement",
+                type: "Research Summary"
+              },
+              {
+                date: "1 week ago",
+                title: "GLP-1 Agonists - Updated clinical evidence and protocols",
+                type: "Evidence Update"
+              }
+            ].map((update, index) => (
+              <div key={index} className="flex items-center justify-between p-4 bg-background rounded-lg border border-border hover-elevate">
+                <div>
+                  <h3 className="font-medium text-foreground">{update.title}</h3>
+                  <p className="text-sm text-muted-foreground">{update.date}</p>
+                </div>
+                <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                  {update.type}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ResearchGlossary />
       <NewsletterSignup />
     </div>
   );

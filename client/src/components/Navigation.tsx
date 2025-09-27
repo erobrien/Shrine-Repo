@@ -1,5 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 interface NavigationProps {
   onLoginClick?: () => void;
@@ -7,42 +9,56 @@ interface NavigationProps {
 
 export default function Navigation({ onLoginClick }: NavigationProps) {
   const [location] = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const navItems = [
-    { path: "/", label: "Dojo", icon: "⛩️" },
-    { path: "/curriculum", label: "Curriculum", icon: "🥋" },
-    { path: "/scrolls", label: "Sacred Scrolls", icon: "📜" },
-    { path: "/teachings", label: "Teachings", icon: "📚" },
+    { path: "/peptides", label: "Peptides" },
+    { path: "/conditions", label: "Conditions" },
+    { path: "/guides", label: "Guides" },
+    { path: "/research", label: "Research" }
   ];
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Search:', searchQuery);
+  };
+
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      {/* Torii-inspired beam design */}
+    <nav className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="relative h-16 flex items-center justify-between">
-          {/* Main beam */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-primary/20"></div>
-          
+        <div className="h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover-elevate p-2 rounded-md">
-            <div className="w-8 h-8 text-primary">
-              {/* Simplified Torii icon */}
-              <svg viewBox="0 0 32 32" className="w-full h-full text-primary fill-current">
-                <rect x="4" y="8" width="2" height="20" />
-                <rect x="26" y="8" width="2" height="20" />
-                <rect x="0" y="6" width="32" height="2" rx="1" />
-                <rect x="3" y="12" width="26" height="1.5" rx="0.75" />
-                <circle cx="16" cy="4" r="2" className="text-primary fill-current" />
+            <div className="w-6 h-6 text-primary">
+              {/* Shrine Peptides simple icon */}
+              <svg viewBox="0 0 24 24" className="w-full h-full text-primary fill-current">
+                <circle cx="12" cy="12" r="10" className="stroke-current fill-none" strokeWidth="2"/>
+                <circle cx="12" cy="8" r="3" className="fill-current"/>
+                <path d="M8 16h8" className="stroke-current" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
             <div className="font-bold text-lg">
-              <span className="text-foreground">PEPTIDE</span>
-              <span className="text-primary ml-1">DOJO</span>
+              <span className="text-foreground">SHRINE</span>
+              <span className="text-primary ml-1">PEPTIDES</span>
             </div>
           </Link>
 
+          {/* Search Bar */}
+          <div className="hidden md:flex flex-1 max-w-md mx-8">
+            <form onSubmit={handleSearch} className="w-full">
+              <Input
+                type="search"
+                placeholder="Search peptides, conditions, research..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full"
+                data-testid="input-search"
+              />
+            </form>
+          </div>
+
           {/* Navigation Items */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path}>
                 <Button
@@ -50,21 +66,20 @@ export default function Navigation({ onLoginClick }: NavigationProps) {
                   className="font-medium"
                   data-testid={`nav-link-${item.label.toLowerCase()}`}
                 >
-                  <span className="mr-2">{item.icon}</span>
                   {item.label}
                 </Button>
               </Link>
             ))}
           </div>
 
-          {/* Login Button */}
+          {/* Pro Access Button */}
           <Button 
-            variant="outline"
+            variant="default"
             onClick={onLoginClick}
             data-testid="button-login"
-            className="font-medium"
+            className="font-medium ml-4"
           >
-            Begin Your Training
+            Try Pro
           </Button>
         </div>
       </div>

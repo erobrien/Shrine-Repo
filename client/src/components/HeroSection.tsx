@@ -43,26 +43,28 @@ export default function HeroSection() {
           <div className="max-w-2xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0">
             <form onSubmit={handleSearch}>
               {/* Traditional inline search layout */}
-              <div className="relative">
-                <Input
-                  type="search"
-                  placeholder="Search peptides, research, conditions..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-12 sm:h-14 text-base pl-10 sm:pl-12 pr-24 sm:pr-32 rounded-full border-2
-                             bg-background/95 backdrop-blur-sm
-                             focus:ring-2 focus:ring-primary/20 focus:border-primary/50
-                             placeholder:text-muted-foreground/60 transition-all"
-                  data-testid="input-hero-search"
-                />
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <Input
+                    type="search"
+                    placeholder="Search peptides, research, conditions..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full h-12 sm:h-14 text-base pl-10 sm:pl-12 pr-4 rounded-lg border
+                               bg-background/95 backdrop-blur-sm
+                               focus:ring-2 focus:ring-primary/20 focus:border-primary/50
+                               placeholder:text-muted-foreground/60 transition-all"
+                    data-testid="input-hero-search"
+                  />
+                  
+                  {/* Search icon */}
+                  <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground/50" />
+                </div>
                 
-                {/* Search icon */}
-                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-muted-foreground/50" />
-                
-                {/* Traditional inline search button */}
+                {/* Traditional separate search button */}
                 <Button 
                   type="submit"
-                  className="absolute right-1 top-1/2 -translate-y-1/2 h-10 sm:h-12 px-4 sm:px-6 rounded-full"
+                  className="h-12 sm:h-14 px-6 sm:px-8"
                   data-testid="button-search"
                 >
                   Search

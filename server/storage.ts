@@ -7,14 +7,17 @@ import {
   type InsertCategory,
   type Protocol,
   type InsertProtocol,
+  type Guide,
+  type InsertGuide,
   users,
   peptides,
   categories,
-  protocols
+  protocols,
+  guides
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
-import { eq, ilike, or } from "drizzle-orm";
+import { eq, ilike, or, desc, asc } from "drizzle-orm";
 
 // Extended interface with all CRUD methods
 export interface IStorage {
@@ -39,6 +42,17 @@ export interface IStorage {
   createProtocol(protocol: InsertProtocol): Promise<Protocol>;
   getAllProtocols(): Promise<Protocol[]>;
   getProtocol(id: string): Promise<Protocol | undefined>;
+  
+  // Guide operations
+  createGuide(guide: InsertGuide): Promise<Guide>;
+  getGuide(id: string): Promise<Guide | undefined>;
+  getGuideBySlug(slug: string): Promise<Guide | undefined>;
+  getAllGuides(): Promise<Guide[]>;
+  updateGuide(id: string, guide: Partial<InsertGuide>): Promise<Guide | undefined>;
+  deleteGuide(id: string): Promise<boolean>;
+  getGuidesByCategory(category: string): Promise<Guide[]>;
+  getFeaturedGuides(): Promise<Guide[]>;
+  searchGuides(query: string): Promise<Guide[]>;
 }
 
 // In-memory storage implementation
@@ -47,12 +61,14 @@ export class MemStorage implements IStorage {
   private peptides: Map<string, Peptide>;
   private categories: Map<string, Category>;
   private protocols: Map<string, Protocol>;
+  private guides: Map<string, Guide>;
 
   constructor() {
     this.users = new Map();
     this.peptides = new Map();
     this.categories = new Map();
     this.protocols = new Map();
+    this.guides = new Map();
   }
 
   // User operations
@@ -159,6 +175,80 @@ export class MemStorage implements IStorage {
   
   async getProtocol(id: string): Promise<Protocol | undefined> {
     return this.protocols.get(id);
+  }
+  
+  // Guide operations
+  async createGuide(insertGuide: InsertGuide): Promise<Guide> {
+    const id = randomUUID();
+    const now = new Date();
+    const guide: Guide = { 
+      ...insertGuide, 
+      id,
+      excerpt: insertGuide.excerpt || null,
+      tags: insertGuide.tags || null,
+      relatedPeptides: insertGuide.relatedPeptides || null,
+      keywords: insertGuide.keywords || null,
+      publishDate: now,
+      lastUpdated: now
+    } as Guide;
+    this.guides.set(id, guide);
+    return guide;
+  }
+  
+  async getGuide(id: string): Promise<Guide | undefined> {
+    return this.guides.get(id);
+  }
+  
+  async getGuideBySlug(slug: string): Promise<Guide | undefined> {
+    return Array.from(this.guides.values()).find(
+      (guide) => guide.slug === slug
+    );
+  }
+  
+  async getAllGuides(): Promise<Guide[]> {
+    return Array.from(this.guides.values());
+  }
+  
+  async updateGuide(id: string, guideData: Partial<InsertGuide>): Promise<Guide | undefined> {
+    const existing = this.guides.get(id);
+    if (!existing) return undefined;
+    
+    const updated = { 
+      ...existing, 
+      ...guideData,
+      lastUpdated: new Date()
+    };
+    this.guides.set(id, updated);
+    return updated;
+  }
+  
+  async deleteGuide(id: string): Promise<boolean> {
+    return this.guides.delete(id);
+  }
+  
+  async getGuidesByCategory(category: string): Promise<Guide[]> {
+    return Array.from(this.guides.values()).filter(
+      (guide) => guide.category === category
+    );
+  }
+  
+  async getFeaturedGuides(): Promise<Guide[]> {
+    return Array.from(this.guides.values()).filter(
+      (guide) => guide.featured === true
+    );
+  }
+  
+  async searchGuides(query: string): Promise<Guide[]> {
+    const lowercaseQuery = query.toLowerCase();
+    return Array.from(this.guides.values()).filter(
+      (guide) => 
+        guide.title.toLowerCase().includes(lowercaseQuery) ||
+        guide.content.toLowerCase().includes(lowercaseQuery) ||
+        guide.metaDescription.toLowerCase().includes(lowercaseQuery) ||
+        (guide.excerpt && guide.excerpt.toLowerCase().includes(lowercaseQuery)) ||
+        (guide.tags && guide.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))) ||
+        (guide.keywords && guide.keywords.some(keyword => keyword.toLowerCase().includes(lowercaseQuery)))
+    );
   }
 }
 
@@ -276,6 +366,91 @@ export class DatabaseStorage implements IStorage {
       .where(eq(protocols.id, id))
       .limit(1);
     return protocol;
+  }
+  
+  // Guide operations
+  async createGuide(insertGuide: InsertGuide): Promise<Guide> {
+    const [guide] = await db
+      .insert(guides)
+      .values(insertGuide)
+      .returning();
+    return guide;
+  }
+  
+  async getGuide(id: string): Promise<Guide | undefined> {
+    const [guide] = await db
+      .select()
+      .from(guides)
+      .where(eq(guides.id, id))
+      .limit(1);
+    return guide;
+  }
+  
+  async getGuideBySlug(slug: string): Promise<Guide | undefined> {
+    const [guide] = await db
+      .select()
+      .from(guides)
+      .where(eq(guides.slug, slug))
+      .limit(1);
+    return guide;
+  }
+  
+  async getAllGuides(): Promise<Guide[]> {
+    return await db
+      .select()
+      .from(guides)
+      .orderBy(desc(guides.publishDate));
+  }
+  
+  async updateGuide(id: string, guideData: Partial<InsertGuide>): Promise<Guide | undefined> {
+    const [updated] = await db
+      .update(guides)
+      .set({
+        ...guideData,
+        lastUpdated: new Date()
+      })
+      .where(eq(guides.id, id))
+      .returning();
+    return updated;
+  }
+  
+  async deleteGuide(id: string): Promise<boolean> {
+    const result = await db
+      .delete(guides)
+      .where(eq(guides.id, id))
+      .returning();
+    return result.length > 0;
+  }
+  
+  async getGuidesByCategory(category: string): Promise<Guide[]> {
+    return await db
+      .select()
+      .from(guides)
+      .where(eq(guides.category, category))
+      .orderBy(desc(guides.publishDate));
+  }
+  
+  async getFeaturedGuides(): Promise<Guide[]> {
+    return await db
+      .select()
+      .from(guides)
+      .where(eq(guides.featured, true))
+      .orderBy(desc(guides.publishDate));
+  }
+  
+  async searchGuides(query: string): Promise<Guide[]> {
+    return await db
+      .select()
+      .from(guides)
+      .where(
+        or(
+          ilike(guides.title, `%${query}%`),
+          ilike(guides.content, `%${query}%`),
+          ilike(guides.metaDescription, `%${query}%`),
+          ilike(guides.excerpt, `%${query}%`)
+        )
+      )
+      .orderBy(desc(guides.publishDate));
   }
 }
 

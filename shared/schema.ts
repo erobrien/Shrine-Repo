@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, numeric, boolean, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, numeric, boolean, uuid, timestamp, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -37,6 +37,26 @@ export const protocols = pgTable("protocols", {
   instructions: text("instructions").array(),
 });
 
+// Guides table for SEO-optimized educational content
+export const guides = pgTable("guides", {
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  title: text("title").notNull(),
+  metaTitle: varchar("meta_title", { length: 60 }).notNull(), // SEO: 60 chars max
+  metaDescription: varchar("meta_description", { length: 160 }).notNull(), // SEO: 160 chars max
+  content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  category: text("category").notNull(),
+  tags: text("tags").array(),
+  relatedPeptides: uuid("related_peptides").array(), // Array of peptide IDs
+  author: text("author").notNull(),
+  publishDate: timestamp("publish_date").notNull().defaultNow(),
+  lastUpdated: timestamp("last_updated").notNull().defaultNow(),
+  featured: boolean("featured").default(false).notNull(),
+  readTime: integer("read_time").notNull(), // in minutes
+  keywords: text("keywords").array(), // SEO keywords
+});
+
 // Users table (keeping existing)
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -64,6 +84,19 @@ export const insertProtocolSchema = createInsertSchema(protocols).omit({
   instructions: z.array(z.string()).optional(),
 });
 
+export const insertGuideSchema = createInsertSchema(guides).omit({
+  id: true,
+  publishDate: true,
+  lastUpdated: true,
+}).extend({
+  tags: z.array(z.string()).optional(),
+  relatedPeptides: z.array(z.string()).optional(),
+  keywords: z.array(z.string()).optional(),
+  metaTitle: z.string().max(60, "Meta title must be 60 characters or less"),
+  metaDescription: z.string().max(160, "Meta description must be 160 characters or less"),
+  readTime: z.number().int().positive(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -78,6 +111,9 @@ export type InsertPeptide = z.infer<typeof insertPeptideSchema>;
 
 export type Protocol = typeof protocols.$inferSelect;
 export type InsertProtocol = z.infer<typeof insertProtocolSchema>;
+
+export type Guide = typeof guides.$inferSelect;
+export type InsertGuide = z.infer<typeof insertGuideSchema>;
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;

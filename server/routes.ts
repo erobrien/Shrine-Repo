@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertPeptideSchema, insertCategorySchema, insertProtocolSchema } from "@shared/schema";
+import { insertPeptideSchema, insertCategorySchema, insertProtocolSchema, insertGuideSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -174,6 +174,140 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       console.error("Error creating protocol:", error);
       res.status(500).json({ error: "Failed to create protocol" });
+    }
+  });
+  
+  // Guide endpoints
+  
+  // GET /api/guides - List all guides with pagination
+  app.get("/api/guides", async (req, res) => {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const offset = (page - 1) * limit;
+      
+      const guides = await storage.getAllGuides();
+      const paginatedGuides = guides.slice(offset, offset + limit);
+      
+      res.json({
+        data: paginatedGuides,
+        page,
+        limit,
+        total: guides.length,
+        totalPages: Math.ceil(guides.length / limit)
+      });
+    } catch (error) {
+      console.error("Error fetching guides:", error);
+      res.status(500).json({ error: "Failed to fetch guides" });
+    }
+  });
+  
+  // GET /api/guides/featured - Get featured guides
+  app.get("/api/guides/featured", async (req, res) => {
+    try {
+      const guides = await storage.getFeaturedGuides();
+      res.json(guides);
+    } catch (error) {
+      console.error("Error fetching featured guides:", error);
+      res.status(500).json({ error: "Failed to fetch featured guides" });
+    }
+  });
+  
+  // GET /api/guides/search - Search guides
+  app.get("/api/guides/search", async (req, res) => {
+    try {
+      const query = req.query.q as string;
+      if (!query) {
+        return res.status(400).json({ error: "Search query is required" });
+      }
+      
+      const guides = await storage.searchGuides(query);
+      res.json(guides);
+    } catch (error) {
+      console.error("Error searching guides:", error);
+      res.status(500).json({ error: "Failed to search guides" });
+    }
+  });
+  
+  // GET /api/guides/category/:category - Get guides by category
+  app.get("/api/guides/category/:category", async (req, res) => {
+    try {
+      const { category } = req.params;
+      const guides = await storage.getGuidesByCategory(category);
+      res.json(guides);
+    } catch (error) {
+      console.error("Error fetching guides by category:", error);
+      res.status(500).json({ error: "Failed to fetch guides by category" });
+    }
+  });
+  
+  // GET /api/guides/:slug - Get single guide by slug
+  app.get("/api/guides/:slug", async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const guide = await storage.getGuideBySlug(slug);
+      
+      if (!guide) {
+        return res.status(404).json({ error: "Guide not found" });
+      }
+      
+      res.json(guide);
+    } catch (error) {
+      console.error("Error fetching guide:", error);
+      res.status(500).json({ error: "Failed to fetch guide" });
+    }
+  });
+  
+  // POST /api/guides - Create guide
+  app.post("/api/guides", async (req, res) => {
+    try {
+      const validated = insertGuideSchema.parse(req.body);
+      const guide = await storage.createGuide(validated);
+      res.status(201).json(guide);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid guide data", details: error.errors });
+      }
+      console.error("Error creating guide:", error);
+      res.status(500).json({ error: "Failed to create guide" });
+    }
+  });
+  
+  // PUT /api/guides/:id - Update guide
+  app.put("/api/guides/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const partialValidated = insertGuideSchema.partial().parse(req.body);
+      const updated = await storage.updateGuide(id, partialValidated);
+      
+      if (!updated) {
+        return res.status(404).json({ error: "Guide not found" });
+      }
+      
+      res.json(updated);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid guide data", details: error.errors });
+      }
+      console.error("Error updating guide:", error);
+      res.status(500).json({ error: "Failed to update guide" });
+    }
+  });
+  
+  // DELETE /api/guides/:id - Delete guide
+  app.delete("/api/guides/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleted = await storage.deleteGuide(id);
+      
+      if (!deleted) {
+        return res.status(404).json({ error: "Guide not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting guide:", error);
+      res.status(500).json({ error: "Failed to delete guide" });
     }
   });
 

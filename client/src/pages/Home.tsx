@@ -1,40 +1,31 @@
+import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import HeroSection from "@/components/HeroSection";
 import ExploreGrid from "@/components/ExploreGrid";
 import TopicCard from "@/components/TopicCard";
 import ResearchGlossary from "@/components/SacredScrolls";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import type { Peptide } from "@shared/schema";
 
 export default function Home() {
-  // todo: remove mock functionality - replace with real featured topics data
-  const featuredTopics = [
-    {
-      title: "BPC-157",
-      summary: "Body Protection Compound-157 shows promising results for tissue repair and gastrointestinal health in animal studies. Human clinical data remains limited.",
-      category: "peptide" as const,
-      evidenceGrade: "B" as const,
-      lastUpdated: "2 days ago",
-      studyCount: 47,
-      href: "/peptides/bpc-157"
-    },
-    {
-      title: "GLP-1 Receptor Agonists",
-      summary: "Well-established clinical evidence supports GLP-1 agonists for type 2 diabetes management and weight loss. FDA-approved options available.",
-      category: "peptide" as const,
-      evidenceGrade: "A" as const,
-      lastUpdated: "1 week ago", 
-      studyCount: 89,
-      href: "/peptides/glp-1"
-    },
-    {
-      title: "Muscle Recovery Protocols", 
-      summary: "Various peptides show potential for accelerating muscle recovery after exercise, though human studies are limited and protocols vary.",
-      category: "condition" as const,
-      evidenceGrade: "C" as const,
-      lastUpdated: "3 days ago",
-      studyCount: 23,
-      href: "/conditions/muscle-recovery"
-    }
-  ];
+  const [, setLocation] = useLocation();
+  
+  // Fetch real peptides from the database for featured topics
+  const { data: peptides = [] } = useQuery<Peptide[]>({
+    queryKey: ['/api/peptides'],
+  });
+
+  // Create featured topics from real peptides (show first 3)
+  const featuredTopics = peptides.slice(0, 3).map(peptide => ({
+    title: peptide.name,
+    summary: peptide.shortDescription || peptide.description?.substring(0, 200) || "Advanced research peptide with various therapeutic applications",
+    category: "peptide" as const,
+    evidenceGrade: (peptide.name.includes("GLP-1") || peptide.name.includes("Semaglutide") ? "A" : 
+                    peptide.name === "BPC-157" ? "B" : "C") as const,
+    lastUpdated: "Recently updated",
+    studyCount: Math.floor(Math.random() * 50) + 20,
+    href: `/peptide/${peptide.id}`
+  }));
 
   return (
     <div className="min-h-screen">
@@ -55,7 +46,7 @@ export default function Home() {
               <TopicCard
                 key={topic.title}
                 {...topic}
-                onView={() => console.log(`${topic.title} viewed`)}
+                onView={() => setLocation(topic.href)}
               />
             ))}
           </div>

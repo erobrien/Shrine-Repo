@@ -1,6 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { Peptide, Category } from "@shared/schema";
 
 interface ExploreSection {
   title: string;
@@ -11,34 +15,49 @@ interface ExploreSection {
     description?: string;
   }>;
   viewAllPath: string;
+  itemCount?: number;
+  isLoading?: boolean;
 }
 
 export default function ExploreGrid() {
-  // todo: remove mock functionality - replace with real data
+  // Fetch real peptides from the database
+  const { data: peptides = [], isLoading: peptidesLoading } = useQuery<Peptide[]>({
+    queryKey: ['/api/peptides'],
+  });
+
+  // Fetch categories from the database
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery<Category[]>({
+    queryKey: ['/api/categories'],
+  });
+
+  // Create sections with real data where applicable
   const sections: ExploreSection[] = [
     {
       title: "Peptides",
       description: "Research-backed information on individual peptides and their effects.",
-      items: [
-        { name: "BPC-157", path: "/peptides/bpc-157", description: "Body protection and healing" },
-        { name: "GLP-1", path: "/peptides/glp-1", description: "Glucose regulation and weight management" },
-        { name: "TB-500", path: "/peptides/tb-500", description: "Tissue repair and recovery" },
-        { name: "IGF-1 LR3", path: "/peptides/igf-1-lr3", description: "Growth factor signaling" },
-        { name: "Melanotan II", path: "/peptides/melanotan-ii", description: "Melanogenesis regulation" }
-      ],
-      viewAllPath: "/peptides"
+      items: peptides.slice(0, 5).map(peptide => ({
+        name: peptide.name,
+        path: `/peptide/${peptide.id}`,
+        description: peptide.shortDescription || peptide.description?.substring(0, 100) || undefined
+      })),
+      viewAllPath: "/peptides",
+      itemCount: peptides.length,
+      isLoading: peptidesLoading
     },
     {
-      title: "Conditions",
-      description: "Health conditions that may benefit from peptide interventions.",
-      items: [
-        { name: "Muscle Recovery", path: "/conditions/muscle-recovery" },
-        { name: "Weight Management", path: "/conditions/weight-management" },
-        { name: "Sleep Disorders", path: "/conditions/sleep-disorders" },
-        { name: "Cognitive Function", path: "/conditions/cognitive-function" },
-        { name: "Joint Health", path: "/conditions/joint-health" }
-      ],
-      viewAllPath: "/conditions"
+      title: "Categories",
+      description: "Browse peptides by therapeutic category and application.",
+      items: categories.slice(0, 5).map(category => {
+        const categoryPeptides = peptides.filter(p => p.categoryId === category.id);
+        return {
+          name: category.name,
+          path: `/peptides`,
+          description: category.description || `${categoryPeptides.length} peptides`
+        };
+      }),
+      viewAllPath: "/peptides",
+      itemCount: categories.length,
+      isLoading: categoriesLoading
     },
     {
       title: "Guides",
@@ -53,16 +72,16 @@ export default function ExploreGrid() {
       viewAllPath: "/guides"
     },
     {
-      title: "Categories",
-      description: "Browse peptides by therapeutic category and application.",
+      title: "Conditions",
+      description: "Health conditions that may benefit from peptide interventions.",
       items: [
-        { name: "Performance Enhancement", path: "/categories/performance" },
-        { name: "Recovery & Healing", path: "/categories/recovery" },
-        { name: "Metabolic Health", path: "/categories/metabolic" },
-        { name: "Cognitive Enhancement", path: "/categories/cognitive" },
-        { name: "Anti-Aging", path: "/categories/anti-aging" }
+        { name: "Muscle Recovery", path: "/conditions/muscle-recovery" },
+        { name: "Weight Management", path: "/conditions/weight-management" },
+        { name: "Sleep Disorders", path: "/conditions/sleep-disorders" },
+        { name: "Cognitive Function", path: "/conditions/cognitive-function" },
+        { name: "Joint Health", path: "/conditions/joint-health" }
       ],
-      viewAllPath: "/categories"
+      viewAllPath: "/conditions"
     }
   ];
 
@@ -83,6 +102,11 @@ export default function ExploreGrid() {
               <CardHeader className="pb-3 sm:pb-4">
                 <CardTitle className="text-base sm:text-lg font-bold text-primary">
                   {section.title}
+                  {section.itemCount !== undefined && !section.isLoading && (
+                    <span className="text-sm font-normal text-muted-foreground ml-2">
+                      ({section.itemCount})
+                    </span>
+                  )}
                 </CardTitle>
                 <p className="text-xs sm:text-sm font-light text-muted-foreground mt-1">
                   {section.description}
@@ -90,36 +114,45 @@ export default function ExploreGrid() {
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                  {section.items.map((item) => (
-                    <div key={item.name}>
-                      <a 
-                        href={item.path}
-                        className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-3 sm:py-1 -mx-2 px-2 sm:mx-0 sm:px-0 min-h-[44px] sm:min-h-0 flex items-center"
-                        data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          console.log(`Navigate to ${item.path}`);
-                        }}
-                      >
-                        {item.name}
-                      </a>
-                      {item.description && (
-                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                  {section.isLoading ? (
+                    // Show skeleton loading state
+                    [...Array(5)].map((_, i) => (
+                      <div key={i}>
+                        <Skeleton className="h-4 w-full mb-1" />
+                        <Skeleton className="h-3 w-3/4" />
+                      </div>
+                    ))
+                  ) : section.items.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No items available yet</p>
+                  ) : (
+                    section.items.map((item) => (
+                      <div key={item.name}>
+                        <Link 
+                          href={item.path}
+                          className="text-sm font-medium hover:text-primary transition-colors cursor-pointer block py-3 sm:py-1 -mx-2 px-2 sm:mx-0 sm:px-0 min-h-[44px] sm:min-h-0 flex items-center"
+                          data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                        >
+                          {item.name}
+                        </Link>
+                        {item.description && (
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
+                    ))
+                  )}
                 </div>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full min-h-[44px]"
-                  data-testid={`button-view-all-${section.title.toLowerCase()}`}
-                  onClick={() => console.log(`View all ${section.title}`)}
-                >
-                  View All
-                </Button>
+                <Link href={section.viewAllPath}>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full min-h-[44px]"
+                    data-testid={`button-view-all-${section.title.toLowerCase()}`}
+                  >
+                    View All {section.title}
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

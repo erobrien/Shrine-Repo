@@ -23,12 +23,15 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
     { path: "/research", label: "Research" }
   ];
 
-  const handleNavClick = (label: string) => {
-    console.log(`Navigation to ${label}: Coming soon`);
-    toast({
-      title: "Coming Soon",
-      description: `The ${label} section is currently under development.`,
-    });
+  const handleNavClick = (path: string, label: string) => {
+    // Only show coming soon for non-peptide routes
+    if (path !== "/peptides") {
+      console.log(`Navigation to ${label}: Coming soon`);
+      toast({
+        title: "Coming Soon",
+        description: `The ${label} section is currently under development.`,
+      });
+    }
   };
 
   // Detect scroll position
@@ -89,15 +92,27 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Button
-                key={item.path}
-                variant="ghost"
-                className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-                onClick={() => handleNavClick(item.label)}
-              >
-                {item.label}
-              </Button>
+              item.path === "/peptides" ? (
+                <Link key={item.path} href={item.path}>
+                  <Button
+                    variant="ghost"
+                    className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
+                    data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  key={item.path}
+                  variant="ghost"
+                  className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  onClick={() => handleNavClick(item.path, item.label)}
+                >
+                  {item.label}
+                </Button>
+              )
             ))}
             {onLoginClick && (
               <Button 
@@ -157,18 +172,31 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <nav className="flex flex-col p-6 pt-4" aria-label="Mobile navigation">
                 <div className="flex flex-col space-y-2">
                   {navItems.map((item) => (
-                    <Button
-                      key={item.path}
-                      variant="ghost"
-                      className="w-full justify-start font-medium text-base min-h-[48px] px-4"
-                      onClick={() => {
-                        handleNavClick(item.label);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                    >
-                      {item.label}
-                    </Button>
+                    item.path === "/peptides" ? (
+                      <Link key={item.path} href={item.path}>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start font-medium text-base min-h-[48px] px-4"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                        >
+                          {item.label}
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        key={item.path}
+                        variant="ghost"
+                        className="w-full justify-start font-medium text-base min-h-[48px] px-4"
+                        onClick={() => {
+                          handleNavClick(item.path, item.label);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                      >
+                        {item.label}
+                      </Button>
+                    )
                   ))}
                 </div>
                 {onLoginClick && (

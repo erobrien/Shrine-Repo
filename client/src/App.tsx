@@ -7,12 +7,16 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer"; 
 import ThemeToggle from "@/components/ThemeToggle";
 import Home from "@/pages/Home";
+import Peptides from "@/pages/Peptides";
+import PeptideDetail from "@/pages/PeptideDetail";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/peptides" component={Peptides} />
+      <Route path="/peptide/:id" component={PeptideDetail} />
       <Route component={NotFound} />
     </Switch>
   );

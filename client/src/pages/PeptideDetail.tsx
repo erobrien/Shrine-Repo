@@ -188,7 +188,7 @@ export default function PeptideDetail() {
             {/* Action Buttons */}
             <div className="pt-6 border-t">
               <a
-                href={`https://shrinepeptides.com/product/${peptide.sku.toLowerCase()}`}
+                href={`https://shrinepeptides.com/product/${peptide.sku}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"

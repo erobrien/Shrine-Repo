@@ -59,7 +59,7 @@ export default function ResearchGlossary() {
     entry.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Use semantic classes that adapt to dark mode
+  // Use semantic classes for evidence levels
   const getEvidenceClass = (level: string) => {
     switch(level) {
       case "High":

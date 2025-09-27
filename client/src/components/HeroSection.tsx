@@ -30,7 +30,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Dark gradient overlay - ensures text readability in both themes */}
+      {/* Dark gradient overlay - ensures text readability */}
       <div 
         className="absolute inset-0" 
         style={{ 

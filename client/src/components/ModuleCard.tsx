@@ -35,7 +35,7 @@ export default function ModuleCard({
     "drive": "❤️"
   };
 
-  // Use semantic classes that adapt to dark mode
+  // Use semantic classes for difficulty levels
   const getDifficultyClass = (difficulty: string) => {
     switch(difficulty) {
       case "Beginner":

@@ -23,7 +23,7 @@ export default function TopicCard({
   href,
   onView
 }: TopicCardProps) {
-  // Use semantic classes that adapt to dark mode
+  // Use semantic classes for evidence grading
   const getEvidenceClass = (grade: string) => {
     switch(grade) {
       case "A": 

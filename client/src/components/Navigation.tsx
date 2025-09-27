@@ -74,9 +74,9 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
             <img 
               src={shrineIconPath} 
               alt="" 
-              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
-              width="32"
-              height="32"
+              className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+              width="48"
+              height="48"
               data-testid="logo-shrine-icon"
               aria-hidden="true"
             />
@@ -142,9 +142,9 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                     <img 
                       src={shrineIconPath} 
                       alt="" 
-                      className="h-8 w-8 object-contain"
-                      width="32"
-                      height="32"
+                      className="h-10 w-10 object-contain"
+                      width="40"
+                      height="40"
                       aria-hidden="true"
                     />
                     <div className="font-bold text-lg">

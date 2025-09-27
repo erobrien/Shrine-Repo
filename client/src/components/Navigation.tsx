@@ -24,8 +24,8 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   ];
 
   const handleNavClick = (path: string, label: string) => {
-    // Only show coming soon for non-peptide routes
-    if (path !== "/peptides") {
+    // Only show coming soon for non-peptide and non-guides routes
+    if (path !== "/peptides" && path !== "/guides") {
       console.log(`Navigation to ${label}: Coming soon`);
       toast({
         title: "Coming Soon",
@@ -92,7 +92,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2 lg:space-x-3">
             {navItems.map((item) => (
-              item.path === "/peptides" ? (
+              (item.path === "/peptides" || item.path === "/guides") ? (
                 <Link key={item.path} href={item.path}>
                   <Button
                     variant="ghost"
@@ -175,7 +175,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <nav className="flex flex-col p-6 pt-4" aria-label="Mobile navigation">
                 <div className="flex flex-col space-y-2">
                   {navItems.map((item) => (
-                    item.path === "/peptides" ? (
+                    (item.path === "/peptides" || item.path === "/guides") ? (
                       <Link key={item.path} href={item.path}>
                         <Button
                           variant="ghost"

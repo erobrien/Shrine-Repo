@@ -9,6 +9,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import Home from "@/pages/Home";
 import Peptides from "@/pages/Peptides";
 import PeptideDetail from "@/pages/PeptideDetail";
+import Guides from "@/pages/Guides";
+import GuideDetail from "@/pages/GuideDetail";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +19,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/peptides" component={Peptides} />
       <Route path="/peptide/:id" component={PeptideDetail} />
+      <Route path="/guides" component={Guides} />
+      <Route path="/guide/:slug" component={GuideDetail} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -57,46 +57,46 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   return (
     <nav 
       className={cn(
-        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-black",
+        "sticky top-0 z-[100] transition-all duration-300 ease-sacred bg-black border-b border-white/10",
         isScrolled 
-          ? "shadow-lg" 
-          : ""
+          ? "shadow-xl shadow-black/30" 
+          : "shadow-lg shadow-black/20"
       )}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-16 md:h-20 flex items-center justify-between">
+        <div className="h-20 md:h-24 lg:h-28 flex items-center justify-between">
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center space-x-2 sm:space-x-3 hover-elevate p-2 rounded-md transition-sacred min-h-[44px] min-w-[44px]"
+            className="flex items-center space-x-3 sm:space-x-4 hover-elevate py-2 px-3 rounded-md transition-sacred min-h-[56px] min-w-[56px]"
             aria-label="Peptide Dojo Home"
             data-testid="logo-home-link"
           >
             <img 
               src={shrineIconPath} 
               alt="" 
-              className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
-              width="48"
-              height="48"
+              className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 object-contain"
+              width="64"
+              height="64"
               data-testid="logo-shrine-icon"
               aria-hidden="true"
             />
-            <div className="font-bold text-sm sm:text-lg">
+            <div className="font-bold text-xl sm:text-2xl md:text-3xl tracking-tight">
               <span className="text-white">PEPTIDE</span>
-              <span className="text-primary ml-0.5 sm:ml-1">DOJO</span>
+              <span className="text-primary ml-1">DOJO</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-3">
             {navItems.map((item) => (
               item.path === "/peptides" ? (
                 <Link key={item.path} href={item.path}>
                   <Button
                     variant="ghost"
-                    className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
+                    className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                   >
                     {item.label}
@@ -106,7 +106,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 <Button
                   key={item.path}
                   variant="ghost"
-                  className="font-medium min-h-[44px] px-4 text-white hover:text-white hover:bg-white/10"
+                  className="font-medium text-base lg:text-lg min-h-[48px] px-5 lg:px-6 text-white hover:text-white hover:bg-white/10"
                   data-testid={`nav-link-${item.label.toLowerCase()}`}
                   onClick={() => handleNavClick(item.path, item.label)}
                 >
@@ -117,7 +117,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
             {onLoginClick && (
               <Button 
                 onClick={onLoginClick}
-                className="ml-4 min-h-[44px] px-6"
+                className="ml-6 min-h-[52px] px-8 text-base lg:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
                 variant="default"
                 data-testid="nav-login-button"
               >
@@ -132,7 +132,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
               <Button
                 variant="ghost"
                 size="icon"
-                className="min-h-[44px] min-w-[44px] relative text-white hover:text-white hover:bg-white/10"
+                className="min-h-[48px] min-w-[48px] relative text-white hover:text-white hover:bg-white/10"
                 aria-label="Open navigation menu"
                 data-testid="mobile-menu-button"
               >
@@ -157,12 +157,12 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                     <img 
                       src={shrineIconPath} 
                       alt="" 
-                      className="h-10 w-10 object-contain"
-                      width="40"
-                      height="40"
+                      className="h-12 w-12 object-contain"
+                      width="48"
+                      height="48"
                       aria-hidden="true"
                     />
-                    <div className="font-bold text-lg">
+                    <div className="font-bold text-2xl tracking-tight">
                       <span className="text-foreground">PEPTIDE</span>
                       <span className="text-primary ml-1">DOJO</span>
                     </div>
@@ -206,7 +206,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                         onLoginClick();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full min-h-[48px]"
+                      className="w-full min-h-[52px] text-base font-semibold shadow-lg hover:shadow-xl transition-all"
                       variant="default"
                       data-testid="mobile-login-button"
                     >

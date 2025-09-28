@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { checkAndImportPeptides, checkAndImportGuides } from "./auto-import";
+import { printStartupBanner, printConfigStatus, printReadyMessage } from "./startup-banner";
 
 const app = express();
 app.use(express.json());
@@ -38,8 +39,11 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Print startup banner
+  printStartupBanner();
+  printConfigStatus();
+
   // AUTOMATIC PEPTIDE IMPORT: Check and import peptides if database is empty
-  console.log('🚀 Server starting...');
   console.log('📊 Checking peptide database...');
   
   try {
@@ -98,6 +102,6 @@ app.use((req, res, next) => {
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    printReadyMessage(port);
   });
 })();

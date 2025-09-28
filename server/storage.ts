@@ -486,7 +486,80 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-// Use DatabaseStorage when DATABASE_URL is present, otherwise use MemStorage
-export const storage: IStorage = process.env.DATABASE_URL 
-  ? new DatabaseStorage()
-  : new MemStorage();
+// Smart storage that handles database availability gracefully
+class SmartStorage implements IStorage {
+  private storageImpl: IStorage;
+
+  constructor() {
+    if (process.env.DATABASE_URL) {
+      try {
+        this.storageImpl = new DatabaseStorage();
+        console.log('✅ Using database storage');
+      } catch (error) {
+        console.warn('⚠️  Database connection failed, falling back to memory storage');
+        this.storageImpl = new MemStorage();
+        this.initializeDemoData();
+      }
+    } else {
+      console.log('📦 Using in-memory storage (no DATABASE_URL)');
+      this.storageImpl = new MemStorage();
+      this.initializeDemoData();
+    }
+  }
+
+  private async initializeDemoData() {
+    // Add sample peptides for demo
+    await this.storageImpl.createPeptide({
+      name: "BPC-157",
+      sequence: "GEPPPGKPADDAGLV",
+      description: "Body Protection Compound - known for healing properties",
+      benefits: ["Tissue repair", "Gut health", "Anti-inflammatory"],
+      category: "Healing"
+    });
+
+    await this.storageImpl.createPeptide({
+      name: "TB-500",
+      sequence: "LKKTETQ",
+      description: "Thymosin Beta-4 fragment - promotes healing and recovery",
+      benefits: ["Wound healing", "Muscle recovery", "Flexibility"],
+      category: "Recovery"
+    });
+
+    await this.storageImpl.createCategory({
+      name: "Healing",
+      description: "Peptides focused on tissue repair and healing"
+    });
+
+    await this.storageImpl.createCategory({
+      name: "Recovery",
+      description: "Peptides for recovery and muscle repair"
+    });
+
+    console.log('🎯 Demo data initialized');
+  }
+
+  // Delegate all methods to the implementation
+  async getAllPeptides() { return this.storageImpl.getAllPeptides(); }
+  async getPeptide(id: string) { return this.storageImpl.getPeptide(id); }
+  async searchPeptides(query: string) { return this.storageImpl.searchPeptides(query); }
+  async createPeptide(data: InsertPeptide) { return this.storageImpl.createPeptide(data); }
+  async updatePeptide(id: string, data: Partial<InsertPeptide>) { return this.storageImpl.updatePeptide(id, data); }
+  async deletePeptide(id: string) { return this.storageImpl.deletePeptide(id); }
+  async getAllCategories() { return this.storageImpl.getAllCategories(); }
+  async createCategory(data: InsertCategory) { return this.storageImpl.createCategory(data); }
+  async getAllProtocols() { return this.storageImpl.getAllProtocols(); }
+  async getProtocol(id: string) { return this.storageImpl.getProtocol(id); }
+  async createProtocol(data: InsertProtocol) { return this.storageImpl.createProtocol(data); }
+  async getAllGuides() { return this.storageImpl.getAllGuides(); }
+  async getGuidesPaginated(limit: number, offset: number) { return this.storageImpl.getGuidesPaginated(limit, offset); }
+  async getFeaturedGuides() { return this.storageImpl.getFeaturedGuides(); }
+  async searchGuides(query: string) { return this.storageImpl.searchGuides(query); }
+  async getGuidesByCategory(category: string) { return this.storageImpl.getGuidesByCategory(category); }
+  async getGuideBySlug(slug: string) { return this.storageImpl.getGuideBySlug(slug); }
+  async createGuide(data: InsertGuide) { return this.storageImpl.createGuide(data); }
+  async updateGuide(id: string, data: Partial<InsertGuide>) { return this.storageImpl.updateGuide(id, data); }
+  async deleteGuide(id: string) { return this.storageImpl.deleteGuide(id); }
+  async getGuide(id: string) { return this.storageImpl.getGuide(id); }
+}
+
+export const storage: IStorage = new SmartStorage();

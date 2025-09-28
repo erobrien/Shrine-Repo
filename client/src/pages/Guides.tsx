@@ -160,8 +160,8 @@ export default function Guides() {
 
   // Generate dynamic SEO meta
   const totalGuides = guidesResponse?.total || 0;
-  const title = `Peptide Guides - ${totalGuides} Research Articles | Peptide Dojo`;
-  const description = `Explore ${totalGuides} comprehensive guides on peptides, research protocols, and therapeutic applications. Expert-written content with scientific references.`;
+  const title = `Dosing Guides - ${totalGuides} Research Articles | Peptide Dojo`;
+  const description = `Explore ${totalGuides} comprehensive dosing guides on peptides, research protocols, and therapeutic applications. Expert-written content with scientific references.`;
 
   return (
     <>
@@ -175,10 +175,10 @@ export default function Guides() {
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <BookOpen className="w-8 h-8 text-primary" />
-              <h1 className="text-3xl sm:text-4xl font-bold">Peptide Research Guides</h1>
+              <h1 className="text-3xl sm:text-4xl font-bold">Dosing Guides</h1>
             </div>
             <p className="text-base sm:text-lg font-medium text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
-              Comprehensive guides covering peptide research, protocols, and therapeutic applications with scientific backing.
+              Comprehensive dosing guides covering peptide research, protocols, and therapeutic applications with scientific backing.
             </p>
           </div>
 

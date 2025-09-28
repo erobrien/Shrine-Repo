@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: /sitemap.xml
+
+# Allow search engines to crawl all content
+Allow: /peptides
+Allow: /research
+Allow: /guide/
+Allow: /peptide/
+
+# Disallow admin or unnecessary paths (if they exist)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Crawl delay for polite crawling
+Crawl-delay: 1

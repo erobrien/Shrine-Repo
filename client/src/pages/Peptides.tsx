@@ -11,6 +11,9 @@ import PageMeta from "@/components/PageMeta";
 import type { Peptide, Category } from "@shared/schema";
 
 export default function Peptides() {
+  // Simplified test version
+  console.log("🧪 Peptides component rendering...");
+  
   const [, navigate] = useLocation();
   const searchParams = useSearch();
   const urlSearchQuery = new URLSearchParams(searchParams).get('search') || '';
@@ -141,6 +144,19 @@ export default function Peptides() {
       ]
     }
   };
+
+  // Simple test to see if component renders
+  if (true) {
+    return (
+      <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
+        <h1>🧪 Peptides Component is Working!</h1>
+        <p>API Loading: {isLoading ? 'Yes' : 'No'}</p>
+        <p>Peptides found: {peptides.length}</p>
+        <p>Categories found: {categories.length}</p>
+        <p>Current URL: {window.location.href}</p>
+      </div>
+    );
+  }
 
   return (
     <>

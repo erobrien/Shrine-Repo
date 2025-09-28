@@ -74,12 +74,11 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
           >
             <img 
               src={shrineIconPath} 
-              alt="" 
+              alt="Peptide Dojo - Evidence-based peptide research platform" 
               className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 object-contain"
               width="64"
               height="64"
               data-testid="logo-shrine-icon"
-              aria-hidden="true"
             />
             <div className="font-bold text-xl sm:text-2xl md:text-3xl tracking-tight">
               <span className="text-white">PEPTIDE</span>
@@ -157,11 +156,10 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                   <div className="flex items-center space-x-3">
                     <img 
                       src={shrineIconPath} 
-                      alt="" 
+                      alt="Peptide Dojo logo" 
                       className="h-12 w-12 object-contain"
                       width="48"
                       height="48"
-                      aria-hidden="true"
                     />
                     <div className="font-bold text-2xl tracking-tight">
                       <span className="text-foreground">PEPTIDE</span>

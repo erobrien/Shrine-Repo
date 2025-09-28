@@ -214,8 +214,8 @@ export default function GuideDetail() {
         "url": `${window.location.origin}/shrine-icon.svg`
       }
     },
-    "datePublished": guide.publishDate,
-    "dateModified": guide.updatedDate || guide.publishDate,
+    "datePublished": new Date(guide.publishDate).toISOString(),
+    "dateModified": new Date(guide.publishDate).toISOString(),
     "url": `${window.location.origin}/guide/${guide.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -257,8 +257,8 @@ export default function GuideDetail() {
         url={`${window.location.origin}/guide/${guide.slug}`}
         type="article"
         author={guide.author}
-        publishedTime={guide.publishDate}
-        modifiedTime={guide.updatedDate || guide.publishDate}
+        publishedTime={new Date(guide.publishDate).toISOString()}
+        modifiedTime={new Date(guide.publishDate).toISOString()}
         keywords={guide.tags || [guide.category, 'peptide research', 'clinical protocols']}
         schema={articleSchema}
       />

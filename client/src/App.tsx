@@ -26,6 +26,9 @@ function Router() {
 }
 
 function App() {
+  console.log("🎯 App component rendering...");
+  console.log("📍 Current path:", window.location.pathname);
+  
   const handleLoginClick = () => {
     console.log('Login clicked - Begin Your Training');
     // todo: remove mock functionality - integrate with real auth

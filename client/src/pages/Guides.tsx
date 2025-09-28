@@ -169,8 +169,8 @@ export default function Guides() {
 
   // Generate dynamic SEO meta
   const totalGuides = guidesResponse?.total || 0;
-  const title = `Dosing Guides - ${totalGuides} Research Articles | Peptide Dojo`;
-  const description = `Explore ${totalGuides} comprehensive dosing guides on peptides, research protocols, and therapeutic applications. Expert-written content with scientific references.`;
+  const title = `Peptide Research - ${totalGuides} Research Articles | Peptide Dojo`;
+  const description = `Explore ${totalGuides} comprehensive research articles covering peptide studies, protocols, and therapeutic applications. Expert-written content with scientific references.`;
 
   return (
     <>

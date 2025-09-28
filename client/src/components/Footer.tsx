@@ -35,8 +35,7 @@ export default function Footer() {
               {[
                 { href: "/peptides", label: "Peptides" },
                 { href: "/conditions", label: "Conditions" },
-                { href: "/research", label: "Research" },
-                { href: "/research", label: "Latest Research" }
+                { href: "/research", label: "Research" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
                   <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start" data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>

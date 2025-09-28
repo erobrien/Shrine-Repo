@@ -146,7 +146,7 @@ export default function Peptides() {
   };
 
   // Simple test to see if component renders
-  if (false) {
+  if (true) {
     return (
       <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
         <h1>🧪 Peptides Component is Working!</h1>

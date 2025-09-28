@@ -85,6 +85,12 @@ function generateSlug(name: string): string {
 
 async function checkAndImportPeptides(): Promise<boolean> {
   try {
+    // Skip if no database is available
+    if (!db) {
+      console.log('⚠️  No database connection available. Skipping peptide import.');
+      return false;
+    }
+    
     console.log('🔍 Checking if peptides exist in database...');
     
     // Check if peptides table has any data
@@ -254,6 +260,12 @@ async function checkAndImportPeptides(): Promise<boolean> {
 // Check if guides exist in database, if not, generate them
 async function checkAndImportGuides(): Promise<boolean> {
   try {
+    // Skip if no database is available
+    if (!db) {
+      console.log('⚠️  No database connection available. Skipping guide generation.');
+      return false;
+    }
+    
     console.log('🔍 Checking if guides exist in database...');
     
     // Check if guides already exist - use count for more efficient query

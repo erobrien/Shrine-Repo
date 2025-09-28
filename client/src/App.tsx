@@ -12,20 +12,13 @@ import Guides from "@/pages/Guides";
 import GuideDetail from "@/pages/GuideDetail";
 import NotFound from "@/pages/not-found";
 
-// Red Banner Component
+// Red Banner Component - Shopify style
 function RedBanner() {
   return (
-    <div className="bg-red-600 text-white py-3 px-4 text-center relative">
-      <div className="flex items-center justify-center gap-2">
-        <span className="animate-pulse">🔥</span>
-        <span className="font-semibold text-sm md:text-base">
-          SPECIAL OFFER: Use code DOJO20 for 20% off all research peptides!
-        </span>
-        <span className="animate-pulse">🔥</span>
-      </div>
-      <div className="text-xs mt-1 opacity-90">
-        Limited time offer - Premium research-grade peptides
-      </div>
+    <div className="bg-red-600 text-white py-2 px-4 text-center">
+      <span className="text-xs font-medium">
+        SPECIAL OFFER: Use code DOJO20 for 20% off all research peptides!
+      </span>
     </div>
   );
 }

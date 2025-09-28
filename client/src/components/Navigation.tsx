@@ -18,8 +18,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
 
   const navItems = [
     { path: "/peptides", label: "Peptide Information" },
-    { path: "/guides", label: "Dosing Guides" },
-    { path: "/research", label: "Peptide Research" }
+    { path: "/guides", label: "Peptide Research" }
   ];
 
   const handleNavClick = (path: string, label: string) => {

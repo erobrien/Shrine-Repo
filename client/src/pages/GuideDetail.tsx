@@ -204,7 +204,9 @@ export default function GuideDetail() {
     "description": guide.metaDescription || guide.excerpt,
     "author": {
       "@type": "Person",
-      "name": guide.author
+      "name": guide.author,
+      "jobTitle": "Peptide Research Specialist",
+      "description": "Expert in peptide research and therapeutic applications"
     },
     "publisher": {
       "@type": "Organization",
@@ -297,10 +299,15 @@ export default function GuideDetail() {
                   </h1>
                   
                   <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1" data-testid="text-author">
+                    <div className="flex items-center gap-2" data-testid="text-author">
                       <User className="w-4 h-4" />
-                      {guide.author}
-                    </span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">{guide.author}</span>
+                        <span className="text-xs text-muted-foreground">
+                          Peptide Research Specialist
+                        </span>
+                      </div>
+                    </div>
                     <span className="flex items-center gap-1" data-testid="text-date">
                       <Calendar className="w-4 h-4" />
                       {formatDate(guide.publishDate)}

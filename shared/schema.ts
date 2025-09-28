@@ -57,6 +57,21 @@ export const guides = pgTable("guides", {
   keywords: text("keywords").array(), // SEO keywords
 });
 
+// Authors table for detailed expert credentials
+export const authors = pgTable("authors", {
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  bio: text("bio").notNull(), // Professional background
+  credentials: text("credentials").array(), // Array of qualifications like ["PhD Biochemistry", "10+ years peptide research"]
+  affiliation: text("affiliation"), // Institution or company
+  expertise: text("expertise").array(), // Array of specializations
+  publications: text("publications"), // Notable publications or research
+  contactEmail: text("contact_email"),
+  linkedinUrl: text("linkedin_url"),
+  researchGateUrl: text("research_gate_url"),
+  isActive: boolean("is_active").default(true).notNull(),
+});
+
 // Users table (keeping existing)
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -97,6 +112,13 @@ export const insertGuideSchema = createInsertSchema(guides).omit({
   readTime: z.number().int().positive(),
 });
 
+export const insertAuthorSchema = createInsertSchema(authors).omit({
+  id: true,
+}).extend({
+  credentials: z.array(z.string()).optional(),
+  expertise: z.array(z.string()).optional(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -114,6 +136,9 @@ export type InsertProtocol = z.infer<typeof insertProtocolSchema>;
 
 export type Guide = typeof guides.$inferSelect;
 export type InsertGuide = z.infer<typeof insertGuideSchema>;
+
+export type Author = typeof authors.$inferSelect;
+export type InsertAuthor = z.infer<typeof insertAuthorSchema>;
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;

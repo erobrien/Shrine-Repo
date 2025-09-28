@@ -35,7 +35,7 @@ export default function Footer() {
               {[
                 { href: "/peptides", label: "Peptides" },
                 { href: "/conditions", label: "Conditions" },
-                { href: "/guides", label: "Guides" },
+                { href: "/research", label: "Research" },
                 { href: "/research", label: "Latest Research" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>

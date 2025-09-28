@@ -185,10 +185,10 @@ export default function GuideDetail() {
           <p className="text-muted-foreground mb-8">
             The guide you're looking for could not be found.
           </p>
-          <Link href="/guides">
+          <Link href="/research">
             <Button data-testid="button-back-guides">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Guides
+              Back to Research
             </Button>
           </Link>
         </div>
@@ -207,10 +207,10 @@ export default function GuideDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Navigation */}
           <div className="max-w-4xl mx-auto mb-6">
-            <Link href="/guides">
+            <Link href="/research">
               <Button variant="ghost" data-testid="button-back">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Guides
+                Back to Research
               </Button>
             </Link>
           </div>

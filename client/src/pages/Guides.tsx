@@ -67,7 +67,7 @@ export default function Guides() {
     if (finalPage > 1) params.set('page', String(finalPage));
     
     const queryString = params.toString();
-    navigate(`/guides${queryString ? `?${queryString}` : ''}`);
+    navigate(`/research${queryString ? `?${queryString}` : ''}`);
   };
 
   // Debounced search

@@ -22,17 +22,77 @@ export default function Home() {
     summary: peptide.shortDescription || peptide.description?.substring(0, 200) || "Advanced research peptide with various therapeutic applications",
     category: "peptide" as const,
     evidenceGrade: (peptide.name.includes("GLP-1") || peptide.name.includes("Semaglutide") ? "A" : 
-                    peptide.name === "BPC-157" ? "B" : "C") as const,
+                    peptide.name === "BPC-157" ? "B" : "C") as "A" | "B" | "C",
     lastUpdated: "Recently updated",
     studyCount: Math.floor(Math.random() * 50) + 20,
     href: `/peptide/${peptide.id}`
   }));
 
+  // Schema.org structured data for the homepage
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Peptide Dojo",
+    "description": "Evidence-based peptide research and education platform by Shrine Peptides",
+    "url": window.location.origin,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shrine Peptides",
+      "url": "https://shrinepeptides.com"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${window.location.origin}/research?search={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Peptide Dojo",
+    "description": "Master peptide science through structured learning with evidence-based research and clinical protocols",
+    "url": window.location.origin,
+    "logo": `${window.location.origin}/shrine-icon.svg`,
+    "sameAs": [
+      "https://shrinepeptides.com"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Shrine Peptides",
+      "url": "https://shrinepeptides.com"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": window.location.origin
+    }]
+  };
+
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [websiteSchema, organizationSchema, breadcrumbSchema]
+  };
+
   return (
     <>
       <PageMeta 
         title="Peptide Dojo - Evidence-Based Peptide Research & Education | Shrine Peptides"
-        description="Master peptide science through structured learning. Evidence-based research, clinical protocols, and comprehensive guides from Shrine Peptides."
+        description="Master peptide science through structured learning. Evidence-based research, clinical protocols, and comprehensive guides from Shrine Peptides. Explore our library of research peptides, dosing guides, and clinical applications."
+        url={window.location.href}
+        type="website"
+        image={`${window.location.origin}/shrine-icon.svg`}
+        keywords={['peptides', 'research', 'peptide therapy', 'clinical protocols', 'evidence-based', 'shrine peptides', 'dosing guides', 'therapeutic peptides']}
+        schema={combinedSchema}
       />
       <div className="min-h-screen">
       <HeroSection />

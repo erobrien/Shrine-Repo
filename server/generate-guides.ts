@@ -44,7 +44,7 @@ function generateKeywords(title: string, category: string): string[] {
   const titleWords = title.toLowerCase().split(/\s+/)
     .filter(word => word.length > 3 && !['guide', 'complete', 'best', 'how'].includes(word));
   
-  return [...new Set([...baseKeywords, ...titleWords])];
+  return Array.from(new Set([...baseKeywords, ...titleWords]));
 }
 
 // Generate comprehensive guide content

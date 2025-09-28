@@ -2,7 +2,7 @@ import { readFileSync, existsSync } from 'fs';
 import { parse } from 'csv-parse/sync';
 import { db } from './db';
 import { categories, peptides, guides } from '@shared/schema';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import type { InsertCategory, InsertPeptide } from '@shared/schema';
 import { generateAllGuides } from './generate-guides';
 
@@ -256,10 +256,14 @@ async function checkAndImportGuides(): Promise<boolean> {
   try {
     console.log('🔍 Checking if guides exist in database...');
     
-    // Check if guides already exist
-    const existingGuides = await db.select().from(guides).limit(1);
+    // Check if guides already exist - use count for more efficient query
+    const [{ count }] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(guides);
     
-    if (existingGuides.length > 0) {
+    console.log(`📊 Found ${count} existing guides in database.`);
+    
+    if (count > 0) {
       console.log('✅ Guides already exist in database. Skipping import.');
       return false;
     }
@@ -270,9 +274,20 @@ async function checkAndImportGuides(): Promise<boolean> {
     // Generate all guides using the existing script
     await generateAllGuides();
     
-    console.log('✅ Research guides generated successfully!');
+    // Verify guides were created
+    const [{ newCount }] = await db
+      .select({ newCount: sql<number>`count(*)` })
+      .from(guides);
+    
+    console.log(`✅ Research guides generated successfully! Total guides: ${newCount}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // If error is about duplicate guides, that's actually OK - guides exist
+    if (error?.code === '23505' && error?.constraint === 'guides_slug_unique') {
+      console.log('✅ Guides already exist in database (detected via constraint).');
+      return false;
+    }
+    
     console.error('⚠️  Warning: Failed to check/import guides:', error);
     console.error('The application will continue, but no research guides will be available.');
     return false;

@@ -96,11 +96,11 @@ export default function Guides() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Fetch all guides
+  // Fetch all guides (no pagination on API side - we'll handle it client side)
   const { data: guidesResponse, isLoading } = useQuery<GuideResponse>({
-    queryKey: ['/api/guides', { page: currentPage, limit: ITEMS_PER_PAGE }],
+    queryKey: ['/api/guides'],
     queryFn: async () => {
-      const response = await fetch(`/api/guides?page=${currentPage}&limit=${ITEMS_PER_PAGE}`);
+      const response = await fetch(`/api/guides?limit=1000`); // Fetch all guides
       if (!response.ok) throw new Error('Failed to fetch guides');
       return response.json();
     },
@@ -157,6 +157,15 @@ export default function Guides() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+  
+  // Create a proper response object for filtered results
+  const finalGuidesResponse = {
+    data: paginatedGuides,
+    page: currentPage,
+    limit: ITEMS_PER_PAGE,
+    total: filteredGuides.length,
+    totalPages: totalFilteredPages
+  };
 
   // Generate dynamic SEO meta
   const totalGuides = guidesResponse?.total || 0;

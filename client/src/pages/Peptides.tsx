@@ -108,13 +108,49 @@ export default function Peptides() {
   const totalPeptides = peptides.length;
   const totalCategories = categories.length;
   const title = `Browse Peptides - ${totalPeptides} Research Peptides | Peptide Dojo`;
-  const description = `Explore our catalog of ${totalPeptides} research peptides across ${totalCategories} categories. Find detailed information on dosing, applications, and clinical research.`;
+  const description = `Explore our comprehensive catalog of ${totalPeptides} research peptides across ${totalCategories} therapeutic categories. Detailed information on peptide applications, dosing protocols, and clinical research data.`;
+  
+  // Schema.org structured data for peptides catalog
+  const peptidesPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Peptide Library",
+    "description": description,
+    "url": `${window.location.origin}/peptides`,
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": totalPeptides,
+      "name": "Research Peptides",
+      "description": "Comprehensive collection of research peptides with clinical applications"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": window.location.origin
+        },
+        {
+          "@type": "ListItem", 
+          "position": 2,
+          "name": "Peptides",
+          "item": `${window.location.origin}/peptides`
+        }
+      ]
+    }
+  };
 
   return (
     <>
       <PageMeta 
         title={title}
         description={description}
+        url={`${window.location.origin}/peptides${searchQuery || selectedCategory ? '?' + new URLSearchParams(window.location.search).toString() : ''}`}
+        type="website"
+        keywords={['research peptides', 'peptide therapy', 'therapeutic peptides', 'peptide catalog', 'clinical applications', 'dosing protocols']}
+        schema={peptidesPageSchema}
       />
       <div className="min-h-screen py-8 sm:py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

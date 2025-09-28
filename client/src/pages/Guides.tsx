@@ -170,13 +170,49 @@ export default function Guides() {
   // Generate dynamic SEO meta
   const totalGuides = guidesResponse?.total || 0;
   const title = `Peptide Research - ${totalGuides} Research Articles | Peptide Dojo`;
-  const description = `Explore ${totalGuides} comprehensive research articles covering peptide studies, protocols, and therapeutic applications. Expert-written content with scientific references.`;
+  const description = `Explore ${totalGuides} comprehensive research articles covering peptide studies, protocols, and therapeutic applications. Expert-written content with scientific references and clinical insights.`;
+  
+  // Schema.org structured data for research articles listing
+  const researchPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Peptide Research Articles",
+    "description": description,
+    "url": `${window.location.origin}/research`,
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": totalGuides,
+      "name": "Research Articles",
+      "description": "Evidence-based peptide research articles and clinical protocols"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": window.location.origin
+        },
+        {
+          "@type": "ListItem", 
+          "position": 2,
+          "name": "Research",
+          "item": `${window.location.origin}/research`
+        }
+      ]
+    }
+  };
 
   return (
     <>
       <PageMeta 
         title={title}
         description={description}
+        url={`${window.location.origin}/research${searchQuery || selectedCategory ? '?' + new URLSearchParams(window.location.search).toString() : ''}`}
+        type="website"
+        keywords={['peptide research', 'clinical protocols', 'dosing guides', 'evidence-based', 'therapeutic peptides', 'research articles', 'peptide studies']}
+        schema={researchPageSchema}
       />
       <div className="min-h-screen py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -196,11 +196,71 @@ export default function GuideDetail() {
     );
   }
 
+  // Schema.org structured data for individual guide/article
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": guide.title,
+    "description": guide.metaDescription || guide.excerpt,
+    "author": {
+      "@type": "Person",
+      "name": guide.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Peptide Dojo",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${window.location.origin}/shrine-icon.svg`
+      }
+    },
+    "datePublished": guide.publishDate,
+    "dateModified": guide.updatedDate || guide.publishDate,
+    "url": `${window.location.origin}/guide/${guide.slug}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${window.location.origin}/guide/${guide.slug}`
+    },
+    "articleSection": guide.category,
+    "keywords": guide.tags,
+    "wordCount": guide.content?.replace(/<[^>]*>/g, '').split(' ').length || 0,
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": window.location.origin
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": `${window.location.origin}/research`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": guide.title,
+          "item": `${window.location.origin}/guide/${guide.slug}`
+        }
+      ]
+    }
+  };
+
   return (
     <>
       <PageMeta 
         title={guide.metaTitle}
         description={guide.metaDescription}
+        url={`${window.location.origin}/guide/${guide.slug}`}
+        type="article"
+        author={guide.author}
+        publishedTime={guide.publishDate}
+        modifiedTime={guide.updatedDate || guide.publishDate}
+        keywords={guide.tags || [guide.category, 'peptide research', 'clinical protocols']}
+        schema={articleSchema}
       />
       
       <div className="min-h-screen py-8 sm:py-12 md:py-16">

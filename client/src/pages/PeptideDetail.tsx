@@ -79,12 +79,66 @@ export default function PeptideDetail() {
   const pageDescription = peptide.shortDescription 
     ? peptide.shortDescription.substring(0, 155) + '...' 
     : `${peptide.name} research peptide. ${peptide.description ? peptide.description.substring(0, 120) + '...' : 'Detailed information, dosing, and research applications.'}`;
+    
+  // Schema.org structured data for individual peptide
+  const peptideSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": peptide.name,
+    "description": peptide.shortDescription || peptide.description || `${peptide.name} research peptide`,
+    "sku": peptide.sku,
+    "category": category?.name || "Research Peptides",
+    "url": `${window.location.origin}/peptide/${peptide.id}`,
+    "offers": {
+      "@type": "Offer",
+      "price": peptide.price,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Shrine Peptides",
+        "url": "https://shrinepeptides.com"
+      }
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Shrine Peptides",
+      "url": "https://shrinepeptides.com"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": window.location.origin
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Peptides",
+          "item": `${window.location.origin}/peptides`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": peptide.name,
+          "item": `${window.location.origin}/peptide/${peptide.id}`
+        }
+      ]
+    }
+  };
 
   return (
     <>
       <PageMeta 
         title={pageTitle}
         description={pageDescription}
+        url={`${window.location.origin}/peptide/${peptide.id}`}
+        type="product"
+        keywords={[peptide.name, ...(peptide.alternateNames || []), 'research peptide', 'peptide therapy', category?.name || 'therapeutic peptides']}
+        schema={peptideSchema}
       />
       <div className="min-h-screen py-8 sm:py-12 md:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

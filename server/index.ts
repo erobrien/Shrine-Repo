@@ -43,24 +43,9 @@ app.use((req, res, next) => {
   printStartupBanner();
   printConfigStatus();
 
-  // AUTOMATIC PEPTIDE IMPORT: Check and import peptides if database is empty
-  console.log('📊 Checking peptide database...');
-  
-  if (process.env.DATABASE_URL) {
-    try {
-      const imported = await checkAndImportPeptides();
-      if (imported) {
-        console.log('🎯 Peptides imported successfully!');
-      } else {
-        console.log('✓ Peptides already exist or import skipped.');
-      }
-    } catch (error) {
-      console.error('⚠️  Warning: Failed to check/import peptides:', error);
-      console.error('The server will continue without peptides data.');
-    }
-  } else {
-    console.log('⚠️  No database URL - skipping peptide import');
-  }
+  // AUTOMATIC PEPTIDE IMPORT: Disabled for faster startup
+  console.log('📊 Peptide import disabled for faster startup');
+  console.log('✓ Server will start without importing peptides');
 
   // AUTOMATIC GUIDE GENERATION: Disabled for faster startup
   console.log('📚 Guide generation disabled for faster startup');

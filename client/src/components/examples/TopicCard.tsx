@@ -29,7 +29,7 @@ export default function TopicCardExample() {
         category="guide"
         evidenceGrade="A"
         lastUpdated="3 days ago"
-        href="/research/safety-guidelines"
+        href="/guide/safety-guidelines"
         onView={() => console.log('Safety Guidelines viewed')}
       />
     </div>

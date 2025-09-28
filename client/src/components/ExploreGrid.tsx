@@ -63,11 +63,11 @@ export default function ExploreGrid() {
       title: "Research",
       description: "Evidence-based guides on peptide protocols and best practices.",
       items: [
-        { name: "Beginner's Guide to Peptides", path: "/research/beginners-guide" },
-        { name: "Peptide Cycling Protocols", path: "/research/cycling-protocols" },
-        { name: "Dosage and Administration", path: "/research/dosage-administration" },
-        { name: "Safety and Side Effects", path: "/research/safety-side-effects" },
-        { name: "Research Methodology", path: "/research/research-methodology" }
+        { name: "Beginner's Guide to Peptides", path: "/guide/beginners-guide" },
+        { name: "Peptide Cycling Protocols", path: "/guide/cycling-protocols" },
+        { name: "Dosage and Administration", path: "/guide/dosage-administration" },
+        { name: "Safety and Side Effects", path: "/guide/safety-side-effects" },
+        { name: "Research Methodology", path: "/guide/research-methodology" }
       ],
       viewAllPath: "/research"
     },

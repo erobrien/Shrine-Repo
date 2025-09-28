@@ -10,7 +10,7 @@ if (process.env.DATABASE_URL) {
   try {
     pool = new Pool({ connectionString: process.env.DATABASE_URL });
     db = drizzle({ client: pool, schema });
-    console.log('🗄️  Database connection initialized');
+    console.log('🗄️  Database connection initialized with PostgreSQL driver');
   } catch (error) {
     console.error('❌ Failed to initialize database:', error);
   }

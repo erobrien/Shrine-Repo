@@ -187,7 +187,7 @@ export default function Guides() {
               <h1 className="text-3xl sm:text-4xl font-bold">Dosing Guides</h1>
             </div>
             <p className="text-base sm:text-lg font-medium text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
-              Comprehensive dosing guides covering peptide research, protocols, and therapeutic applications with scientific backing.
+              Evidence-based dosing protocols and administration guides for peptides, with detailed safety information and research-backed recommendations.
             </p>
           </div>
 

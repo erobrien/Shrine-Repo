@@ -286,6 +286,12 @@ For researchers interested in contributing to this field, access to high-quality
 
 // Generate all 111 guides
 async function generateAllGuides() {
+  // Check if database is available
+  if (!db) {
+    console.log('⚠️  No database connection available. Cannot generate guides.');
+    return;
+  }
+  
   const guidesData: InsertGuide[] = [];
 
   // Categories for organization

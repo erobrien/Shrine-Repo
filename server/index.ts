@@ -62,29 +62,9 @@ app.use((req, res, next) => {
     console.log('⚠️  No database URL - skipping peptide import');
   }
 
-  // AUTOMATIC GUIDE GENERATION: Check and generate research guides if database is empty
-  console.log('📚 Checking research guides database...');
-  
-  if (process.env.DATABASE_URL) {
-    // Run guide generation asynchronously to avoid blocking server startup
-    setTimeout(async () => {
-      try {
-        console.log('🚀 Starting background guide generation...');
-        const generated = await checkAndImportGuides();
-        if (generated) {
-          console.log('🎯 Research guides generated successfully!');
-        } else {
-          console.log('✓ Research guides already exist or generation skipped.');
-        }
-      } catch (error) {
-        console.error('⚠️  Warning: Failed to check/generate guides:', error);
-        console.error('The server will continue without research guides.');
-      }
-    }, 5000); // Start after 5 seconds
-    console.log('✓ Guide generation scheduled for background execution');
-  } else {
-    console.log('⚠️  No database URL - skipping guide generation');
-  }
+  // AUTOMATIC GUIDE GENERATION: Disabled for faster startup
+  console.log('📚 Guide generation disabled for faster startup');
+  console.log('✓ Server will start without generating guides');
   
   const server = await registerRoutes(app);
 

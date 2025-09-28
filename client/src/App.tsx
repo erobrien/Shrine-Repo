@@ -29,24 +29,14 @@ function App() {
   console.log("🎯 App component rendering...");
   console.log("📍 Current path:", window.location.pathname);
   
-  const handleLoginClick = () => {
-    console.log('Login clicked - Begin Your Training');
-    // todo: remove mock functionality - integrate with real auth
-  };
-
+  // Simple test to see if React is working
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="min-h-screen flex flex-col bg-background">
-          <Navigation onLoginClick={handleLoginClick} />
-          <main className="flex-1">
-            <Router />
-          </main>
-          <Footer />
-        </div>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
+      <h1>🚀 React App is Working!</h1>
+      <p>Current URL: {window.location.href}</p>
+      <p>Current Path: {window.location.pathname}</p>
+      <p>Timestamp: {new Date().toISOString()}</p>
+    </div>
   );
 }
 

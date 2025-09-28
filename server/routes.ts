@@ -8,11 +8,72 @@ import { sanitizeAndNormalizeContent } from "./content-sanitizer";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Health check endpoint for Render
   app.get("/api/health", (req, res) => {
-    res.json({ 
-      status: "OK", 
+    res.json({
+      status: "OK",
       message: "Peptide Dojo is running!",
       timestamp: new Date().toISOString()
     });
+  });
+
+  // Manual import endpoints
+  app.post("/api/import/peptides", async (req, res) => {
+    try {
+      console.log('🚀 Manual peptide import triggered...');
+      const { checkAndImportPeptides } = await import("./auto-import");
+      const imported = await checkAndImportPeptides();
+      
+      if (imported) {
+        res.json({
+          success: true,
+          message: "Peptides imported successfully!",
+          timestamp: new Date().toISOString()
+        });
+      } else {
+        res.json({
+          success: true,
+          message: "Peptides already exist or import skipped",
+          timestamp: new Date().toISOString()
+        });
+      }
+    } catch (error) {
+      console.error('❌ Manual peptide import failed:', error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to import peptides",
+        error: error instanceof Error ? error.message : "Unknown error",
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+  app.post("/api/import/guides", async (req, res) => {
+    try {
+      console.log('🚀 Manual guide generation triggered...');
+      const { checkAndImportGuides } = await import("./auto-import");
+      const generated = await checkAndImportGuides();
+      
+      if (generated) {
+        res.json({
+          success: true,
+          message: "Research guides generated successfully!",
+          timestamp: new Date().toISOString()
+        });
+      } else {
+        res.json({
+          success: true,
+          message: "Research guides already exist or generation skipped",
+          timestamp: new Date().toISOString()
+        });
+      }
+    } catch (error) {
+      console.error('❌ Manual guide generation failed:', error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to generate guides",
+        error: error instanceof Error ? error.message : "Unknown error",
+        timestamp: new Date().toISOString()
+      });
+    }
   });
 
   // Peptide endpoints

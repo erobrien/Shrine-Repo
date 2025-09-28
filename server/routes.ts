@@ -346,6 +346,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Sitemap endpoint for SEO
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://peptide-dojo.replit.app' 
+        : 'http://localhost:5000';
+      
+      // Get all content for sitemap
+      const [peptides, guides] = await Promise.all([
+        storage.getAllPeptides(),
+        storage.getAllGuides()
+      ]);
+
+      const currentDate = new Date().toISOString().split('T')[0];
+      
+      // Static pages with priority and change frequency
+      const staticPages = [
+        { url: '/', priority: '1.0', changefreq: 'daily', lastmod: currentDate },
+        { url: '/peptides', priority: '0.9', changefreq: 'daily', lastmod: currentDate },
+        { url: '/research', priority: '0.9', changefreq: 'daily', lastmod: currentDate }
+      ];
+
+      // Dynamic peptide pages
+      const peptidePages = peptides.map(peptide => ({
+        url: `/peptide/${peptide.id}`,
+        priority: '0.8',
+        changefreq: 'weekly',
+        lastmod: currentDate
+      }));
+
+      // Dynamic guide pages  
+      const guidePages = guides.map(guide => ({
+        url: `/guide/${guide.slug}`,
+        priority: '0.8', 
+        changefreq: 'weekly',
+        lastmod: new Date(guide.publishDate).toISOString().split('T')[0]
+      }));
+
+      // Combine all pages
+      const allPages = [...staticPages, ...peptidePages, ...guidePages];
+
+      // Generate XML sitemap
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages.map(page => `  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.send(sitemap);
+    } catch (error) {
+      console.error("Error generating sitemap:", error);
+      res.status(500).json({ error: "Failed to generate sitemap" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

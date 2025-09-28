@@ -180,29 +180,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Guide endpoints
   
-  // GET /api/guides - List all guides with pagination
+  // GET /api/guides - List guides with efficient pagination
   app.get("/api/guides", async (req, res) => {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const offset = (page - 1) * limit;
       
-      const guides = await storage.getAllGuides();
+      const result = await storage.getGuidesPaginated(limit, offset);
       
-      // Sanitize content for all guides
-      const sanitizedGuides = guides.map(guide => ({
+      // Sanitize content for paginated guides
+      const sanitizedGuides = result.data.map(guide => ({
         ...guide,
         content: sanitizeAndNormalizeContent(guide.content, true)
       }));
       
-      const paginatedGuides = sanitizedGuides.slice(offset, offset + limit);
-      
       res.json({
-        data: paginatedGuides,
+        data: sanitizedGuides,
         page,
         limit,
-        total: guides.length,
-        totalPages: Math.ceil(guides.length / limit)
+        total: result.total,
+        totalPages: Math.ceil(result.total / limit)
       });
     } catch (error) {
       console.error("Error fetching guides:", error);

@@ -15,6 +15,7 @@ import {
   protocols,
   guides
 } from "@shared/schema";
+import { sql } from "drizzle-orm";
 import { randomUUID } from "crypto";
 import { db } from "./db";
 import { eq, ilike, or, desc, asc } from "drizzle-orm";
@@ -53,6 +54,7 @@ export interface IStorage {
   getGuidesByCategory(category: string): Promise<Guide[]>;
   getFeaturedGuides(): Promise<Guide[]>;
   searchGuides(query: string): Promise<Guide[]>;
+  getGuidesPaginated(limit?: number, offset?: number): Promise<{data: Guide[], total: number}>;
 }
 
 // In-memory storage implementation
@@ -250,6 +252,17 @@ export class MemStorage implements IStorage {
         (guide.keywords && guide.keywords.some(keyword => keyword.toLowerCase().includes(lowercaseQuery)))
     );
   }
+
+  async getGuidesPaginated(limit: number = 10, offset: number = 0): Promise<{data: Guide[], total: number}> {
+    const allGuides = Array.from(this.guides.values());
+    const sortedGuides = allGuides.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+    const paginatedGuides = sortedGuides.slice(offset, offset + limit);
+    
+    return {
+      data: paginatedGuides,
+      total: allGuides.length
+    };
+  }
 }
 
 // Database storage implementation using Drizzle ORM
@@ -400,6 +413,25 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(guides)
       .orderBy(desc(guides.publishDate));
+  }
+
+  async getGuidesPaginated(limit: number = 10, offset: number = 0): Promise<{data: Guide[], total: number}> {
+    const [guidesResult, countResult] = await Promise.all([
+      db
+        .select()
+        .from(guides)
+        .orderBy(desc(guides.publishDate))
+        .limit(limit)
+        .offset(offset),
+      db
+        .select({ count: sql<number>`count(*)` })
+        .from(guides)
+    ]);
+    
+    return {
+      data: guidesResult,
+      total: countResult[0].count
+    };
   }
   
   async updateGuide(id: string, guideData: Partial<InsertGuide>): Promise<Guide | undefined> {

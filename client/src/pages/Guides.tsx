@@ -96,11 +96,11 @@ export default function Guides() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Fetch all guides (no pagination on API side - we'll handle it client side)
+  // Fetch guides with reasonable pagination for better performance
   const { data: guidesResponse, isLoading } = useQuery<GuideResponse>({
     queryKey: ['/api/guides'],
     queryFn: async () => {
-      const response = await fetch(`/api/guides?limit=1000`); // Fetch all guides
+      const response = await fetch(`/api/guides?limit=50`); // Fetch reasonable amount for good UX
       if (!response.ok) throw new Error('Failed to fetch guides');
       return response.json();
     },
@@ -220,10 +220,10 @@ export default function Guides() {
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <BookOpen className="w-8 h-8 text-primary" />
-              <h1 className="text-3xl sm:text-4xl font-bold">Dosing Guides</h1>
+              <h1 className="text-3xl sm:text-4xl font-bold">Peptide Research</h1>
             </div>
             <p className="text-base sm:text-lg font-medium text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
-              Evidence-based dosing protocols and administration guides for peptides, with detailed safety information and research-backed recommendations.
+              Comprehensive research articles covering peptide studies, clinical trials, mechanisms of action, and therapeutic applications backed by scientific evidence.
             </p>
           </div>
 
@@ -233,7 +233,7 @@ export default function Guides() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Search guides by title, content, or tags..."
+                placeholder="Search research articles by title, content, or tags..."
                 value={localSearch}
                 onChange={(e) => setLocalSearch(e.target.value)}
                 className="pl-10 h-12"

@@ -1,7 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { checkAndImportPeptides } from "./auto-import";
+import { checkAndImportPeptides, checkAndImportGuides } from "./auto-import";
 
 const app = express();
 app.use(express.json());
@@ -52,6 +52,21 @@ app.use((req, res, next) => {
   } catch (error) {
     console.error('⚠️  Warning: Failed to check/import peptides:', error);
     console.error('The server will continue without peptides data.');
+  }
+
+  // AUTOMATIC GUIDE GENERATION: Check and generate research guides if database is empty
+  console.log('📚 Checking research guides database...');
+  
+  try {
+    const generated = await checkAndImportGuides();
+    if (generated) {
+      console.log('🎯 Research guides generated successfully!');
+    } else {
+      console.log('✓ Research guides already exist or generation skipped.');
+    }
+  } catch (error) {
+    console.error('⚠️  Warning: Failed to check/generate guides:', error);
+    console.error('The server will continue without research guides.');
   }
   
   const server = await registerRoutes(app);

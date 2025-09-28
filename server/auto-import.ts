@@ -1,9 +1,10 @@
 import { readFileSync, existsSync } from 'fs';
 import { parse } from 'csv-parse/sync';
 import { db } from './db';
-import { categories, peptides } from '@shared/schema';
+import { categories, peptides, guides } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import type { InsertCategory, InsertPeptide } from '@shared/schema';
+import { generateAllGuides } from './generate-guides';
 
 // Type for CSV row
 interface CSVRow {
@@ -219,7 +220,7 @@ async function checkAndImportPeptides(): Promise<boolean> {
         dosage: dosage,
         price: price.toString(),
         isBlend: isBlend,
-        ingredients: ingredients,
+        ingredients: ingredients || undefined,
         researchApplications: researchApplications,
         alternateNames: undefined
       };
@@ -250,4 +251,32 @@ async function checkAndImportPeptides(): Promise<boolean> {
   }
 }
 
-export { checkAndImportPeptides };
+// Check if guides exist in database, if not, generate them
+async function checkAndImportGuides(): Promise<boolean> {
+  try {
+    console.log('🔍 Checking if guides exist in database...');
+    
+    // Check if guides already exist
+    const existingGuides = await db.select().from(guides).limit(1);
+    
+    if (existingGuides.length > 0) {
+      console.log('✅ Guides already exist in database. Skipping import.');
+      return false;
+    }
+    
+    console.log('📚 No guides found. Generating comprehensive research guides...');
+    console.log('⏳ This may take a moment to generate 111+ research articles...');
+    
+    // Generate all guides using the existing script
+    await generateAllGuides();
+    
+    console.log('✅ Research guides generated successfully!');
+    return true;
+  } catch (error) {
+    console.error('⚠️  Warning: Failed to check/import guides:', error);
+    console.error('The application will continue, but no research guides will be available.');
+    return false;
+  }
+}
+
+export { checkAndImportPeptides, checkAndImportGuides };

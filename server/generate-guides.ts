@@ -490,7 +490,9 @@ async function main() {
   }
 }
 
-// Run the main function
-main();
+// Only run main function if this script is executed directly (not imported)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}
 
 export { generateAllGuides };

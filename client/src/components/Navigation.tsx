@@ -17,8 +17,7 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
   const { toast } = useToast();
 
   const navItems = [
-    { path: "/peptides", label: "Peptides" },
-    { path: "/conditions", label: "Peptide Information" },
+    { path: "/peptides", label: "Peptide Information" },
     { path: "/guides", label: "Dosing Guides" },
     { path: "/research", label: "Peptide Research" }
   ];

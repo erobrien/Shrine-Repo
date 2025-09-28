@@ -13,6 +13,8 @@ import type { Peptide, Category } from "@shared/schema";
 export default function Peptides() {
   // Simplified test version
   console.log("🧪 Peptides component rendering...");
+  console.log("🔍 Current URL:", window.location.href);
+  console.log("📍 Current pathname:", window.location.pathname);
   
   const [, navigate] = useLocation();
   const searchParams = useSearch();
@@ -68,6 +70,11 @@ export default function Peptides() {
   const { data: categories = [], isLoading: categoryLoading } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
   });
+
+  // Debug logging
+  console.log("📊 Peptides data:", peptides.length, "peptides");
+  console.log("📊 Categories data:", categories.length, "categories");
+  console.log("📊 Loading states:", { peptideLoading, categoryLoading });
 
   // Filter peptides based on search and category
   const filteredPeptides = useMemo(() => {

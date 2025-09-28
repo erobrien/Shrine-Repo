@@ -6,6 +6,15 @@ import { z } from "zod";
 import { sanitizeAndNormalizeContent } from "./content-sanitizer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for Render
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "OK", 
+      message: "Peptide Dojo is running!",
+      timestamp: new Date().toISOString()
+    });
+  });
+
   // Peptide endpoints
   
   // GET /api/peptides - List all peptides

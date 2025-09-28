@@ -46,31 +46,39 @@ app.use((req, res, next) => {
   // AUTOMATIC PEPTIDE IMPORT: Check and import peptides if database is empty
   console.log('📊 Checking peptide database...');
   
-  try {
-    const imported = await checkAndImportPeptides();
-    if (imported) {
-      console.log('🎯 Peptides imported successfully!');
-    } else {
-      console.log('✓ Peptides already exist or import skipped.');
+  if (process.env.DATABASE_URL) {
+    try {
+      const imported = await checkAndImportPeptides();
+      if (imported) {
+        console.log('🎯 Peptides imported successfully!');
+      } else {
+        console.log('✓ Peptides already exist or import skipped.');
+      }
+    } catch (error) {
+      console.error('⚠️  Warning: Failed to check/import peptides:', error);
+      console.error('The server will continue without peptides data.');
     }
-  } catch (error) {
-    console.error('⚠️  Warning: Failed to check/import peptides:', error);
-    console.error('The server will continue without peptides data.');
+  } else {
+    console.log('⚠️  No database URL - skipping peptide import');
   }
 
   // AUTOMATIC GUIDE GENERATION: Check and generate research guides if database is empty
   console.log('📚 Checking research guides database...');
   
-  try {
-    const generated = await checkAndImportGuides();
-    if (generated) {
-      console.log('🎯 Research guides generated successfully!');
-    } else {
-      console.log('✓ Research guides already exist or generation skipped.');
+  if (process.env.DATABASE_URL) {
+    try {
+      const generated = await checkAndImportGuides();
+      if (generated) {
+        console.log('🎯 Research guides generated successfully!');
+      } else {
+        console.log('✓ Research guides already exist or generation skipped.');
+      }
+    } catch (error) {
+      console.error('⚠️  Warning: Failed to check/generate guides:', error);
+      console.error('The server will continue without research guides.');
     }
-  } catch (error) {
-    console.error('⚠️  Warning: Failed to check/generate guides:', error);
-    console.error('The server will continue without research guides.');
+  } else {
+    console.log('⚠️  No database URL - skipping guide generation');
   }
   
   const server = await registerRoutes(app);
@@ -97,11 +105,10 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
+  // Use different host based on environment
+  const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : undefined;
+  
+  server.listen(port, host, () => {
     printReadyMessage(port);
   });
 })();

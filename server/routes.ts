@@ -189,14 +189,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const result = await storage.getGuidesPaginated(limit, offset);
       
-      // Sanitize content for paginated guides
-      const sanitizedGuides = result.data.map(guide => ({
-        ...guide,
-        content: sanitizeAndNormalizeContent(guide.content, true)
-      }));
+      // For list view, skip expensive content sanitization (only needed for individual article view)
+      const guides = result.data;
       
       res.json({
-        data: sanitizedGuides,
+        data: guides,
         page,
         limit,
         total: result.total,
@@ -236,13 +233,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const guides = await storage.searchGuides(query);
       
-      // Sanitize content for search results
-      const sanitizedGuides = guides.map(guide => ({
-        ...guide,
-        content: sanitizeAndNormalizeContent(guide.content, true)
-      }));
-      
-      res.json(sanitizedGuides);
+      // For search results, skip expensive sanitization (only needed for individual article view)
+      res.json(guides);
     } catch (error) {
       console.error("Error searching guides:", error);
       res.status(500).json({ error: "Failed to search guides" });

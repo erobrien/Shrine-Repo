@@ -491,20 +491,10 @@ class SmartStorage implements IStorage {
   private storageImpl: IStorage;
 
   constructor() {
-    if (process.env.DATABASE_URL) {
-      try {
-        this.storageImpl = new DatabaseStorage();
-        console.log('✅ Using database storage');
-      } catch (error) {
-        console.warn('⚠️  Database connection failed, falling back to memory storage');
-        this.storageImpl = new MemStorage();
-        this.initializeDemoData();
-      }
-    } else {
-      console.log('📦 Using in-memory storage (no DATABASE_URL)');
-      this.storageImpl = new MemStorage();
-      this.initializeDemoData();
-    }
+    // Temporarily force in-memory storage due to database connection issues
+    console.log('📦 Using in-memory storage (database connection issues)');
+    this.storageImpl = new MemStorage();
+    this.initializeDemoData();
   }
 
   private async initializeDemoData() {

@@ -14,16 +14,43 @@ async function testSite() {
   try {
     // Test peptides page
     console.log('📱 Testing peptides page...');
+    
+    // Listen to console logs
+    page.on('console', msg => {
+      if (msg.text().includes('🧪') || msg.text().includes('🎯') || msg.text().includes('📊')) {
+        console.log('🖥️ Browser:', msg.text());
+      }
+    });
+    
     await page.goto('https://shrine-repo-dojo.onrender.com/peptides');
     await page.waitForLoadState('networkidle');
+    
+    // Wait a bit more for React to fully load
+    await page.waitForTimeout(2000);
     
     // Take screenshot
     await page.screenshot({ path: 'peptides-page.png', fullPage: true });
     console.log('📸 Screenshot saved: peptides-page.png');
     
-    // Check for peptide cards
-    const peptideCards = await page.locator('[data-testid="peptide-card"], .peptide-card, [class*="peptide"]').count();
+    // Check for specific peptide cards with correct data-testid
+    const peptideCards = await page.locator('[data-testid^="card-peptide-"]').count();
     console.log(`🔬 Found ${peptideCards} peptide cards`);
+    
+    // Check for research guide cards (wrong component)
+    const guideCards = await page.locator('[data-testid^="card-guide-"]').count();
+    console.log(`📚 Found ${guideCards} research guide cards on peptides page (should be 0)`);
+    
+    // Check page title
+    const title = await page.title();
+    console.log(`📄 Page title: ${title}`);
+    
+    // Check for "Peptide Library" heading
+    const peptideHeading = await page.locator('h1:has-text("Peptide Library")').count();
+    console.log(`🏷️ Found ${peptideHeading} "Peptide Library" headings`);
+    
+    // Check for "All Guides" text (indicates wrong component)
+    const allGuidesText = await page.locator('text="All Guides"').count();
+    console.log(`📖 Found ${allGuidesText} "All Guides" text (should be 0 on peptides page)`);
     
     // Check for any error messages
     const errorMessages = await page.locator('text="error"i, text="failed"i, text="loading"i').count();
@@ -39,8 +66,8 @@ async function testSite() {
     console.log('📸 Screenshot saved: research-page.png');
     
     // Check for research guide cards
-    const guideCards = await page.locator('[data-testid="guide-card"], .guide-card, [class*="guide"]').count();
-    console.log(`📖 Found ${guideCards} guide cards`);
+    const researchGuideCards = await page.locator('[data-testid="guide-card"], .guide-card, [class*="guide"]').count();
+    console.log(`📖 Found ${researchGuideCards} guide cards`);
     
     // Check API endpoints directly
     console.log('🔌 Testing API endpoints...');

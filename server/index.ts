@@ -5,8 +5,27 @@ import { checkAndImportPeptides, checkAndImportGuides } from "./auto-import";
 import { printStartupBanner, printConfigStatus, printReadyMessage } from "./startup-banner";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
+
+// Rate limiting
+app.use((req, res, next) => {
+  // Simple rate limiting - in production, use express-rate-limit
+  const clientIP = req.ip || req.connection.remoteAddress;
+  // Add your rate limiting logic here
+  next();
+});
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use((req, res, next) => {
   const start = Date.now();

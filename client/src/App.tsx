@@ -37,20 +37,12 @@ function Router() {
 }
 
 function App() {
-  console.log("🎯 App component rendering...");
-  console.log("📍 Current path:", window.location.pathname);
-  
-  const handleLoginClick = () => {
-    console.log('Login clicked - Begin Your Training');
-    // todo: remove mock functionality - integrate with real auth
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen flex flex-col bg-background">
           <RedBanner />
-          <Navigation onLoginClick={handleLoginClick} />
+          <Navigation />
           <main className="flex-1">
             <Router />
           </main>

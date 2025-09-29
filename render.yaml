@@ -16,3 +16,7 @@ services:
         generateValue: true
     healthCheckPath: /api/health
     plan: starter
+    # Custom domain configuration
+    customDomains:
+      - peptidedojo.com
+      - www.peptidedojo.com

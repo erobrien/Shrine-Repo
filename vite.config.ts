@@ -17,11 +17,32 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
+          query: ['@tanstack/react-query'],
+          router: ['wouter'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.log in production
+        drop_debugger: true,
+      },
+    },
   },
   server: {
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', '@tanstack/react-query', 'wouter'],
   },
 });

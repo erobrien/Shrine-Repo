@@ -4,12 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Menu, X } from "lucide-react";
-import shrineLogoPath from "@assets/LogoV_Black_v2_1758948960878.jpg";
 import shrineIconPath from "@assets/Icon_White_1758953368901.png";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
-export default function Navigation({ onLoginClick }: { onLoginClick?: () => void }) {
+export default function Navigation() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -113,17 +112,6 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                 </Button>
               )
             ))}
-            {onLoginClick && (
-              <Button 
-                onClick={onLoginClick}
-                size="lg"
-                className="ml-6 text-base lg:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-                variant="default"
-                data-testid="nav-login-button"
-              >
-                Begin Your Training
-              </Button>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -200,22 +188,6 @@ export default function Navigation({ onLoginClick }: { onLoginClick?: () => void
                     )
                   ))}
                 </div>
-                {onLoginClick && (
-                  <div className="mt-6 pt-6 border-t border-border">
-                    <Button 
-                      onClick={() => {
-                        onLoginClick();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      size="lg"
-                      className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all"
-                      variant="default"
-                      data-testid="mobile-login-button"
-                    >
-                      Begin Your Training
-                    </Button>
-                  </div>
-                )}
               </nav>
             </SheetContent>
           </Sheet>

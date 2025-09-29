@@ -410,7 +410,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/sitemap.xml", async (req, res) => {
     try {
       const baseUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://peptide-dojo.replit.app' 
+        ? 'https://peptidedojo.com' 
         : 'http://localhost:5000';
       
       // Get all content for sitemap

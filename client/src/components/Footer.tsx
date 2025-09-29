@@ -1,20 +1,21 @@
 import { Link } from "wouter";
+import shrineIconPath from "@assets/Icon_White_1758953368901.png";
 
 export default function Footer() {
   return (
     <footer className="bg-muted border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Logo and Tagline */}
-          <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
+          <div className="text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start space-x-3 mb-3 sm:mb-4">
-              <div className="w-6 h-6 text-primary">
-                <svg viewBox="0 0 24 24" className="w-full h-full text-primary fill-current">
-                  <circle cx="12" cy="12" r="10" className="stroke-current fill-none" strokeWidth="2"/>
-                  <circle cx="12" cy="8" r="3" className="fill-current"/>
-                  <path d="M8 16h8" className="stroke-current" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
+              <img 
+                src={shrineIconPath} 
+                alt="Peptide Dojo logo" 
+                className="h-8 w-8 object-contain"
+                width="32"
+                height="32"
+              />
               <div className="font-bold text-lg">
                 <span className="text-foreground">PEPTIDE</span>
                 <span className="text-primary ml-1">DOJO</span>
@@ -34,8 +35,7 @@ export default function Footer() {
             <div className="space-y-2">
               {[
                 { href: "/peptides", label: "Peptides" },
-                { href: "/conditions", label: "Conditions" },
-                { href: "/research", label: "Research" }
+                { href: "/research", label: "Research Guides" }
               ].map((link) => (
                 <Link key={link.href} href={link.href}>
                   <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start" data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -46,26 +46,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* About */}
-          <div>
-            <h3 className="font-bold mb-3 sm:mb-4 text-foreground text-base">About</h3>
-            <div className="space-y-2">
-              {[
-                { href: "/methodology", label: "Our Methodology" },
-                { href: "/team", label: "Research Team" },
-                { href: "/contact", label: "Contact Us" },
-                { href: "/disclaimer", label: "Medical Disclaimer" }
-              ].map((link) => (
-                <Link key={link.href} href={link.href}>
-                  <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer py-3 sm:py-1 text-sm min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start" data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
-                    {link.label}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
 
-          {/* Contact */}
+          {/* Connect */}
           <div>
             <h3 className="font-bold mb-3 sm:mb-4 text-foreground text-base">Connect</h3>
             <p className="font-light text-muted-foreground mb-4 text-sm">
@@ -78,14 +60,6 @@ export default function Footer() {
                   data-testid="link-shrine-peptides"
                 >
                   Visit Shrine Peptides →
-                </div>
-              </Link>
-              <Link href="/contact">
-                <div 
-                  className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm py-3 sm:py-0 min-h-[44px] sm:min-h-0 flex items-center justify-center sm:justify-start"
-                  data-testid="link-contact"
-                >
-                  Contact Us
                 </div>
               </Link>
             </div>

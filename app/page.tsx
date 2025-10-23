@@ -1,4 +1,5 @@
 import { client } from "@/lib/sanity";
+import Image from "next/image";
 
 interface Peptide {
   _id: string;
@@ -58,288 +59,301 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <div className="min-h-screen bg-gray-100">
+      {/* Header - Dark Background */}
+      <header className="bg-black sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">PD</span>
+              <div className="flex items-center">
+                <span className="text-2xl font-bold text-red-600">PEPTIDE</span>
+                <span className="text-2xl font-bold text-white ml-1">DOJO</span>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                PeptideDojo
-              </h1>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Peptides</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Protocols</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Research</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Education</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">About</a>
+              <div className="relative group">
+                <button className="text-white hover:text-gray-300 transition-colors font-medium">
+                  Peptide Information
+                </button>
+              </div>
+              <div className="relative group">
+                <button className="text-white hover:text-gray-300 transition-colors font-medium">
+                  Peptide Research
+                </button>
+              </div>
             </nav>
             <div className="flex items-center space-x-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
-                Get Started
+              <button className="text-white hover:text-gray-300 transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Master the Art of<br />
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Peptide Research
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Your comprehensive platform for peptide education, research protocols, and scientific discovery. 
-              Join thousands of researchers advancing peptide science with cutting-edge tools and knowledge.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
-                Start Learning Now
-              </button>
-              <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
-                Browse Peptides
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-gray-900 mb-4">
-              Explore by Category
-            </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover peptides organized by research focus and application areas
-            </p>
-          </div>
+      {/* Hero Section - Gray Background */}
+      <section className="bg-gray-500 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            Master Peptide Science
+          </h1>
+          <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+            Train your knowledge, elevate your understanding, achieve optimal health
+          </p>
           
-          {categories.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categories.map((category: Category) => (
-                <div key={category._id} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer group">
-                  <div className="flex items-center mb-4">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl mr-4 bg-${category.color}-100 text-${category.color}-600`}>
-                      {category.icon}
-                    </div>
-                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {category.name}
-                    </h4>
-                  </div>
-                  {category.description && (
-                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                      {category.description}
-                    </p>
-                  )}
-                </div>
-              ))}
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="flex">
+              <input 
+                type="text" 
+                placeholder="Search peptides, research, conditions..."
+                className="flex-1 px-6 py-4 rounded-l-lg border-0 focus:ring-2 focus:ring-red-500 focus:outline-none"
+              />
+              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-r-lg font-semibold transition-colors">
+                Search
+              </button>
             </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
-                No categories found. Add some content in your Sanity Studio!
-              </p>
-              <a 
-                href="http://localhost:3002" 
-                className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
-              >
-                Open Sanity Studio
-              </a>
-            </div>
-          )}
+          </div>
+
+          {/* Stats Row */}
+          <div className="flex flex-wrap justify-center items-center text-white text-sm space-x-8">
+            <span>50+ Research Partners</span>
+            <span>|</span>
+            <span>10K+ Active Members</span>
+            <span>|</span>
+            <span>100% Science-Based</span>
+            <span>|</span>
+            <span>24/7 Expert Support</span>
+          </div>
         </div>
       </section>
 
-      {/* Featured Peptides Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Explore Section - White Background */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-gray-900 mb-4">
-              Featured Peptides
-            </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover the most important and well-researched peptides in our database
-            </p>
-          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+            Explore Peptide Dojo
+          </h2>
           
-          {featuredPeptides.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredPeptides.map((peptide: Peptide) => (
-                <div key={peptide._id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer group">
-                  {peptide.images && peptide.images.length > 0 ? (
-                    <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                      <span className="text-6xl">🧬</span>
-                    </div>
-                  ) : (
-                    <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                      <span className="text-6xl">🧬</span>
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {peptide.name}
-                      </h4>
-                      {peptide.category && (
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium bg-${peptide.category.color}-100 text-${peptide.category.color}-800`}>
-                          {peptide.category.name}
-                        </span>
-                      )}
-                    </div>
-                    {peptide.description && (
-                      <p className="text-gray-600 group-hover:text-gray-700 transition-colors line-clamp-3">
-                        {peptide.description}
-                      </p>
-                    )}
-                    <div className="mt-4 flex items-center text-blue-600 group-hover:text-blue-700 transition-colors">
-                      <span className="text-sm font-medium">Learn More</span>
-                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Peptides</h3>
+              <p className="text-gray-600 mb-4">{featuredPeptides.length} items</p>
+              <div className="text-red-600 font-medium">View All →</div>
             </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
-                No featured peptides found. Add some content in your Sanity Studio!
-              </p>
-              <a 
-                href="http://localhost:3002" 
-                className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
-              >
-                Open Sanity Studio
-              </a>
+            
+            <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Categories</h3>
+              <p className="text-gray-600 mb-4">{categories.length} items</p>
+              <div className="text-red-600 font-medium">View All →</div>
             </div>
-          )}
+            
+            <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Research</h3>
+              <p className="text-gray-600 mb-4">Studies & Protocols</p>
+              <div className="text-red-600 font-medium">View All →</div>
+            </div>
+            
+            <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Conditions</h3>
+              <p className="text-gray-600 mb-4">Health Applications</p>
+              <div className="text-red-600 font-medium">View All →</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white">
+      {/* Featured Research Section */}
+      <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose PeptideDojo?
-            </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive tools and resources for peptide research and education
-            </p>
-          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+            Featured Research
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <span className="text-3xl">🧬</span>
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">A+</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">15 Studies</span>
               </div>
-              <h4 className="text-2xl font-semibold text-gray-900 mb-4">Comprehensive Database</h4>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                Access detailed information on hundreds of peptides, their mechanisms, and applications.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">BPC-157 Research</h3>
+              <p className="text-gray-600 mb-4">Comprehensive studies on healing and recovery</p>
+              <a href="#" className="text-red-600 font-medium">View Details →</a>
             </div>
             
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <span className="text-3xl">📚</span>
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">B</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">8 Studies</span>
               </div>
-              <h4 className="text-2xl font-semibold text-gray-900 mb-4">Research Protocols</h4>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                Step-by-step protocols and methodologies validated by leading researchers.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">GLP-1 Agonists</h3>
+              <p className="text-gray-600 mb-4">Weight management and metabolic health</p>
+              <a href="#" className="text-red-600 font-medium">View Details →</a>
             </div>
             
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <span className="text-3xl">🎓</span>
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">A</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">12 Studies</span>
               </div>
-              <h4 className="text-2xl font-semibold text-gray-900 mb-4">Education Platform</h4>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                Learn from experts with courses, tutorials, and interactive learning modules.
-              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">IGF-1+LR3</h3>
+              <p className="text-gray-600 mb-4">Growth and recovery enhancement</p>
+              <a href="#" className="text-red-600 font-medium">View Details →</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h3 className="text-4xl font-bold text-white mb-4">
-            Ready to Advance Your Research?
-          </h3>
-          <p className="text-xl text-blue-100 mb-8">
-            Join thousands of researchers using PeptideDojo to accelerate their discoveries
+      {/* Latest Updates Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+            Latest Updates
+          </h2>
+          
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center space-x-4">
+                <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Safety Update</span>
+                <span className="text-gray-900 font-medium">BPC-157 Administration Guidelines Updated</span>
+              </div>
+              <span className="text-gray-500 text-sm">2 hours ago</span>
+            </div>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center space-x-4">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Research</span>
+                <span className="text-gray-900 font-medium">New Study: Semaglutide Long-term Effects</span>
+              </div>
+              <span className="text-gray-500 text-sm">1 day ago</span>
+            </div>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center space-x-4">
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Protocol</span>
+                <span className="text-gray-900 font-medium">Updated Tirzepatide Dosing Protocol</span>
+              </div>
+              <span className="text-gray-500 text-sm">3 days ago</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Glossary Section */}
+      <section className="py-20 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+            Research Glossary
+          </h2>
+          
+          <div className="max-w-2xl mx-auto mb-8">
+            <input 
+              type="text" 
+              placeholder="Search research terms..."
+              className="w-full px-6 py-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">BPC-157</span>
+              <span className="text-gray-400">→</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">GLP-1 Agonists</span>
+              <span className="text-gray-400">→</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">IGF-1+LR3</span>
+              <span className="text-gray-400">→</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">Thymosin Beta-4</span>
+              <span className="text-gray-400">→</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">NAD+ Precursors</span>
+              <span className="text-gray-400">→</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 border border-gray-200 flex items-center justify-between">
+              <span className="text-gray-900 font-medium">Semaglutide</span>
+              <span className="text-gray-400">→</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Stay Updated
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Get the latest research, protocols, and safety updates
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
-              Start Free Trial
-            </button>
-            <button className="border border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
-              View Pricing
+          
+          <div className="flex max-w-md mx-auto">
+            <input 
+              type="email" 
+              placeholder="Enter your email"
+              className="flex-1 px-6 py-4 rounded-l-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
+            />
+            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-r-lg font-semibold transition-colors">
+              Subscribe Now
             </button>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      {/* Footer - Dark Background */}
+      <footer className="bg-black text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">PD</span>
-                </div>
-                <h5 className="text-2xl font-bold text-white">PeptideDojo</h5>
+            <div>
+              <div className="flex items-center mb-4">
+                <span className="text-2xl font-bold text-red-600">PEPTIDE</span>
+                <span className="text-2xl font-bold text-white ml-1">DOJO</span>
               </div>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Advancing peptide research through education, collaboration, and cutting-edge tools for researchers worldwide.
+              <p className="text-gray-400 mb-4">
+                Advancing peptide research through education, collaboration, and cutting-edge tools.
               </p>
-              <div className="flex space-x-4">
-                <a href="https://github.com/erobrien/Shrine-Repo" className="text-gray-400 hover:text-white transition-colors">
-                  GitHub
-                </a>
-                <a href="http://localhost:3002" className="text-gray-400 hover:text-white transition-colors">
-                  Sanity Studio
-                </a>
-              </div>
             </div>
             
             <div>
-              <h6 className="text-white font-semibold mb-4">Resources</h6>
+              <h6 className="text-white font-semibold mb-4">Research</h6>
               <ul className="space-y-2">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Peptide Database</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Research Protocols</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Education Center</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Safety Guidelines</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Study Results</a></li>
               </ul>
             </div>
             
             <div>
-              <h6 className="text-white font-semibold mb-4">Support</h6>
+              <h6 className="text-white font-semibold mb-4">About</h6>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Our Mission</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Research Team</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Partnerships</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h6 className="text-white font-semibold mb-4">Connect</h6>
+              <ul className="space-y-2">
+                <li><a href="https://github.com/erobrien/Shrine-Repo" className="text-gray-400 hover:text-white transition-colors">GitHub</a></li>
+                <li><a href="http://localhost:3002" className="text-gray-400 hover:text-white transition-colors">Sanity Studio</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
             <p className="text-gray-400">
               © 2024 PeptideDojo. All rights reserved. Built with Sanity.io and Next.js.
             </p>

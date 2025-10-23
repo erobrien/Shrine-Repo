@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: peptidedojo-sanity-api
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SANITY_PROJECT_ID
+        value: regqjwlq
+      - key: SANITY_DATASET
+        value: production
+      - key: SANITY_API_VERSION
+        value: 2025-10-22
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://shrine-repo-dojo.onrender.com
+    healthCheckPath: /health
+    autoDeploy: true

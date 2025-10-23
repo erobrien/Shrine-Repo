@@ -53,6 +53,11 @@
   --dojo-light-gray: #F9F9F9;
 }
 
+/* Ensure Inter font is applied globally */
+* {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

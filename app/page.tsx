@@ -59,14 +59,14 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen" style={{backgroundColor: '#F5F5F5'}}>
       {/* Header - Dark Background */}
-      <header className="bg-black sticky top-0 z-50">
+      <header className="sticky top-0 z-50" style={{backgroundColor: '#0A0A0A'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
               <div className="flex items-center">
-                <span className="text-2xl font-bold text-red-600">PEPTIDE</span>
+                <span className="text-2xl font-bold" style={{color: '#DC2626'}}>PEPTIDE</span>
                 <span className="text-2xl font-bold text-white ml-1">DOJO</span>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default async function Home() {
       </header>
 
       {/* Hero Section - Gray Background */}
-      <section className="bg-gray-500 py-20">
+      <section className="py-20" style={{backgroundColor: '#878787'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Master Peptide Science
@@ -111,7 +111,7 @@ export default async function Home() {
                 placeholder="Search peptides, research, conditions..."
                 className="flex-1 px-6 py-4 rounded-l-lg border-0 focus:ring-2 focus:ring-red-500 focus:outline-none"
               />
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-r-lg font-semibold transition-colors">
+              <button className="text-white px-8 py-4 rounded-r-lg font-semibold transition-colors" style={{backgroundColor: '#DC2626'}}>
                 Search
               </button>
             </div>
@@ -141,25 +141,25 @@ export default async function Home() {
             <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Peptides</h3>
               <p className="text-gray-600 mb-4">{featuredPeptides.length} items</p>
-              <div className="text-red-600 font-medium">View All →</div>
+              <div className="font-medium" style={{color: '#DC2626'}}>View All →</div>
             </div>
             
             <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Categories</h3>
               <p className="text-gray-600 mb-4">{categories.length} items</p>
-              <div className="text-red-600 font-medium">View All →</div>
+              <div className="font-medium" style={{color: '#DC2626'}}>View All →</div>
             </div>
             
             <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Research</h3>
               <p className="text-gray-600 mb-4">Studies & Protocols</p>
-              <div className="text-red-600 font-medium">View All →</div>
+              <div className="font-medium" style={{color: '#DC2626'}}>View All →</div>
             </div>
             
             <div className="bg-white border border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Conditions</h3>
               <p className="text-gray-600 mb-4">Health Applications</p>
-              <div className="text-red-600 font-medium">View All →</div>
+              <div className="font-medium" style={{color: '#DC2626'}}>View All →</div>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">BPC-157 Research</h3>
               <p className="text-gray-600 mb-4">Comprehensive studies on healing and recovery</p>
-              <a href="#" className="text-red-600 font-medium">View Details →</a>
+              <a href="#" className="font-medium" style={{color: '#DC2626'}}>View Details →</a>
             </div>
             
             <div className="bg-white rounded-lg p-6 border border-gray-200">
@@ -190,7 +190,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">GLP-1 Agonists</h3>
               <p className="text-gray-600 mb-4">Weight management and metabolic health</p>
-              <a href="#" className="text-red-600 font-medium">View Details →</a>
+              <a href="#" className="font-medium" style={{color: '#DC2626'}}>View Details →</a>
             </div>
             
             <div className="bg-white rounded-lg p-6 border border-gray-200">
@@ -200,7 +200,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">IGF-1+LR3</h3>
               <p className="text-gray-600 mb-4">Growth and recovery enhancement</p>
-              <a href="#" className="text-red-600 font-medium">View Details →</a>
+              <a href="#" className="font-medium" style={{color: '#DC2626'}}>View Details →</a>
             </div>
           </div>
         </div>
@@ -301,7 +301,7 @@ export default async function Home() {
               placeholder="Enter your email"
               className="flex-1 px-6 py-4 rounded-l-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
             />
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-r-lg font-semibold transition-colors">
+            <button className="text-white px-8 py-4 rounded-r-lg font-semibold transition-colors" style={{backgroundColor: '#DC2626'}}>
               Subscribe Now
             </button>
           </div>
@@ -309,12 +309,12 @@ export default async function Home() {
       </section>
 
       {/* Footer - Dark Background */}
-      <footer className="bg-black text-white py-16">
+      <footer className="text-white py-16" style={{backgroundColor: '#0A0A0A'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <span className="text-2xl font-bold text-red-600">PEPTIDE</span>
+                <span className="text-2xl font-bold" style={{color: '#DC2626'}}>PEPTIDE</span>
                 <span className="text-2xl font-bold text-white ml-1">DOJO</span>
               </div>
               <p className="text-gray-400 mb-4">

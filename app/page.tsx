@@ -64,12 +64,17 @@ export default async function Home() {
       <header className="sticky top-0 z-50" style={{backgroundColor: '#0A0A0A'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center">
-                <span className="text-2xl font-bold" style={{color: '#DC2626'}}>PEPTIDE</span>
-                <span className="text-2xl font-bold text-white ml-1">DOJO</span>
-              </div>
-            </div>
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center">
+                    <img 
+                      src="/images/logo.png" 
+                      alt="PeptideDojo" 
+                      className="h-8 w-auto mr-2"
+                    />
+                    <span className="text-2xl font-bold" style={{color: '#DC2626'}}>PEPTIDE</span>
+                    <span className="text-2xl font-bold text-white ml-1">DOJO</span>
+                  </div>
+                </div>
             <nav className="hidden md:flex space-x-8">
               <div className="relative group">
                 <button className="text-white hover:text-gray-300 transition-colors font-medium">

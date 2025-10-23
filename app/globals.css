@@ -51,6 +51,11 @@
   --dojo-dark: #0A0A0A;
   --dojo-gray: #878787;
   --dojo-light-gray: #F9F9F9;
+  --dojo-hero-bg: #878787;
+  --dojo-header-bg: #0A0A0A;
+  --dojo-text-white: #FFFFFF;
+  --dojo-text-gray: #737373;
+  --dojo-accent-red: #DC2626;
 }
 
 /* Ensure Inter font is applied globally */
